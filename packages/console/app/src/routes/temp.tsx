@@ -131,7 +131,7 @@ export default function Home() {
             <h3 data-component="title">homebrew</h3>
             <button data-copy data-slot="button">
               <span>
-                brew install myassistant</strong>
+                brew install <strong>myassistant</strong>
               </span>
               <CopyStatus />
             </button>
