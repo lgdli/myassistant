@@ -5,7 +5,7 @@ import { AgentSideConnection, ndJsonStream } from "@agentclientprotocol/sdk"
 import { ACP } from "@/acp/agent"
 import { Server } from "@/server/server"
 import { ServerAuth } from "@/server/auth"
-import { createOpencodeClient } from "@myassistant-ai/sdk/v2"
+import { createMyassistantClient } from "@myassistant-ai/sdk/v2"
 import { withNetworkOptions, resolveNetworkOptions } from "../network"
 
 const log = Log.create({ service: "acp-command" })
@@ -25,7 +25,7 @@ export const AcpCommand = effectCmd({
     const opts = yield* Effect.promise(() => resolveNetworkOptions(args))
     const server = yield* Effect.promise(() => Server.listen(opts))
 
-    const sdk = createOpencodeClient({
+    const sdk = createMyassistantClient({
       baseUrl: `http://${server.hostname}:${server.port}`,
       headers: ServerAuth.headers(),
     })

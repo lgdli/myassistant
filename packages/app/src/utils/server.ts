@@ -1,4 +1,4 @@
-import { createOpencodeClient } from "@myassistant-ai/sdk/v2/client"
+import { createMyassistantClient } from "@myassistant-ai/sdk/v2/client"
 import type { ServerConnection } from "@/context/server"
 import { decode64 } from "@/utils/base64"
 
@@ -20,7 +20,7 @@ export function authFromToken(token: string | null) {
 export function createSdkForServer({
   server,
   ...config
-}: Omit<NonNullable<Parameters<typeof createOpencodeClient>[0]>, "baseUrl"> & {
+}: Omit<NonNullable<Parameters<typeof createMyassistantClient>[0]>, "baseUrl"> & {
   server: ServerConnection.HttpBase
 }) {
   const auth = (() => {
@@ -30,7 +30,7 @@ export function createSdkForServer({
     }
   })()
 
-  return createOpencodeClient({
+  return createMyassistantClient({
     ...config,
     headers: {
       ...(config.headers instanceof Headers ? Object.fromEntries(config.headers.entries()) : config.headers),

@@ -1,4 +1,4 @@
-import { createOpencodeClient } from "@myassistant-ai/sdk/v2"
+import { createMyassistantClient } from "@myassistant-ai/sdk/v2"
 import { useDialog } from "@tui/ui/dialog"
 import { DialogSelect } from "@tui/ui/dialog-select"
 import { useRoute } from "@tui/context/route"
@@ -17,7 +17,7 @@ type Adapter = {
 }
 
 function scoped(sdk: ReturnType<typeof useSDK>, sync: ReturnType<typeof useSync>, workspaceID: string) {
-  return createOpencodeClient({
+  return createMyassistantClient({
     baseUrl: sdk.url,
     fetch: sdk.fetch,
     directory: sync.path.directory || sdk.directory,

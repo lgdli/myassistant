@@ -3,7 +3,7 @@ import { ConfigProvider, Effect, Layer } from "effect"
 import type * as Scope from "effect/Scope"
 import { HttpRouter } from "effect/unstable/http"
 import { Flag } from "@myassistant-ai/core/flag/flag"
-import { createOpencodeClient } from "@myassistant-ai/sdk/v2"
+import { createMyassistantClient } from "@myassistant-ai/sdk/v2"
 import { Instance } from "../../src/project/instance"
 import { WithInstance } from "../../src/project/with-instance"
 import { ExperimentalHttpApiServer } from "../../src/server/routes/instance/httpapi/server"
@@ -26,7 +26,7 @@ const original = {
 }
 
 type Backend = "legacy" | "httpapi"
-type Sdk = ReturnType<typeof createOpencodeClient>
+type Sdk = ReturnType<typeof createMyassistantClient>
 type SdkResult = { response: Response; data?: unknown; error?: unknown }
 type Captured = { status: number; data?: unknown; error?: unknown }
 type ProjectFixture = { sdk: Sdk; directory: string }
@@ -70,7 +70,7 @@ function client(
       await serverApp.fetch(request instanceof Request ? request : new Request(request, init)),
     { preconnect: globalThis.fetch.preconnect },
   ) satisfies typeof globalThis.fetch
-  return createOpencodeClient({
+  return createMyassistantClient({
     baseUrl: "http://localhost",
     directory,
     headers: input?.headers,

@@ -8,7 +8,7 @@ import { Flag } from "@myassistant-ai/core/flag/flag"
 import { ServerAuth } from "@/server/auth"
 import { EOL } from "os"
 import { Filesystem } from "@/util/filesystem"
-import { createOpencodeClient, type OpencodeClient, type ToolPart } from "@myassistant-ai/sdk/v2"
+import { createMyassistantClient, type OpencodeClient, type ToolPart } from "@myassistant-ai/sdk/v2"
 import { Server } from "../../server/server"
 import { Provider } from "@/provider/provider"
 import { Agent } from "../../agent/agent"
@@ -663,7 +663,7 @@ export const RunCommand = effectCmd({
 
       if (args.attach) {
         const headers = ServerAuth.headers({ password: args.password, username: args.username })
-        const sdk = createOpencodeClient({ baseUrl: args.attach, directory, headers })
+        const sdk = createMyassistantClient({ baseUrl: args.attach, directory, headers })
         return await execute(sdk)
       }
 
@@ -671,7 +671,7 @@ export const RunCommand = effectCmd({
         const request = new Request(input, init)
         return Server.Default().app.fetch(request)
       }) as typeof globalThis.fetch
-      const sdk = createOpencodeClient({ baseUrl: "http://myassistant.internal", fetch: fetchFn })
+      const sdk = createMyassistantClient({ baseUrl: "http://myassistant.internal", fetch: fetchFn })
       await execute(sdk)
     })
   }),

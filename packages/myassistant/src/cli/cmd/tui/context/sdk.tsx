@@ -1,4 +1,4 @@
-import { createOpencodeClient } from "@myassistant-ai/sdk/v2"
+import { createMyassistantClient } from "@myassistant-ai/sdk/v2"
 import type { GlobalEvent } from "@myassistant-ai/sdk/v2"
 import { createSimpleContext } from "./helper"
 import { createGlobalEmitter } from "@solid-primitives/event-bus"
@@ -22,7 +22,7 @@ export const { use: useSDK, provider: SDKProvider } = createSimpleContext({
     let sse: AbortController | undefined
 
     function createSDK() {
-      return createOpencodeClient({
+      return createMyassistantClient({
         baseUrl: props.url,
         signal: abort.signal,
         directory: props.directory,
