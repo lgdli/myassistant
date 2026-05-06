@@ -4,6 +4,8 @@ import { createClient } from "./gen/client/client.gen.js"
 import { type Config } from "./gen/client/types.gen.js"
 import { OpencodeClient } from "./gen/sdk.gen.js"
 export { type Config as OpencodeClientConfig, OpencodeClient }
+// Alias for backwards compatibility with myassistant naming
+export { OpencodeClient as MyassistantClient, type Config as MyassistantClientConfig }
 
 function pick(value: string | null, fallback?: string) {
   if (!value) return

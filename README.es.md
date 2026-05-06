@@ -51,14 +51,14 @@ curl -fsSL https://myassistant.ai/install | bash
 
 # Gestores de paquetes
 npm i -g myassistant-ai@latest        # o bun/pnpm/yarn
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS y Linux (recomendado, siempre al día)
-brew install opencode              # macOS y Linux (fórmula oficial de brew, se actualiza menos)
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-bin               # Arch Linux (Latest from AUR)
-mise use -g opencode               # cualquier sistema
-nix run nixpkgs#opencode           # o github:anomalyco/myassistant para la rama dev más reciente
+scoop install myassistant             # Windows
+choco install myassistant             # Windows
+brew install anomalyco/tap/myassistant # macOS y Linux (recomendado, siempre al día)
+brew install myassistant              # macOS y Linux (fórmula oficial de brew, se actualiza menos)
+sudo pacman -S myassistant            # Arch Linux (Stable)
+paru -S myassistant-bin               # Arch Linux (Latest from AUR)
+mise use -g myassistant               # cualquier sistema
+nix run nixpkgs#myassistant           # o github:anomalyco/myassistant para la rama dev más reciente
 ```
 
 > [!TIP]
@@ -70,30 +70,30 @@ MyAssistant también está disponible como aplicación de escritorio. Descárgal
 
 | Plataforma            | Descarga                              |
 | --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opencode-desktop-darwin-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe`    |
+| macOS (Apple Silicon) | `myassistant-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `myassistant-desktop-darwin-x64.dmg`     |
+| Windows               | `myassistant-desktop-windows-x64.exe`    |
 | Linux                 | `.deb`, `.rpm`, o AppImage            |
 
 ```bash
 # macOS (Homebrew)
-brew install --cask opencode-desktop
+brew install --cask myassistant-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/myassistant-desktop
 ```
 
 #### Directorio de instalación
 
 El script de instalación respeta el siguiente orden de prioridad para la ruta de instalación:
 
-1. `$OPENCODE_INSTALL_DIR` - Directorio de instalación personalizado
+1. `$MYASSISTANT_INSTALL_DIR` - Directorio de instalación personalizado
 2. `$XDG_BIN_DIR` - Ruta compatible con la especificación XDG Base Directory
 3. `$HOME/bin` - Directorio binario estándar del usuario (si existe o se puede crear)
-4. `$HOME/.opencode/bin` - Alternativa por defecto
+4. `$HOME/.myassistant/bin` - Alternativa por defecto
 
 ```bash
 # Ejemplos
-OPENCODE_INSTALL_DIR=/usr/local/bin curl -fsSL https://myassistant.ai/install | bash
+MYASSISTANT_INSTALL_DIR=/usr/local/bin curl -fsSL https://myassistant.ai/install | bash
 XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://myassistant.ai/install | bash
 ```
 
@@ -122,7 +122,7 @@ Si te interesa contribuir a MyAssistant, lee nuestras [docs de contribución](./
 
 ### Construyendo sobre MyAssistant
 
-Si estás trabajando en un proyecto relacionado con MyAssistant y usas "opencode" como parte del nombre; por ejemplo, "opencode-dashboard" u "opencode-mobile", agrega una nota en tu README para aclarar que no está construido por el equipo de MyAssistant y que no está afiliado con nosotros de ninguna manera.
+Si estás trabajando en un proyecto relacionado con MyAssistant y usas "myassistant" como parte del nombre; por ejemplo, "myassistant-dashboard" u "myassistant-mobile", agrega una nota en tu README para aclarar que no está construido por el equipo de MyAssistant y que no está afiliado con nosotros de ninguna manera.
 
 ### FAQ
 
@@ -138,4 +138,4 @@ Es muy similar a Claude Code en cuanto a capacidades. Estas son las diferencias 
 
 ---
 
-**Únete a nuestra comunidad** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+**Únete a nuestra comunidad** [Discord](https://discord.gg/myassistant) | [X.com](https://x.com/myassistant)

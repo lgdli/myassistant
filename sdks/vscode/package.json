@@ -1,7 +1,7 @@
 {
   "name": "myassistant",
-  "displayName": "opencode",
-  "description": "opencode for VS Code",
+  "displayName": "MyAssistant",
+  "description": "MyAssistant for VS Code",
   "version": "1.14.33",
   "publisher": "sst-dev",
   "repository": {
@@ -25,54 +25,54 @@
   "contributes": {
     "commands": [
       {
-        "command": "opencode.openTerminal",
-        "title": "Open opencode",
+        "command": "myassistant.openTerminal",
+        "title": "Open MyAssistant",
         "icon": {
           "light": "images/button-dark.svg",
           "dark": "images/button-light.svg"
         }
       },
       {
-        "command": "opencode.openNewTerminal",
-        "title": "Open opencode in new tab",
+        "command": "myassistant.openNewTerminal",
+        "title": "Open MyAssistant in new tab",
         "icon": {
           "light": "images/button-dark.svg",
           "dark": "images/button-light.svg"
         }
       },
       {
-        "command": "opencode.addFilepathToTerminal",
+        "command": "myassistant.addFilepathToTerminal",
         "title": "Add Filepath to Terminal"
       }
     ],
     "menus": {
       "editor/title": [
-        {
-          "command": "opencode.openNewTerminal",
-          "group": "navigation"
-        }
+      {
+        "command": "myassistant.openNewTerminal",
+        "group": "navigation"
+      }
       ]
     },
     "keybindings": [
       {
-        "command": "opencode.openTerminal",
-        "title": "Run opencode",
+        "command": "myassistant.openTerminal",
+        "title": "Run MyAssistant",
         "key": "cmd+escape",
         "mac": "cmd+escape",
         "win": "ctrl+escape",
         "linux": "ctrl+escape"
       },
       {
-        "command": "opencode.openNewTerminal",
-        "title": "Run opencode",
+        "command": "myassistant.openNewTerminal",
+        "title": "Run MyAssistant",
         "key": "cmd+shift+escape",
         "mac": "cmd+shift+escape",
         "win": "ctrl+shift+escape",
         "linux": "ctrl+shift+escape"
       },
       {
-        "command": "opencode.addFilepathToTerminal",
-        "title": "opencode: Insert At-Mentioned",
+        "command": "myassistant.addFilepathToTerminal",
+        "title": "MyAssistant: Insert At-Mentioned",
         "key": "cmd+alt+k",
         "mac": "cmd+alt+k",
         "win": "ctrl+alt+K",

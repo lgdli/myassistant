@@ -41,13 +41,13 @@ https://github.com/anomalyco/models.dev
 
 ### Running against a different directory
 
-By default, `bun dev` runs MyAssistant in the `packages/opencode` directory. To run it against a different directory or repository:
+By default, `bun dev` runs MyAssistant in the `packages/myassistant` directory. To run it against a different directory or repository:
 
 ```bash
 bun dev <directory>
 ```
 
-To run MyAssistant in the root of the opencode repo itself:
+To run MyAssistant in the root of the myassistant repo itself:
 
 ```bash
 bun dev .
@@ -58,27 +58,27 @@ bun dev .
 To compile a standalone executable:
 
 ```bash
-./packages/opencode/script/build.ts --single
+./packages/myassistant/script/build.ts --single
 ```
 
 Then run it with:
 
 ```bash
-./packages/opencode/dist/opencode-<platform>/bin/opencode
+./packages/myassistant/dist/myassistant-<platform>/bin/myassistant
 ```
 
 Replace `<platform>` with your platform (e.g., `darwin-arm64`, `linux-x64`).
 
-- Core pieces:
-  - `packages/opencode`: MyAssistant core business logic & server.
-  - `packages/opencode/src/cli/cmd/tui/`: The TUI code, written in SolidJS with [opentui](https://github.com/sst/opentui)
+ - Core pieces:
+   - `packages/myassistant`: MyAssistant core business logic & server.
+   - `packages/myassistant/src/cli/cmd/tui/`: The TUI code, written in SolidJS with [opentui](https://github.com/sst/opentui)
   - `packages/app`: The shared web UI components, written in SolidJS
   - `packages/desktop`: The native desktop app, built with Tauri (wraps `packages/app`)
   - `packages/plugin`: Source for `@myassistant-ai/plugin`
 
-### Understanding bun dev vs opencode
+### Understanding bun dev vs myassistant
 
-During development, `bun dev` is the local equivalent of the built `opencode` command. Both run the same CLI interface:
+During development, `bun dev` is the local equivalent of the built `myassistant` command. Both run the same CLI interface:
 
 ```bash
 # Development (from project root)
@@ -88,10 +88,10 @@ bun dev web              # Start server + open web interface
 bun dev <directory>      # Start TUI in specific directory
 
 # Production
-opencode --help          # Show all available commands
-opencode serve           # Start headless API server
-opencode web             # Start server + open web interface
-opencode <directory>     # Start TUI in specific directory
+myassistant --help        # Show all available commands
+myassistant serve         # Start headless API server
+myassistant web           # Start server + open web interface
+myassistant <directory>   # Start TUI in specific directory
 ```
 
 ### Running the API Server
@@ -151,7 +151,7 @@ This runs `bun run --cwd packages/desktop build` automatically via Tauri’s `be
 > Running the desktop app requires additional Tauri dependencies (Rust toolchain, platform-specific libraries). See the [Tauri prerequisites](https://v2.tauri.app/start/prerequisites/) for setup instructions.
 
 > [!NOTE]
-> If you make changes to the API or SDK (e.g. `packages/opencode/src/server/server.ts`), run `./script/generate.ts` to regenerate the SDK and related files.
+> If you make changes to the API or SDK (e.g. `packages/myassistant/src/server/server.ts`), run `./script/generate.ts` to regenerate the SDK and related files.
 
 Please try to follow the [style guide](./AGENTS.md)
 
@@ -167,9 +167,9 @@ Caveats:
 - If you want to run the MyAssistant TUI and have breakpoints triggered in the server code, you might need to run `bun dev spawn` instead of
   the usual `bun dev`. This is because `bun dev` runs the server in a worker thread and breakpoints might not work there.
 - If `spawn` does not work for you, you can debug the server separately:
-  - Debug server: `bun run --inspect=ws://localhost:6499/ --cwd packages/opencode ./src/index.ts serve --port 4096`,
-    then attach TUI with `opencode attach http://localhost:4096`
-  - Debug TUI: `bun run --inspect=ws://localhost:6499/ --cwd packages/opencode --conditions=browser ./src/index.ts`
+  - Debug server: `bun run --inspect=ws://localhost:6499/ --cwd packages/myassistant ./src/index.ts serve --port 4096`,
+    then attach TUI with `myassistant attach http://localhost:4096`
+  - Debug TUI: `bun run --inspect=ws://localhost:6499/ --cwd packages/myassistant --conditions=browser ./src/index.ts`
 
 Other tips and tricks:
 
@@ -236,7 +236,7 @@ You can optionally include a scope to indicate which package is affected:
 
 - `feat(app):` feature in the app package
 - `fix(desktop):` bug fix in the desktop package
-- `chore(opencode):` maintenance in the opencode package
+- `chore(myassistant):` maintenance in the myassistant package
 
 Examples:
 

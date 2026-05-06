@@ -51,14 +51,14 @@ curl -fsSL https://myassistant.ai/install | bash
 
 # 软件包管理器
 npm i -g myassistant-ai@latest        # 也可使用 bun/pnpm/yarn
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS 和 Linux（推荐，始终保持最新）
-brew install opencode              # macOS 和 Linux（官方 brew formula，更新频率较低）
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-bin               # Arch Linux (Latest from AUR)
-mise use -g opencode               # 任意系统
-nix run nixpkgs#opencode           # 或用 github:anomalyco/myassistant 获取最新 dev 分支
+scoop install myassistant             # Windows
+choco install myassistant             # Windows
+brew install anomalyco/tap/myassistant # macOS 和 Linux（推荐，始终保持最新）
+brew install myassistant              # macOS 和 Linux（官方 brew formula，更新频率较低）
+sudo pacman -S myassistant            # Arch Linux (Stable)
+paru -S myassistant-bin               # Arch Linux (Latest from AUR)
+mise use -g myassistant               # 任意系统
+nix run nixpkgs#myassistant           # 或用 github:anomalyco/myassistant 获取最新 dev 分支
 ```
 
 > [!TIP]
@@ -70,30 +70,30 @@ MyAssistant 也提供桌面版应用。可直接从 [发布页 (releases page)](
 
 | 平台                  | 下载文件                              |
 | --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opencode-desktop-darwin-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe`    |
+| macOS (Apple Silicon) | `myassistant-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `myassistant-desktop-darwin-x64.dmg`     |
+| Windows               | `myassistant-desktop-windows-x64.exe`    |
 | Linux                 | `.deb`、`.rpm` 或 AppImage            |
 
 ```bash
-# macOS (Homebrew Cask)
-brew install --cask opencode-desktop
+# macOS (Homebrew)
+brew install --cask myassistant-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/myassistant-desktop
 ```
 
 #### 安装目录
 
 安装脚本按照以下优先级决定安装路径：
 
-1. `$OPENCODE_INSTALL_DIR` - 自定义安装目录
+1. `$MYASSISTANT_INSTALL_DIR` - 自定义安装目录
 2. `$XDG_BIN_DIR` - 符合 XDG 基础目录规范的路径
 3. `$HOME/bin` - 如果存在或可创建的用户二进制目录
-4. `$HOME/.opencode/bin` - 默认备用路径
+4. `$HOME/.myassistant/bin` - 默认备用路径
 
 ```bash
 # 示例
-OPENCODE_INSTALL_DIR=/usr/local/bin curl -fsSL https://myassistant.ai/install | bash
+MYASSISTANT_INSTALL_DIR=/usr/local/bin curl -fsSL https://myassistant.ai/install | bash
 XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://myassistant.ai/install | bash
 ```
 
@@ -121,7 +121,7 @@ MyAssistant 内置两种 Agent，可用 `Tab` 键快速切换：
 
 ### 基于 MyAssistant 进行开发
 
-如果你在项目名中使用了 “opencode”（如 “opencode-dashboard” 或 “opencode-mobile”），请在 README 里注明该项目不是 MyAssistant 团队官方开发，且不存在隶属关系。
+如果你在项目名中使用了 “myassistant”（如 “myassistant-dashboard” 或 “myassistant-mobile”），请在 README 里注明该项目不是 MyAssistant 团队官方开发，且不存在隶属关系。
 
 ### 常见问题 (FAQ)
 
@@ -137,4 +137,4 @@ MyAssistant 内置两种 Agent，可用 `Tab` 键快速切换：
 
 ---
 
-**加入我们的社区** [飞书](https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=738j8655-cd59-4633-a30a-1124e0096789&qr_code=true) | [X.com](https://x.com/opencode)
+**加入我们的社区** [飞书](https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=738j8655-cd59-4633-a30a-1124e0096789&qr_code=true) | [X.com](https://x.com/myassistant)

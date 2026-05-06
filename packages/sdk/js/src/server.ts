@@ -99,7 +99,7 @@ export async function createMyassistantServer(options?: ServerOptions) {
   }
 }
 
-export function createOpencodeTui(options?: TuiOptions) {
+export function createMyassistantTui(options?: TuiOptions) {
   const args = []
 
   if (options?.project) {

@@ -5,7 +5,7 @@ import { createMyassistantClient } from "./client.js"
 import { createMyassistantServer } from "./server.js"
 import type { ServerOptions } from "./server.js"
 
-export async function createOpencode(options?: ServerOptions) {
+export async function createMyassistant(options?: ServerOptions) {
   const server = await createMyassistantServer({
     ...options,
   })
@@ -19,3 +19,6 @@ export async function createOpencode(options?: ServerOptions) {
     server,
   }
 }
+
+// Alias for backwards compatibility
+export { createMyassistant as createOpencode }

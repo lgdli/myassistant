@@ -54,6 +54,7 @@
   "share.error_api_url_not_found": "API URL nije pronađen",
   "share.error_connection_failed": "Povezivanje nije uspjelo",
   "share.opencode_version": "OpenCode verzija",
+  "share.myassistant_name": "myassistant",
   "share.opencode_name": "OpenCode",
   "share.models": "Modeli",
   "share.cost": "Cijena",
