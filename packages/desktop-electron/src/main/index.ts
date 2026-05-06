@@ -24,11 +24,11 @@ const APP_NAMES: Record<string, string> = {
   prod: "MyAssistant",
 }
 const APP_IDS: Record<string, string> = {
-  dev: "ai.opencode.desktop.dev",
-  beta: "ai.opencode.desktop.beta",
-  prod: "ai.opencode.desktop",
+  dev: "ai.myassistant.desktop.dev",
+  beta: "ai.myassistant.desktop.beta",
+  prod: "ai.myassistant.desktop",
 }
-const appId = app.isPackaged ? APP_IDS[CHANNEL] : "ai.opencode.desktop.dev"
+const appId = app.isPackaged ? APP_IDS[CHANNEL] : "ai.myassistant.desktop.dev"
 app.setName(app.isPackaged ? APP_NAMES[CHANNEL] : "MyAssistant Dev")
 app.setAppUserModelId(appId)
 app.setPath("userData", join(app.getPath("appData"), appId))

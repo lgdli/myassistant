@@ -11341,13 +11341,13 @@
       }
     }
   },
-  "opencode": {
-    "id": "opencode",
+  "myassistant": {
+    "id": "myassistant",
     "env": ["OPENCODE_API_KEY"],
     "npm": "@ai-sdk/openai-compatible",
-    "api": "https://opencode.ai/zen/v1",
+    "api": "https://myassistant.ai/zen/v1",
     "name": "OpenCode Zen",
-    "doc": "https://opencode.ai/docs/zen",
+    "doc": "https://myassistant.ai/docs/zen",
     "models": {
       "gpt-5.2-codex": {
         "id": "gpt-5.2-codex",
@@ -64067,13 +64067,13 @@
       }
     }
   },
-  "opencode-go": {
-    "id": "opencode-go",
+  "myassistant-go": {
+    "id": "myassistant-go",
     "env": ["OPENCODE_API_KEY"],
     "npm": "@ai-sdk/openai-compatible",
-    "api": "https://opencode.ai/zen/go/v1",
+    "api": "https://myassistant.ai/zen/go/v1",
     "name": "OpenCode Go",
-    "doc": "https://opencode.ai/docs/zen",
+    "doc": "https://myassistant.ai/docs/zen",
     "models": {
       "kimi-k2.5": {
         "id": "kimi-k2.5",

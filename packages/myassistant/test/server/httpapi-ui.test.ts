@@ -122,7 +122,7 @@ describe("HttpApi UI fallback", () => {
 
     const response = await uiApp({
       client: httpClient(
-        new Response("<html>opencode</html>", { headers: { "content-type": "text/html" } }),
+        new Response("<html>myassistant</html>", { headers: { "content-type": "text/html" } }),
         (request) => {
           proxiedUrl = request.url
         },
@@ -131,7 +131,7 @@ describe("HttpApi UI fallback", () => {
 
     expect(response.status).toBe(200)
     expect(response.headers.get("content-type")).toContain("text/html")
-    expect(await response.text()).toBe("<html>opencode</html>")
+    expect(await response.text()).toBe("<html>myassistant</html>")
     expect(proxiedUrl).toBe("https://app.myassistant.ai/")
   })
 
@@ -209,7 +209,7 @@ describe("HttpApi UI fallback", () => {
                 Effect.succeed(
                   HttpClientResponse.fromWeb(
                     request,
-                    new Response("<html>opencode</html>", {
+                    new Response("<html>myassistant</html>", {
                       headers: {
                         "transfer-encoding": "chunked",
                         "content-type": "text/html",
@@ -227,7 +227,7 @@ describe("HttpApi UI fallback", () => {
 
     expect(response.status).toBe(200)
     expect(response.headers.get("transfer-encoding")).toBeNull()
-    expect(await response.text()).toBe("<html>opencode</html>")
+    expect(await response.text()).toBe("<html>myassistant</html>")
   })
 
   test("serves embedded UI assets when Bun can read them but access reports missing", async () => {
@@ -285,11 +285,11 @@ describe("HttpApi UI fallback", () => {
     const response = await uiApp({
       password: "secret",
       username: "myassistant",
-      client: httpClient(new Response("<html>opencode</html>", { headers: { "content-type": "text/html" } })),
-    }).request(`/?auth_token=${btoa("opencode:secret")}`)
+      client: httpClient(new Response("<html>myassistant</html>", { headers: { "content-type": "text/html" } })),
+    }).request(`/?auth_token=${btoa("myassistant:secret")}`)
 
     expect(response.status).toBe(200)
-    expect(await response.text()).toBe("<html>opencode</html>")
+    expect(await response.text()).toBe("<html>myassistant</html>")
   })
 
   test("accepts basic auth for the web UI", async () => {
@@ -297,7 +297,7 @@ describe("HttpApi UI fallback", () => {
     Flag.MYASSISTANT_DISABLE_EMBEDDED_WEB_UI = true
 
     const response = await uiApp({ password: "secret", username: "myassistant" }).request("/", {
-      headers: { authorization: `Basic ${btoa("opencode:secret")}` },
+      headers: { authorization: `Basic ${btoa("myassistant:secret")}` },
     })
 
     expect(response.status).toBe(200)

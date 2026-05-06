@@ -41,7 +41,7 @@ it.live("plugin-registered agents appear in Agent.list", () =>
           ].join("\n"),
         ),
         Bun.write(
-          path.join(dir, "opencode.json"),
+          path.join(dir, "myassistant.json"),
           JSON.stringify({
             $schema: "https://myassistant.ai/config.json",
             plugin: [pathToFileURL(pluginFile).href],

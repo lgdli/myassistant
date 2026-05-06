@@ -51,14 +51,14 @@ curl -fsSL https://myassistant.ai/install | bash
 
 # مديري الحزم
 npm i -g myassistant-ai@latest        # او bun/pnpm/yarn
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS و Linux (موصى به، دائما محدث)
-brew install opencode              # macOS و Linux (صيغة brew الرسمية، تحديث اقل)
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-bin               # Arch Linux (Latest from AUR)
-mise use -g opencode               # اي نظام
-nix run nixpkgs#opencode           # او github:anomalyco/myassistant لاحدث فرع dev
+scoop install myassistant             # Windows
+choco install myassistant             # Windows
+brew install anomalyco/tap/myassistant # macOS و Linux (موصى به، دائما محدث)
+brew install myassistant              # macOS و Linux (صيغة brew الرسمية، تحديث اقل)
+sudo pacman -S myassistant            # Arch Linux (Stable)
+paru -S myassistant-bin               # Arch Linux (Latest from AUR)
+mise use -g myassistant               # اي نظام
+nix run nixpkgs#myassistant           # او github:anomalyco/myassistant لاحدث فرع dev
 ```
 
 > [!TIP]
@@ -70,16 +70,16 @@ nix run nixpkgs#opencode           # او github:anomalyco/myassistant لاحد�
 
 | المنصة                | التنزيل                               |
 | --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opencode-desktop-darwin-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe`    |
+| macOS (Apple Silicon) | `myassistant-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `myassistant-desktop-darwin-x64.dmg`     |
+| Windows               | `myassistant-desktop-windows-x64.exe`    |
 | Linux                 | `.deb` او `.rpm` او AppImage          |
 
 ```bash
 # macOS (Homebrew)
-brew install --cask opencode-desktop
+brew install --cask myassistant-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/myassistant-desktop
 ```
 
 #### مجلد التثبيت
@@ -89,7 +89,7 @@ scoop bucket add extras; scoop install extras/opencode-desktop
 1. `$OPENCODE_INSTALL_DIR` - مجلد تثبيت مخصص
 2. `$XDG_BIN_DIR` - مسار متوافق مع مواصفات XDG Base Directory
 3. `$HOME/bin` - مجلد الثنائيات القياسي للمستخدم (ان وجد او امكن انشاؤه)
-4. `$HOME/.opencode/bin` - المسار الافتراضي الاحتياطي
+4. `$HOME/.myassistant/bin` - المسار الافتراضي الاحتياطي
 
 ```bash
 # امثلة
@@ -122,7 +122,7 @@ XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://myassistant.ai/install | bash
 
 ### البناء فوق MyAssistant
 
-اذا كنت تعمل على مشروع مرتبط بـ MyAssistant ويستخدم "opencode" كجزء من اسمه (مثل "opencode-dashboard" او "opencode-mobile")، يرجى اضافة ملاحظة في README توضح انه ليس مبنيا بواسطة فريق MyAssistant ولا يرتبط بنا بأي شكل.
+اذا كنت تعمل على مشروع مرتبط بـ MyAssistant ويستخدم "myassistant" كجزء من اسمه (مثل "myassistant-dashboard" او "myassistant-mobile")، يرجى اضافة ملاحظة في README توضح انه ليس مبنيا بواسطة فريق MyAssistant ولا يرتبط بنا بأي شكل.
 
 ### FAQ
 
@@ -138,4 +138,4 @@ XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://myassistant.ai/install | bash
 
 ---
 
-**انضم الى مجتمعنا** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+**انضم الى مجتمعنا** [Discord](https://discord.gg/myassistant) | [X.com](https://x.com/myassistant)

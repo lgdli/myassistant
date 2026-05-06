@@ -424,14 +424,14 @@ export function DialogConnectProvider(props: { provider: string }) {
         <Switch>
           <Match when={provider().id === "myassistant"}>
             <div class="flex flex-col gap-4">
-              <div class="text-14-regular text-text-base">{language.t("provider.connect.opencodeZen.line1")}</div>
-              <div class="text-14-regular text-text-base">{language.t("provider.connect.opencodeZen.line2")}</div>
+              <div class="text-14-regular text-text-base">{language.t("provider.connect.myassistantZen.line1")}</div>
+              <div class="text-14-regular text-text-base">{language.t("provider.connect.myassistantZen.line2")}</div>
               <div class="text-14-regular text-text-base">
-                {language.t("provider.connect.opencodeZen.visit.prefix")}
-                <Link href="https://opencode.ai/zen" tabIndex={-1}>
-                  {language.t("provider.connect.opencodeZen.visit.link")}
+                {language.t("provider.connect.myassistantZen.visit.prefix")}
+                <Link href="https://myassistant.ai/zen" tabIndex={-1}>
+                  {language.t("provider.connect.myassistantZen.visit.link")}
                 </Link>
-                {language.t("provider.connect.opencodeZen.visit.suffix")}
+                {language.t("provider.connect.myassistantZen.visit.suffix")}
               </div>
             </div>
           </Match>

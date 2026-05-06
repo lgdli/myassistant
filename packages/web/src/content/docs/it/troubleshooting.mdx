@@ -11,21 +11,21 @@ Per diagnosticare problemi con MyAssistant, inizia controllando i log e i dati l
 
 I file di log vengono scritti in:
 
-- **macOS/Linux**: `~/.local/share/opencode/log/`
-- **Windows**: premi `WIN+R` e incolla `%USERPROFILE%\.local\share\opencode\log`
+- **macOS/Linux**: `~/.local/share/myassistant/log/`
+- **Windows**: premi `WIN+R` e incolla `%USERPROFILE%\.local\share\myassistant\log`
 
 I file di log hanno nomi con timestamp (ad es. `2025-01-09T123456.log`) e vengono conservati i 10 file di log piu recenti.
 
-Puoi impostare il livello di log con l'opzione a riga di comando `--log-level` per ottenere informazioni di debug piu dettagliate. Per esempio: `opencode --log-level DEBUG`.
+Puoi impostare il livello di log con l'opzione a riga di comando `--log-level` per ottenere informazioni di debug piu dettagliate. Per esempio: `myassistant --log-level DEBUG`.
 
 ---
 
 ## Archiviazione
 
-opencode salva i dati delle sessioni e altri dati dell'applicazione su disco in:
+myassistant salva i dati delle sessioni e altri dati dell'applicazione su disco in:
 
-- **macOS/Linux**: `~/.local/share/opencode/`
-- **Windows**: premi `WIN+R` e incolla `%USERPROFILE%\.local\share\opencode`
+- **macOS/Linux**: `~/.local/share/myassistant/`
+- **Windows**: premi `WIN+R` e incolla `%USERPROFILE%\.local\share\myassistant`
 
 Questa directory contiene:
 
@@ -39,7 +39,7 @@ Questa directory contiene:
 
 ## App desktop
 
-MyAssistant Desktop esegue in background un server locale di MyAssistant (il sidecar `opencode-cli`). La maggior parte dei problemi e causata da un plugin che si comporta male, da una cache corrotta o da un'impostazione del server errata.
+MyAssistant Desktop esegue in background un server locale di MyAssistant (il sidecar `myassistant-cli`). La maggior parte dei problemi e causata da un plugin che si comporta male, da una cache corrotta o da un'impostazione del server errata.
 
 ### Controlli rapidi
 
@@ -57,15 +57,15 @@ Se l'app desktop va in crash all'avvio, si blocca o si comporta in modo strano, 
 
 Apri il tuo file di configurazione globale e cerca la chiave `plugin`.
 
-- **macOS/Linux**: `~/.config/opencode/opencode.jsonc` (o `~/.config/opencode/opencode.json`)
-- **macOS/Linux** (installazioni vecchie): `~/.local/share/opencode/opencode.jsonc`
-- **Windows**: premi `WIN+R` e incolla `%USERPROFILE%\.config\opencode\opencode.jsonc`
+- **macOS/Linux**: `~/.config/myassistant/myassistant.jsonc` (o `~/.config/myassistant/myassistant.json`)
+- **macOS/Linux** (installazioni vecchie): `~/.local/share/myassistant/myassistant.jsonc`
+- **Windows**: premi `WIN+R` e incolla `%USERPROFILE%\.config\myassistant\myassistant.jsonc`
 
 Se hai plugin configurati, disabilitali temporaneamente rimuovendo la chiave o impostandola a un array vuoto:
 
 ```jsonc
 {
-  "$schema": "https://opencode.ai/config.json",
+  "$schema": "https://myassistant.ai/config.json",
   "plugin": [],
 }
 ```
@@ -75,10 +75,10 @@ Se hai plugin configurati, disabilitali temporaneamente rimuovendo la chiave o i
 MyAssistant puo anche caricare plugin locali dal disco. Spostali temporaneamente altrove (o rinomina la cartella) e riavvia l'app desktop:
 
 - **Plugin globali**
-  - **macOS/Linux**: `~/.config/opencode/plugins/`
-- **Windows**: premi `WIN+R` e incolla `%USERPROFILE%\.config\opencode\plugins`
+  - **macOS/Linux**: `~/.config/myassistant/plugins/`
+- **Windows**: premi `WIN+R` e incolla `%USERPROFILE%\.config\myassistant\plugins`
 - **Plugin del progetto** (solo se usi una configurazione per progetto)
-  - `<your-project>/.opencode/plugins/`
+  - `<your-project>/.myassistant/plugins/`
 
 Se l'app ricomincia a funzionare, riabilita i plugin uno alla volta per capire quale stia causando il problema.
 
@@ -91,9 +91,9 @@ Se disabilitare i plugin non aiuta (o l'installazione di un plugin e bloccata), 
 1. Chiudi completamente MyAssistant Desktop.
 2. Elimina la directory della cache:
 
-- **macOS**: Finder -> `Cmd+Shift+G` -> paste `~/.cache/opencode`
-- **Linux**: elimina `~/.cache/opencode` (oppure esegui `rm -rf ~/.cache/opencode`)
-- **Windows**: premi `WIN+R` e incolla `%USERPROFILE%\.cache\opencode`
+- **macOS**: Finder -> `Cmd+Shift+G` -> paste `~/.cache/myassistant`
+- **Linux**: elimina `~/.cache/myassistant` (oppure esegui `rm -rf ~/.cache/myassistant`)
+- **Windows**: premi `WIN+R` e incolla `%USERPROFILE%\.cache\myassistant`
 
 3. Riavvia MyAssistant Desktop.
 
@@ -111,7 +111,7 @@ Dalla schermata Home, fai clic sul nome del server (con il pallino di stato) per
 
 #### Rimuovi `server.port` / `server.hostname` dalla tua configurazione
 
-Se il tuo `opencode.json(c)` contiene una sezione `server`, rimuovila temporaneamente e riavvia l'app desktop.
+Se il tuo `myassistant.json(c)` contiene una sezione `server`, rimuovila temporaneamente e riavvia l'app desktop.
 
 #### Controlla le variabili d'ambiente
 
@@ -158,8 +158,8 @@ Se l'app non si avvia e non riesci a ripulire le impostazioni dall'interfaccia, 
 1. Chiudi MyAssistant Desktop.
 2. Trova ed elimina questi file (si trovano nella directory dati dell'app MyAssistant Desktop):
 
-- `opencode.settings.dat` (desktop default server URL)
-- `opencode.global.dat` e `opencode.workspace.*.dat` (stato dell'interfaccia come server/progetti recenti)
+- `myassistant.settings.dat` (desktop default server URL)
+- `myassistant.global.dat` e `myassistant.workspace.*.dat` (stato dell'interfaccia come server/progetti recenti)
 
 Per trovare rapidamente la directory:
 
@@ -177,7 +177,7 @@ Se riscontri problemi con MyAssistant:
 
    Il modo migliore per segnalare bug o richiedere funzionalita e tramite il nostro repository GitHub:
 
-   [**github.com/anomalyco/opencode/issues**](https://github.com/anomalyco/opencode/issues)
+   [**github.com/anomalyco/myassistant/issues**](https://github.com/anomalyco/myassistant/issues)
 
    Prima di creare una nuova issue, cerca tra quelle esistenti per vedere se il problema e gia stato segnalato.
 
@@ -185,7 +185,7 @@ Se riscontri problemi con MyAssistant:
 
    Per supporto in tempo reale e discussioni con la community, unisciti al nostro server Discord:
 
-   [**opencode.ai/discord**](https://opencode.ai/discord)
+   [**myassistant.ai/discord**](https://myassistant.ai/discord)
 
 ---
 
@@ -199,7 +199,7 @@ Ecco alcuni problemi comuni e come risolverli.
 
 1. Controlla i log per eventuali messaggi di errore
 2. Prova a eseguire con `--print-logs` per vedere l'output nel terminale
-3. Assicurati di avere l'ultima versione con `opencode upgrade`
+3. Assicurati di avere l'ultima versione con `myassistant upgrade`
 
 ---
 
@@ -224,9 +224,9 @@ Esempi:
 
 - `openai/gpt-4.1`
 - `openrouter/google/gemini-2.5-flash`
-- `opencode/kimi-k2`
+- `myassistant/kimi-k2`
 
-Per capire a quali modelli hai accesso, esegui `opencode models`
+Per capire a quali modelli hai accesso, esegui `myassistant models`
 
 ---
 
@@ -240,10 +240,10 @@ Per risolvere:
 2. Se il problema persiste, prova a cancellare la configurazione salvata:
 
    ```bash
-   rm -rf ~/.local/share/opencode
+   rm -rf ~/.local/share/myassistant
    ```
 
-   Su Windows, premi `WIN+R` ed elimina: `%USERPROFILE%\.local\share\opencode`
+   Su Windows, premi `WIN+R` ed elimina: `%USERPROFILE%\.local\share\myassistant`
 
 3. Riautenticati con il provider usando il comando `/connect` nella TUI.
 
@@ -251,21 +251,21 @@ Per risolvere:
 
 ### AI_APICallError e problemi dei pacchetti provider
 
-Se incontri errori nelle chiamate API, potrebbe dipendere da pacchetti provider non aggiornati. opencode installa dinamicamente i pacchetti provider (OpenAI, Anthropic, Google, ecc.) quando servono e li mette in cache localmente.
+Se incontri errori nelle chiamate API, potrebbe dipendere da pacchetti provider non aggiornati. myassistant installa dinamicamente i pacchetti provider (OpenAI, Anthropic, Google, ecc.) quando servono e li mette in cache localmente.
 
 Per risolvere problemi coi pacchetti provider:
 
 1. Svuota la cache dei pacchetti provider:
 
    ```bash
-   rm -rf ~/.cache/opencode
+   rm -rf ~/.cache/myassistant
    ```
 
-   Su Windows, premi `WIN+R` ed elimina: `%USERPROFILE%\.cache\opencode`
+   Su Windows, premi `WIN+R` ed elimina: `%USERPROFILE%\.cache\myassistant`
 
-2. Riavvia opencode per reinstallare i pacchetti provider piu recenti
+2. Riavvia myassistant per reinstallare i pacchetti provider piu recenti
 
-Questo forzera opencode a scaricare le versioni piu recenti dei pacchetti provider, cosa che spesso risolve problemi di compatibilita con parametri dei modelli e cambiamenti delle API.
+Questo forzera myassistant a scaricare le versioni piu recenti dei pacchetti provider, cosa che spesso risolve problemi di compatibilita con parametri dei modelli e cambiamenti delle API.
 
 ---
 
@@ -296,4 +296,4 @@ Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 export DISPLAY=:99.0
 ```
 
-opencode rilevera se stai usando Wayland e preferira `wl-clipboard`; altrimenti provera a trovare gli strumenti per gli appunti nell'ordine: `xclip` e `xsel`.
+myassistant rilevera se stai usando Wayland e preferira `wl-clipboard`; altrimenti provera a trovare gli strumenti per gli appunti nell'ordine: `xclip` e `xsel`.

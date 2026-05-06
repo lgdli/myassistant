@@ -10,13 +10,13 @@ MyAssistant proporciona una interfaz de terminal interactiva o TUI para trabajar
 Al ejecutar MyAssistant se inicia TUI para el directorio actual.
 
 ```bash
-opencode
+myassistant
 ```
 
 O puede iniciarlo para un directorio de trabajo específico.
 
 ```bash
-opencode /path/to/project
+myassistant /path/to/project
 ```
 
 Una vez que esté en TUI, puede indicarlo con un mensaje.
@@ -359,8 +359,8 @@ Puede personalizar el comportamiento de TUI a través de `tui.json` (o `tui.json
 
 ```json title="tui.json"
 {
-  "$schema": "https://opencode.ai/tui.json",
-  "theme": "opencode",
+  "$schema": "https://myassistant.ai/tui.json",
+  "theme": "myassistant",
   "keybinds": {
     "leader": "ctrl+x"
   },
@@ -372,7 +372,7 @@ Puede personalizar el comportamiento de TUI a través de `tui.json` (o `tui.json
 }
 ```
 
-Esto es independiente de `opencode.json`, que configura el comportamiento del servidor/tiempo de ejecución.
+Esto es independiente de `myassistant.json`, que configura el comportamiento del servidor/tiempo de ejecución.
 
 ### Opciones
 

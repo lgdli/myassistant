@@ -135,7 +135,7 @@ const loadState = Effect.fn("TuiConfig.loadState")(function* (ctx: { directory: 
       acc.result.plugin_origins = plugins
     })
 
-  // Every config dir we may read from: global config dir, any `.opencode`
+  // Every config dir we may read from: global config dir, any `.myassistant`
   // folders between cwd and home, and MYASSISTANT_CONFIG_DIR.
   const directories = yield* ConfigPaths.directories(ctx.directory)
   yield* Effect.promise(() => migrateTuiConfig({ directories, cwd: ctx.directory }))
@@ -163,13 +163,13 @@ const loadState = Effect.fn("TuiConfig.loadState")(function* (ctx: { directory: 
     yield* mergeFile(acc, file)
   }
 
-  // 4. `.opencode` directories (and MYASSISTANT_CONFIG_DIR) discovered while
+  // 4. `.myassistant` directories (and MYASSISTANT_CONFIG_DIR) discovered while
   // walking up the tree. Also returned below so callers can install plugin
   // dependencies from each location.
-  const dirs = unique(directories).filter((dir) => dir.endsWith(".opencode") || dir === Flag.MYASSISTANT_CONFIG_DIR)
+  const dirs = unique(directories).filter((dir) => dir.endsWith(".myassistant") || dir === Flag.MYASSISTANT_CONFIG_DIR)
 
   for (const dir of dirs) {
-    if (!dir.endsWith(".opencode") && dir !== Flag.MYASSISTANT_CONFIG_DIR) continue
+    if (!dir.endsWith(".myassistant") && dir !== Flag.MYASSISTANT_CONFIG_DIR) continue
     for (const file of ConfigPaths.fileInDirectory(dir, "tui")) {
       yield* mergeFile(acc, file)
     }

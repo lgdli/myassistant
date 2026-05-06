@@ -87,7 +87,7 @@ async function main() {
   await $`git commit -m ${commitMessage}`
   console.log(`✅ Changes committed`)
 
-  // Delete any existing branches for opencode updates
+  // Delete any existing branches for myassistant updates
   console.log(`🔍 Checking for existing branches...`)
   const branches = await $`git ls-remote --heads https://x-access-token:${token}@github.com/${FORK_REPO}.git`.text()
   const branchPattern = `refs/heads/update-${EXTENSION_NAME}-`

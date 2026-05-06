@@ -51,14 +51,14 @@ curl -fsSL https://myassistant.ai/install | bash
 
 # Διαχειριστές πακέτων
 npm i -g myassistant-ai@latest        # ή bun/pnpm/yarn
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS και Linux (προτείνεται, πάντα ενημερωμένο)
-brew install opencode              # macOS και Linux (επίσημος τύπος brew, λιγότερο συχνές ενημερώσεις)
-sudo pacman -S opencode            # Arch Linux (Σταθερό)
-paru -S opencode-bin               # Arch Linux (Τελευταία έκδοση από AUR)
-mise use -g opencode               # Οποιοδήποτε λειτουργικό σύστημα
-nix run nixpkgs#opencode           # ή github:anomalyco/myassistant με βάση την πιο πρόσφατη αλλαγή από το dev branch
+scoop install myassistant             # Windows
+choco install myassistant             # Windows
+brew install anomalyco/tap/myassistant # macOS και Linux (προτείνεται, πάντα ενημερωμένο)
+brew install myassistant              # macOS και Linux (επίσημος τύπος brew, λιγότερο συχνές ενημερώσεις)
+sudo pacman -S myassistant            # Arch Linux (Σταθερό)
+paru -S myassistant-bin               # Arch Linux (Τελευταία έκδοση από AUR)
+mise use -g myassistant               # Οποιοδήποτε λειτουργικό σύστημα
+nix run nixpkgs#myassistant           # ή github:anomalyco/myassistant με βάση την πιο πρόσφατη αλλαγή από το dev branch
 ```
 
 > [!TIP]
@@ -70,16 +70,16 @@ nix run nixpkgs#opencode           # ή github:anomalyco/myassistant με βάσ
 
 | Πλατφόρμα             | Λήψη                                  |
 | --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opencode-desktop-darwin-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe`    |
+| macOS (Apple Silicon) | `myassistant-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `myassistant-desktop-darwin-x64.dmg`     |
+| Windows               | `myassistant-desktop-windows-x64.exe`    |
 | Linux                 | `.deb`, `.rpm`, ή AppImage            |
 
 ```bash
 # macOS (Homebrew)
-brew install --cask opencode-desktop
+brew install --cask myassistant-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/myassistant-desktop
 ```
 
 #### Κατάλογος Εγκατάστασης
@@ -89,7 +89,7 @@ scoop bucket add extras; scoop install extras/opencode-desktop
 1. `$OPENCODE_INSTALL_DIR` - Προσαρμοσμένος κατάλογος εγκατάστασης
 2. `$XDG_BIN_DIR` - Διαδρομή συμβατή με τις προδιαγραφές XDG Base Directory
 3. `$HOME/bin` - Τυπικός κατάλογος εκτελέσιμων αρχείων χρήστη (εάν υπάρχει ή μπορεί να δημιουργηθεί)
-4. `$HOME/.opencode/bin` - Προεπιλεγμένη εφεδρική διαδρομή
+4. `$HOME/.myassistant/bin` - Προεπιλεγμένη εφεδρική διαδρομή
 
 ```bash
 # Παραδείγματα
@@ -122,7 +122,7 @@ XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://myassistant.ai/install | bash
 
 ### Δημιουργία πάνω στο MyAssistant
 
-Εάν εργάζεσαι σε ένα έργο σχετικό με το MyAssistant και χρησιμοποιείτε το "opencode" ως μέρος του ονόματός του, για παράδειγμα "opencode-dashboard" ή "opencode-mobile", πρόσθεσε μια σημείωση στο README σας για να διευκρινίσεις ότι δεν είναι κατασκευασμένο από την ομάδα του MyAssistant και δεν έχει καμία σχέση με εμάς.
+Εάν εργάζεσαι σε ένα έργο σχετικό με το MyAssistant και χρησιμοποιείτε το "myassistant" ως μέρος του ονόματός του, για παράδειγμα "myassistant-dashboard" ή "myassistant-mobile", πρόσθεσε μια σημείωση στο README σας για να διευκρινίσεις ότι δεν είναι κατασκευασμένο από την ομάδα του MyAssistant και δεν έχει καμία σχέση με εμάς.
 
 ### Συχνές Ερωτήσεις
 
@@ -138,4 +138,4 @@ XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://myassistant.ai/install | bash
 
 ---
 
-**Γίνε μέλος της κοινότητάς μας** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+**Γίνε μέλος της κοινότητάς μας** [Discord](https://discord.gg/myassistant) | [X.com](https://x.com/myassistant)

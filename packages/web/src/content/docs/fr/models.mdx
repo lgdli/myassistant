@@ -50,14 +50,14 @@ Voici plusieurs modèles qui fonctionnent bien avec MyAssistant, sans ordre part
 
 Pour définir l'un d'entre eux comme modèle par défaut, vous pouvez définir la clé `model` dans votre configuration MyAssistant.
 
-```json title="opencode.json" {3}
+```json title="myassistant.json" {3}
 {
-  "$schema": "https://opencode.ai/config.json",
+  "$schema": "https://myassistant.ai/config.json",
   "model": "lmstudio/google/gemma-3n-e4b"
 }
 ```
 
-Ici, l'identifiant complet est `provider_id/model_id`. Par exemple, si vous utilisez [MyAssistant Zen](/docs/zen), vous utiliserez `opencode/gpt-5.1-codex` pour GPT 5.1 Codex.
+Ici, l'identifiant complet est `provider_id/model_id`. Par exemple, si vous utilisez [MyAssistant Zen](/docs/zen), vous utiliserez `myassistant/gpt-5.1-codex` pour GPT 5.1 Codex.
 
 Si vous avez configuré un [fournisseur personnalisé](/docs/providers#custom), le `provider_id` est la clé de la partie `provider` de votre configuration et le `model_id` est la clé de `provider.models`.
 
@@ -67,9 +67,9 @@ Si vous avez configuré un [fournisseur personnalisé](/docs/providers#custom), 
 
 Vous pouvez configurer globalement les options d'un modèle via le fichier config.
 
-```jsonc title="opencode.jsonc" {7-12,19-24}
+```jsonc title="myassistant.jsonc" {7-12,19-24}
 {
-  "$schema": "https://opencode.ai/config.json",
+  "$schema": "https://myassistant.ai/config.json",
   "provider": {
     "openai": {
       "models": {
@@ -106,11 +106,11 @@ Vous pouvez également configurer ces options pour tous les agents que vous util
 
 Vous pouvez également définir des variantes personnalisées qui étendent celles intégrées. Les variantes vous permettent de configurer différents paramètres pour le même modèle sans créer d'entrées en double :
 
-```jsonc title="opencode.jsonc" {6-21}
+```jsonc title="myassistant.jsonc" {6-21}
 {
-  "$schema": "https://opencode.ai/config.json",
+  "$schema": "https://myassistant.ai/config.json",
   "provider": {
-    "opencode": {
+    "myassistant": {
       "models": {
         "gpt-5": {
           "variants": {
@@ -171,9 +171,9 @@ Cette liste n'est pas exhaustive. De nombreux autres fournisseurs ont également
 
 Vous pouvez remplacer les variantes existantes ou ajouter les vôtres :
 
-```jsonc title="opencode.jsonc" {7-18}
+```jsonc title="myassistant.jsonc" {7-18}
 {
-  "$schema": "https://opencode.ai/config.json",
+  "$schema": "https://myassistant.ai/config.json",
   "provider": {
     "openai": {
       "models": {
@@ -208,9 +208,9 @@ Lorsque MyAssistant démarre, il recherche les modèles dans l'ordre de priorit�
 
 2. La liste des modèles dans la configuration MyAssistant.
 
-   ```json title="opencode.json"
+   ```json title="myassistant.json"
    {
-     "$schema": "https://opencode.ai/config.json",
+     "$schema": "https://myassistant.ai/config.json",
      "model": "anthropic/claude-sonnet-4-20250514"
    }
    ```

@@ -51,14 +51,14 @@ curl -fsSL https://myassistant.ai/install | bash
 
 # Менеджеры пакетов
 npm i -g myassistant-ai@latest        # или bun/pnpm/yarn
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS и Linux (рекомендуем, всегда актуально)
-brew install opencode              # macOS и Linux (официальная формула brew, обновляется реже)
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-bin               # Arch Linux (Latest from AUR)
-mise use -g opencode               # любая ОС
-nix run nixpkgs#opencode           # или github:anomalyco/myassistant для самой свежей ветки dev
+scoop install myassistant             # Windows
+choco install myassistant             # Windows
+brew install anomalyco/tap/myassistant # macOS и Linux (рекомендуем, всегда актуально)
+brew install myassistant              # macOS и Linux (официальная формула brew, обновляется реже)
+sudo pacman -S myassistant            # Arch Linux (Stable)
+paru -S myassistant-bin               # Arch Linux (Latest from AUR)
+mise use -g myassistant               # любая ОС
+nix run nixpkgs#myassistant           # или github:anomalyco/myassistant для самой свежей ветки dev
 ```
 
 > [!TIP]
@@ -70,16 +70,16 @@ MyAssistant также доступен как десктопное прилож
 
 | Платформа             | Загрузка                              |
 | --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opencode-desktop-darwin-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe`    |
+| macOS (Apple Silicon) | `myassistant-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `myassistant-desktop-darwin-x64.dmg`     |
+| Windows               | `myassistant-desktop-windows-x64.exe`    |
 | Linux                 | `.deb`, `.rpm` или AppImage           |
 
 ```bash
 # macOS (Homebrew)
-brew install --cask opencode-desktop
+brew install --cask myassistant-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/myassistant-desktop
 ```
 
 #### Каталог установки
@@ -89,7 +89,7 @@ scoop bucket add extras; scoop install extras/opencode-desktop
 1. `$OPENCODE_INSTALL_DIR` - Пользовательский каталог установки
 2. `$XDG_BIN_DIR` - Путь, совместимый со спецификацией XDG Base Directory
 3. `$HOME/bin` - Стандартный каталог пользовательских бинарников (если существует или можно создать)
-4. `$HOME/.opencode/bin` - Fallback по умолчанию
+4. `$HOME/.myassistant/bin` - Fallback по умолчанию
 
 ```bash
 # Примеры
@@ -122,7 +122,7 @@ XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://myassistant.ai/install | bash
 
 ### Разработка на базе MyAssistant
 
-Если вы делаете проект, связанный с MyAssistant, и используете "opencode" как часть имени (например, "opencode-dashboard" или "opencode-mobile"), добавьте примечание в README, чтобы уточнить, что проект не создан командой MyAssistant и не аффилирован с нами.
+Если вы делаете проект, связанный с MyAssistant, и используете "myassistant" как часть имени (например, "myassistant-dashboard" или "myassistant-mobile"), добавьте примечание в README, чтобы уточнить, что проект не создан командой MyAssistant и не аффилирован с нами.
 
 ### FAQ
 
@@ -138,4 +138,4 @@ XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://myassistant.ai/install | bash
 
 ---
 
-**Присоединяйтесь к нашему сообществу** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+**Присоединяйтесь к нашему сообществу** [Discord](https://discord.gg/myassistant) | [X.com](https://x.com/myassistant)

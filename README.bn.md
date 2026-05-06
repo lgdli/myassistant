@@ -51,14 +51,14 @@ curl -fsSL https://myassistant.ai/install | bash
 
 # Package managers
 npm i -g myassistant-ai@latest        # or bun/pnpm/yarn
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS and Linux (recommended, always up to date)
-brew install opencode              # macOS and Linux (official brew formula, updated less)
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-bin               # Arch Linux (Latest from AUR)
-mise use -g opencode               # Any OS
-nix run nixpkgs#opencode           # or github:anomalyco/myassistant for latest dev branch
+scoop install myassistant             # Windows
+choco install myassistant             # Windows
+brew install anomalyco/tap/myassistant # macOS and Linux (recommended, always up to date)
+brew install myassistant              # macOS and Linux (official brew formula, updated less)
+sudo pacman -S myassistant            # Arch Linux (Stable)
+paru -S myassistant-bin               # Arch Linux (Latest from AUR)
+mise use -g myassistant               # Any OS
+nix run nixpkgs#myassistant           # or github:anomalyco/myassistant for latest dev branch
 ```
 
 > [!TIP]
@@ -70,16 +70,16 @@ MyAssistant ডেস্কটপ অ্যাপ্লিকেশন হিস
 
 | প্ল্যাটফর্ম           | ডাউনলোড                               |
 | --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opencode-desktop-darwin-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe`    |
+| macOS (Apple Silicon) | `myassistant-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `myassistant-desktop-darwin-x64.dmg`     |
+| Windows               | `myassistant-desktop-windows-x64.exe`    |
 | Linux                 | `.deb`, `.rpm`, or AppImage           |
 
 ```bash
 # macOS (Homebrew)
-brew install --cask opencode-desktop
+brew install --cask myassistant-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/myassistant-desktop
 ```
 
 #### ইনস্টলেশন ডিরেক্টরি (Installation Directory)
@@ -89,7 +89,7 @@ scoop bucket add extras; scoop install extras/opencode-desktop
 1. `$OPENCODE_INSTALL_DIR` - কাস্টম ইনস্টলেশন ডিরেক্টরি
 2. `$XDG_BIN_DIR` - XDG বেস ডিরেক্টরি স্পেসিফিকেশন সমর্থিত পাথ
 3. `$HOME/bin` - সাধারণ ব্যবহারকারী বাইনারি ডিরেক্টরি (যদি বিদ্যমান থাকে বা তৈরি করা যায়)
-4. `$HOME/.opencode/bin` - ডিফল্ট ফলব্যাক
+4. `$HOME/.myassistant/bin` - ডিফল্ট ফলব্যাক
 
 ```bash
 # উদাহরণ
@@ -122,7 +122,7 @@ MyAssistant এ দুটি বিল্ট-ইন এজেন্ট রয়
 
 ### MyAssistant এর উপর বিল্ডিং (Building on MyAssistant)
 
-আপনি যদি এমন প্রজেক্টে কাজ করেন যা MyAssistant এর সাথে সম্পর্কিত এবং প্রজেক্টের নামের অংশ হিসেবে "opencode" ব্যবহার করেন, উদাহরণস্বরূপ "opencode-dashboard" বা "opencode-mobile", তবে দয়া করে আপনার README তে একটি নোট যোগ করে স্পষ্ট করুন যে এই প্রজেক্টটি MyAssistant দল দ্বারা তৈরি হয়নি এবং আমাদের সাথে এর কোনো সরাসরি সম্পর্ক নেই।
+আপনি যদি এমন প্রজেক্টে কাজ করেন যা MyAssistant এর সাথে সম্পর্কিত এবং প্রজেক্টের নামের অংশ হিসেবে "myassistant" ব্যবহার করেন, উদাহরণস্বরূপ "myassistant-dashboard" বা "myassistant-mobile", তবে দয়া করে আপনার README তে একটি নোট যোগ করে স্পষ্ট করুন যে এই প্রজেক্টটি MyAssistant দল দ্বারা তৈরি হয়নি এবং আমাদের সাথে এর কোনো সরাসরি সম্পর্ক নেই।
 
 ### সচরাচর জিজ্ঞাসিত প্রশ্নাবলী (FAQ)
 
@@ -138,4 +138,4 @@ MyAssistant এ দুটি বিল্ট-ইন এজেন্ট রয়
 
 ---
 
-**আমাদের কমিউনিটিতে যুক্ত হোন** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+**আমাদের কমিউনিটিতে যুক্ত হোন** [Discord](https://discord.gg/myassistant) | [X.com](https://x.com/myassistant)

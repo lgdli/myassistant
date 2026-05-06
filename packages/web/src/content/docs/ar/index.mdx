@@ -9,7 +9,7 @@ export const console = config.console
 
 [**MyAssistant**](/) هو وكيل ترميز بالذكاء الاصطناعي مفتوح المصدر. يتوفر كواجهة terminal، وتطبيق لسطح المكتب، أو إضافة لبيئة تطوير متكاملة (IDE).
 
-![واجهة MyAssistant في terminal مع سمة opencode](../../../assets/lander/screenshot.png)
+![واجهة MyAssistant في terminal مع سمة myassistant](../../../assets/lander/screenshot.png)
 
 لنبدأ.
 
@@ -34,7 +34,7 @@ export const console = config.console
 أسهل طريقة لتثبيت MyAssistant هي عبر سكربت التثبيت.
 
 ```bash
-curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://myassistant.ai/install | bash
 ```
 
 يمكنك أيضا تثبيته عبر الأوامر التالية:
@@ -76,16 +76,16 @@ curl -fsSL https://opencode.ai/install | bash
 - **باستخدام Homebrew على macOS وLinux**
 
   ```bash
-  brew install anomalyco/tap/opencode
+  brew install anomalyco/tap/myassistant
   ```
 
-  > نوصي باستخدام tap الخاص بـ MyAssistant للحصول على أحدث الإصدارات. صيغة `brew install opencode` الرسمية تُدار بواسطة فريق Homebrew ويتم تحديثها بوتيرة أقل.
+  > نوصي باستخدام tap الخاص بـ MyAssistant للحصول على أحدث الإصدارات. صيغة `brew install myassistant` الرسمية تُدار بواسطة فريق Homebrew ويتم تحديثها بوتيرة أقل.
 
 - **باستخدام Paru على Arch Linux**
 
   ```bash
-  sudo pacman -S opencode           # Arch Linux (Stable)
-  paru -S opencode-bin              # Arch Linux (Latest from AUR)
+  sudo pacman -S myassistant           # Arch Linux (Stable)
+  paru -S myassistant-bin              # Arch Linux (Latest from AUR)
   ```
 
 #### Windows
@@ -97,13 +97,13 @@ curl -fsSL https://opencode.ai/install | bash
 - **باستخدام Chocolatey**
 
   ```bash
-  choco install opencode
+  choco install myassistant
   ```
 
 - **باستخدام Scoop**
 
   ```bash
-  scoop install opencode
+  scoop install myassistant
   ```
 
 - **باستخدام NPM**
@@ -115,18 +115,18 @@ curl -fsSL https://opencode.ai/install | bash
 - **باستخدام Mise**
 
   ```bash
-  mise use -g github:anomalyco/opencode
+  mise use -g github:anomalyco/myassistant
   ```
 
 - **باستخدام Docker**
 
   ```bash
-  docker run -it --rm ghcr.io/anomalyco/opencode
+  docker run -it --rm ghcr.io/anomalyco/myassistant
   ```
 
 دعم تثبيت MyAssistant على Windows باستخدام Bun قيد العمل حاليا.
 
-يمكنك أيضا تنزيل الملف التنفيذي من صفحة [Releases](https://github.com/anomalyco/opencode/releases).
+يمكنك أيضا تنزيل الملف التنفيذي من صفحة [Releases](https://github.com/anomalyco/myassistant/releases).
 
 ---
 
@@ -137,7 +137,7 @@ curl -fsSL https://opencode.ai/install | bash
 إذا كنت جديدا على استخدام مزوّدي LLM، فنوصي باستخدام [MyAssistant Zen](/docs/zen).
 إنها قائمة منتقاة من النماذج تم اختبارها والتحقق منها بواسطة فريق MyAssistant.
 
-1. شغّل الأمر `/connect` في واجهة TUI، واختر opencode، ثم انتقل إلى [opencode.ai/auth](https://opencode.ai/auth).
+1. شغّل الأمر `/connect` في واجهة TUI، واختر myassistant، ثم انتقل إلى [myassistant.ai/auth](https://myassistant.ai/auth).
 
    ```txt
    /connect
@@ -169,7 +169,7 @@ cd /path/to/project
 ثم شغّل MyAssistant.
 
 ```bash
-opencode
+myassistant
 ```
 
 بعد ذلك، هيّئ MyAssistant للمشروع عبر تشغيل الأمر التالي.
@@ -333,7 +333,7 @@ Can you refactor the function in @packages/functions/src/api/index.ts?
 لا تتم مشاركة المحادثات افتراضيا.
 :::
 
-إليك [مثالا لمحادثة](https://opencode.ai/s/4XP1fce5) مع MyAssistant.
+إليك [مثالا لمحادثة](https://myassistant.ai/s/4XP1fce5) مع MyAssistant.
 
 ---
 

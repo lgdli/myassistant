@@ -9,7 +9,7 @@ export const console = config.console
 
 [**MyAssistant**](/) es un agente de codigo de IA de código abierto. Está disponible como interfaz basada en terminal, aplicación de escritorio o extensión IDE.
 
-![MyAssistant TUI con el tema opencode](../../../assets/lander/screenshot.png)
+![MyAssistant TUI con el tema myassistant](../../../assets/lander/screenshot.png)
 
 Comencemos.
 
@@ -34,7 +34,7 @@ Para usar MyAssistant en la terminal, necesitará:
 La forma más sencilla de instalar MyAssistant es mediante el script de instalación.
 
 ```bash
-curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://myassistant.ai/install | bash
 ```
 
 También puedes instalarlo con alguno de los siguientes métodos:
@@ -76,16 +76,16 @@ También puedes instalarlo con alguno de los siguientes métodos:
 - **Usando Homebrew en macOS y Linux**
 
   ```bash
-  brew install anomalyco/tap/opencode
+  brew install anomalyco/tap/myassistant
   ```
 
-  > Recomendamos utilizar el tap MyAssistant para las versiones más actualizadas. La fórmula oficial `brew install opencode` la mantiene el equipo Homebrew y se actualiza con menos frecuencia.
+  > Recomendamos utilizar el tap MyAssistant para las versiones más actualizadas. La fórmula oficial `brew install myassistant` la mantiene el equipo Homebrew y se actualiza con menos frecuencia.
 
 - **Usando Paru en Arch Linux**
 
   ```bash
-  sudo pacman -S opencode           # Arch Linux (Stable)
-  paru -S opencode-bin              # Arch Linux (Latest from AUR)
+  sudo pacman -S myassistant           # Arch Linux (Stable)
+  paru -S myassistant-bin              # Arch Linux (Latest from AUR)
   ```
 
 #### Windows
@@ -97,13 +97,13 @@ Para obtener la mejor experiencia en Windows, recomendamos utilizar [Windows Sub
 - **Usando Chocolatey**
 
   ```bash
-  choco install opencode
+  choco install myassistant
   ```
 
 - **Usando Scoop**
 
   ```bash
-  scoop install opencode
+  scoop install myassistant
   ```
 
 - **Usando NPM**
@@ -115,18 +115,18 @@ Para obtener la mejor experiencia en Windows, recomendamos utilizar [Windows Sub
 - **Usando Mise**
 
   ```bash
-  mise use -g github:anomalyco/opencode
+  mise use -g github:anomalyco/myassistant
   ```
 
 - **Usando Docker**
 
   ```bash
-  docker run -it --rm ghcr.io/anomalyco/opencode
+  docker run -it --rm ghcr.io/anomalyco/myassistant
   ```
 
 El soporte para instalar MyAssistant en Windows usando Bun todavía está en desarrollo.
 
-También puede obtener el binario desde [Versiones](https://github.com/anomalyco/opencode/releases).
+También puede obtener el binario desde [Versiones](https://github.com/anomalyco/myassistant/releases).
 
 ---
 
@@ -137,7 +137,7 @@ Con MyAssistant, puede usar cualquier proveedor de LLM configurando sus claves d
 Si es nuevo en el uso de proveedores de LLM, le recomendamos usar [MyAssistant Zen](/docs/zen).
 Es una selección de modelos probados y verificados por el equipo de MyAssistant.
 
-1. Ejecute el comando `/connect` en la TUI, seleccione opencode y diríjase a [opencode.ai/auth](https://opencode.ai/auth).
+1. Ejecute el comando `/connect` en la TUI, seleccione myassistant y diríjase a [myassistant.ai/auth](https://myassistant.ai/auth).
 
    ```txt
    /connect
@@ -169,7 +169,7 @@ cd /path/to/project
 Luego, ejecute MyAssistant.
 
 ```bash
-opencode
+myassistant
 ```
 
 A continuación, inicialice MyAssistant para el proyecto con el siguiente comando:
@@ -334,7 +334,7 @@ Esto creará un enlace a la conversación actual y lo copiará en su portapapele
 Las conversaciones no se comparten de forma predeterminada.
 :::
 
-Aquí tiene una [conversación de ejemplo](https://opencode.ai/s/4XP1fce5) con MyAssistant.
+Aquí tiene una [conversación de ejemplo](https://myassistant.ai/s/4XP1fce5) con MyAssistant.
 
 ---
 

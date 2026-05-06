@@ -8,7 +8,7 @@ import config from "../../../../config.mjs"
 export const console = config.console
 
 [**MyAssistant**](/) je AI agent za kodiranje otvorenog koda. Dostupan je kao interfejs baziran na terminalu, desktop aplikacija ili IDE ekstenzija.
-![MyAssistant TUI sa opencode temom](../../../assets/lander/screenshot.png)
+![MyAssistant TUI sa myassistant temom](../../../assets/lander/screenshot.png)
 Hajde da počnemo.
 
 ---
@@ -31,7 +31,7 @@ Da biste koristili MyAssistant u svom terminalu, trebat će vam:
 Najlakši način za instaliranje MyAssistant je putem instalacijske skripte.
 
 ```bash
-curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://myassistant.ai/install | bash
 ```
 
 Također ga možete instalirati pomoću sljedećih naredbi:
@@ -73,16 +73,16 @@ Također ga možete instalirati pomoću sljedećih naredbi:
 - **Korištenje Homebrew-a na macOS-u i Linux-u**
 
 ```bash
-  brew install anomalyco/tap/opencode
+  brew install anomalyco/tap/myassistant
 ```
 
-> Preporučujemo korištenje MyAssistant tap za najnovija izdanja. Službenu formulu `brew install opencode` održava Homebrew tim i ažurira se rjeđe.
+> Preporučujemo korištenje MyAssistant tap za najnovija izdanja. Službenu formulu `brew install myassistant` održava Homebrew tim i ažurira se rjeđe.
 
 - **Korištenje Parua na Arch Linuxu**
 
   ```bash
-  sudo pacman -S opencode           # Arch Linux (Stable)
-  paru -S opencode-bin              # Arch Linux (Latest from AUR)
+  sudo pacman -S myassistant           # Arch Linux (Stable)
+  paru -S myassistant-bin              # Arch Linux (Latest from AUR)
   ```
 
 #### Windows
@@ -94,13 +94,13 @@ Za najbolje iskustvo na Windows-u preporučujemo korištenje [Windows Subsystem 
 - **Korištenje Chocolatey-a**
 
 ```bash
-  choco install opencode
+  choco install myassistant
 ```
 
 - **Korištenje Scoop-a**
 
 ```bash
-  scoop install opencode
+  scoop install myassistant
 ```
 
 - **Korištenje NPM-a**
@@ -112,17 +112,17 @@ Za najbolje iskustvo na Windows-u preporučujemo korištenje [Windows Subsystem 
 - **Korištenje Mise**
 
 ```bash
-  mise use -g github:anomalyco/opencode
+  mise use -g github:anomalyco/myassistant
 ```
 
 - **Korištenje Dockera**
 
 ```bash
-  docker run -it --rm ghcr.io/anomalyco/opencode
+  docker run -it --rm ghcr.io/anomalyco/myassistant
 ```
 
 Podrška za instaliranje MyAssistant na Windows koristeći Bun je trenutno u toku.
-Također možete preuzeti binarnu datoteku iz [Releases](https://github.com/anomalyco/opencode/releases).
+Također možete preuzeti binarnu datoteku iz [Releases](https://github.com/anomalyco/myassistant/releases).
 
 ---
 
@@ -132,7 +132,7 @@ Uz MyAssistant možete koristiti bilo kojeg LLM provajdera tako što ćete konfi
 Ako ste tek počeli koristiti LLM provajdere, preporučujemo korištenje [MyAssistant Zen](/docs/zen).
 To je kurirana lista modela koji su testirani i verifikovani od strane MyAssistant tima.
 
-1. Pokrenite naredbu `/connect` u TUI-u, odaberite opencode i idite na [opencode.ai/auth](https://opencode.ai/auth).
+1. Pokrenite naredbu `/connect` u TUI-u, odaberite myassistant i idite na [myassistant.ai/auth](https://myassistant.ai/auth).
 
 ```txt
    /connect
@@ -163,7 +163,7 @@ cd /path/to/project
 I pokrenite MyAssistant.
 
 ```bash
-opencode
+myassistant
 ```
 
 Zatim inicijalizirajte MyAssistant za projekat pokretanjem sljedeće naredbe.
@@ -313,7 +313,7 @@ Ovo će kreirati vezu do trenutnog razgovora i kopirati je u međuspremnik.
 :::note
 Razgovori se ne dijele prema zadanim postavkama.
 :::
-Evo [primjer razgovora](https://opencode.ai/s/4XP1fce5) sa MyAssistant.
+Evo [primjer razgovora](https://myassistant.ai/s/4XP1fce5) sa MyAssistant.
 
 ---
 

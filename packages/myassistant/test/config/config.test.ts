@@ -93,12 +93,12 @@ afterEach(async () => {
   await clear(true)
 })
 
-async function writeManagedSettings(settings: object, filename = "opencode.json") {
+async function writeManagedSettings(settings: object, filename = "myassistant.json") {
   await fs.mkdir(managedConfigDir, { recursive: true })
   await Filesystem.write(path.join(managedConfigDir, filename), JSON.stringify(settings))
 }
 
-async function writeConfig(dir: string, config: object, name = "opencode.json") {
+async function writeConfig(dir: string, config: object, name = "myassistant.json") {
   await Filesystem.write(path.join(dir, name), JSON.stringify(config))
 }
 
@@ -220,7 +220,7 @@ test("updates global config and omits empty shell key in json", async () => {
   try {
     await saveGlobal({ shell: "" })
 
-    const writtenConfig = await Filesystem.readJson<{ shell?: string }>(path.join(tmp.path, "opencode.json"))
+    const writtenConfig = await Filesystem.readJson<{ shell?: string }>(path.join(tmp.path, "myassistant.json"))
     expect("shell" in writtenConfig).toBe(false)
   } finally {
     ;(Global.Path as { config: string }).config = prev
@@ -232,7 +232,7 @@ test("updates global config and omits empty shell key in jsonc", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Filesystem.write(
-        path.join(dir, "opencode.jsonc"),
+        path.join(dir, "myassistant.jsonc"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           shell: "bash",
@@ -249,7 +249,7 @@ test("updates global config and omits empty shell key in jsonc", async () => {
   try {
     await saveGlobal({ shell: "" })
 
-    const file = path.join(tmp.path, "opencode.jsonc")
+    const file = path.join(tmp.path, "myassistant.jsonc")
     const writtenConfig = await Filesystem.readText(file)
     const parsed = ConfigParse.schema(Config.Info.zod, ConfigParse.jsonc(writtenConfig, file), file)
     expect(writtenConfig).not.toContain('"shell"')
@@ -314,7 +314,7 @@ test("loads project config from Cygwin paths on Windows", async () => {
   })
 })
 
-test("ignores legacy tui keys in opencode config", async () => {
+test("ignores legacy tui keys in myassistant config", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await writeConfig(dir, {
@@ -340,7 +340,7 @@ test("loads JSONC config file", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Filesystem.write(
-        path.join(dir, "opencode.jsonc"),
+        path.join(dir, "myassistant.jsonc"),
         `{
         // This is a comment
         "$schema": "https://myassistant.ai/config.json",
@@ -370,7 +370,7 @@ test("jsonc overrides json in the same directory", async () => {
           model: "base",
           username: "base",
         },
-        "opencode.jsonc",
+        "myassistant.jsonc",
       )
       await writeConfig(dir, {
         $schema: "https://myassistant.ai/config.json",
@@ -426,7 +426,7 @@ test("preserves env variables when adding $schema to config", async () => {
       init: async (dir) => {
         // Config without $schema - should trigger auto-add
         await Filesystem.write(
-          path.join(dir, "opencode.json"),
+          path.join(dir, "myassistant.json"),
           JSON.stringify({
             username: "{env:PRESERVE_VAR}",
           }),
@@ -440,7 +440,7 @@ test("preserves env variables when adding $schema to config", async () => {
         expect(config.username).toBe("secret_value")
 
         // Read the file to verify the env variable was preserved
-        const content = await Filesystem.readText(path.join(tmp.path, "opencode.json"))
+        const content = await Filesystem.readText(path.join(tmp.path, "myassistant.json"))
         expect(content).toContain("{env:PRESERVE_VAR}")
         expect(content).not.toContain("secret_value")
         expect(content).toContain("$schema")
@@ -486,7 +486,7 @@ test("resolves env templates in account config with account token", async () => 
     config: () =>
       Effect.succeed(
         Option.some({
-          provider: { opencode: { options: { apiKey: "{env:MYASSISTANT_CONSOLE_TOKEN}" } } },
+          provider: { myassistant: { options: { apiKey: "{env:MYASSISTANT_CONSOLE_TOKEN}" } } },
         }),
       ),
     token: () => Effect.succeed(Option.some(AccessToken.make("st_test_token"))),
@@ -579,7 +579,7 @@ test("validates config schema and throws on invalid fields", async () => {
 test("throws error for invalid JSON", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
-      await Filesystem.write(path.join(dir, "opencode.json"), "{ invalid json }")
+      await Filesystem.write(path.join(dir, "myassistant.json"), "{ invalid json }")
     },
   })
   await provideTestInstance({
@@ -683,7 +683,7 @@ test("migrates autoshare to share field", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           autoshare: true,
@@ -705,7 +705,7 @@ test("migrates mode field to agent field", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           mode: {
@@ -733,10 +733,10 @@ test("migrates mode field to agent field", async () => {
   })
 })
 
-test("loads config from .opencode directory", async () => {
+test("loads config from .myassistant directory", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
-      const opencodeDir = path.join(dir, ".opencode")
+      const opencodeDir = path.join(dir, ".myassistant")
       await fs.mkdir(opencodeDir, { recursive: true })
       const agentDir = path.join(opencodeDir, "agent")
       await fs.mkdir(agentDir, { recursive: true })
@@ -768,7 +768,7 @@ Test agent prompt`,
 test("agent markdown permission config preserves user key order", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
-      const agentDir = path.join(dir, ".opencode", "agent")
+      const agentDir = path.join(dir, ".myassistant", "agent")
       await fs.mkdir(agentDir, { recursive: true })
 
       await Filesystem.write(
@@ -792,10 +792,10 @@ Ordered permissions`,
   })
 })
 
-test("loads agents from .opencode/agents (plural)", async () => {
+test("loads agents from .myassistant/agents (plural)", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
-      const opencodeDir = path.join(dir, ".opencode")
+      const opencodeDir = path.join(dir, ".myassistant")
       await fs.mkdir(opencodeDir, { recursive: true })
 
       const agentsDir = path.join(opencodeDir, "agents")
@@ -843,10 +843,10 @@ Nested agent prompt`,
   })
 })
 
-test("loads commands from .opencode/command (singular)", async () => {
+test("loads commands from .myassistant/command (singular)", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
-      const opencodeDir = path.join(dir, ".opencode")
+      const opencodeDir = path.join(dir, ".myassistant")
       await fs.mkdir(opencodeDir, { recursive: true })
 
       const commandDir = path.join(opencodeDir, "command")
@@ -888,10 +888,10 @@ Nested command template`,
   })
 })
 
-test("loads commands from .opencode/commands (plural)", async () => {
+test("loads commands from .myassistant/commands (plural)", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
-      const opencodeDir = path.join(dir, ".opencode")
+      const opencodeDir = path.join(dir, ".myassistant")
       await fs.mkdir(opencodeDir, { recursive: true })
 
       const commandsDir = path.join(opencodeDir, "commands")
@@ -1067,7 +1067,7 @@ test("resolves scoped npm plugins in config", async () => {
       await Filesystem.write(path.join(pluginDir, "index.js"), "export default {}\n")
 
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({ $schema: "https://myassistant.ai/config.json", plugin: ["@scope/plugin"] }, null, 2),
       )
     },
@@ -1086,23 +1086,23 @@ test("resolves scoped npm plugins in config", async () => {
 test("merges plugin arrays from global and local configs", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
-      // Create a nested project structure with local .opencode config
+      // Create a nested project structure with local .myassistant config
       const projectDir = path.join(dir, "project")
-      const opencodeDir = path.join(projectDir, ".opencode")
+      const opencodeDir = path.join(projectDir, ".myassistant")
       await fs.mkdir(opencodeDir, { recursive: true })
 
       // Global config with plugins
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           plugin: ["global-plugin-1", "global-plugin-2"],
         }),
       )
 
-      // Local .opencode config with different plugins
+      // Local .myassistant config with different plugins
       await Filesystem.write(
-        path.join(opencodeDir, "opencode.json"),
+        path.join(opencodeDir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           plugin: ["local-plugin-1"],
@@ -1132,7 +1132,7 @@ test("merges plugin arrays from global and local configs", async () => {
 test("does not error when only custom agent is a subagent", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
-      const opencodeDir = path.join(dir, ".opencode")
+      const opencodeDir = path.join(dir, ".myassistant")
       await fs.mkdir(opencodeDir, { recursive: true })
       const agentDir = path.join(opencodeDir, "agent")
       await fs.mkdir(agentDir, { recursive: true })
@@ -1165,11 +1165,11 @@ test("merges instructions arrays from global and local configs", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       const projectDir = path.join(dir, "project")
-      const opencodeDir = path.join(projectDir, ".opencode")
+      const opencodeDir = path.join(projectDir, ".myassistant")
       await fs.mkdir(opencodeDir, { recursive: true })
 
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           instructions: ["global-instructions.md", "shared-rules.md"],
@@ -1177,7 +1177,7 @@ test("merges instructions arrays from global and local configs", async () => {
       )
 
       await Filesystem.write(
-        path.join(opencodeDir, "opencode.json"),
+        path.join(opencodeDir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           instructions: ["local-instructions.md"],
@@ -1204,11 +1204,11 @@ test("deduplicates duplicate instructions from global and local configs", async 
   await using tmp = await tmpdir({
     init: async (dir) => {
       const projectDir = path.join(dir, "project")
-      const opencodeDir = path.join(projectDir, ".opencode")
+      const opencodeDir = path.join(projectDir, ".myassistant")
       await fs.mkdir(opencodeDir, { recursive: true })
 
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           instructions: ["duplicate.md", "global-only.md"],
@@ -1216,7 +1216,7 @@ test("deduplicates duplicate instructions from global and local configs", async 
       )
 
       await Filesystem.write(
-        path.join(opencodeDir, "opencode.json"),
+        path.join(opencodeDir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           instructions: ["duplicate.md", "local-only.md"],
@@ -1245,23 +1245,23 @@ test("deduplicates duplicate instructions from global and local configs", async 
 test("deduplicates duplicate plugins from global and local configs", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
-      // Create a nested project structure with local .opencode config
+      // Create a nested project structure with local .myassistant config
       const projectDir = path.join(dir, "project")
-      const opencodeDir = path.join(projectDir, ".opencode")
+      const opencodeDir = path.join(projectDir, ".myassistant")
       await fs.mkdir(opencodeDir, { recursive: true })
 
       // Global config with plugins
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           plugin: ["duplicate-plugin", "global-plugin-1"],
         }),
       )
 
-      // Local .opencode config with some overlapping plugins
+      // Local .myassistant config with some overlapping plugins
       await Filesystem.write(
-        path.join(opencodeDir, "opencode.json"),
+        path.join(opencodeDir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           plugin: ["duplicate-plugin", "local-plugin-1"],
@@ -1298,11 +1298,11 @@ test("keeps plugin origins aligned with merged plugin list", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       const project = path.join(dir, "project")
-      const local = path.join(project, ".opencode")
+      const local = path.join(project, ".myassistant")
       await fs.mkdir(local, { recursive: true })
 
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           plugin: [["shared-plugin@1.0.0", { source: "global" }], "global-only@1.0.0"],
@@ -1310,7 +1310,7 @@ test("keeps plugin origins aligned with merged plugin list", async () => {
       )
 
       await Filesystem.write(
-        path.join(local, "opencode.json"),
+        path.join(local, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           plugin: [["shared-plugin@2.0.0", { source: "local" }], "local-only@1.0.0"],
@@ -1345,7 +1345,7 @@ test("migrates legacy tools config to permissions - allow", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           agent: {
@@ -1376,7 +1376,7 @@ test("migrates legacy tools config to permissions - deny", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           agent: {
@@ -1407,7 +1407,7 @@ test("migrates legacy write tool to edit permission", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           agent: {
@@ -1514,7 +1514,7 @@ test("migrates legacy edit tool to edit permission", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           agent: {
@@ -1543,7 +1543,7 @@ test("migrates legacy patch tool to edit permission", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           agent: {
@@ -1572,7 +1572,7 @@ test("migrates mixed legacy tools config", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           agent: {
@@ -1607,7 +1607,7 @@ test("merges legacy tools with existing permission config", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           agent: {
@@ -1642,7 +1642,7 @@ test("permission config preserves user key order", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           permission: {
@@ -1711,7 +1711,7 @@ test("project config can override MCP server enabled status", async () => {
     init: async (dir) => {
       // Simulates a base config (like from remote .well-known) with disabled MCP
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           mcp: {
@@ -1730,7 +1730,7 @@ test("project config can override MCP server enabled status", async () => {
       )
       // Project config enables just jira
       await Filesystem.write(
-        path.join(dir, "opencode.jsonc"),
+        path.join(dir, "myassistant.jsonc"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           mcp: {
@@ -1769,7 +1769,7 @@ test("MCP config deep merges preserving base config properties", async () => {
     init: async (dir) => {
       // Base config with full MCP definition
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           mcp: {
@@ -1786,7 +1786,7 @@ test("MCP config deep merges preserving base config properties", async () => {
       )
       // Override just enables it, should preserve other properties
       await Filesystem.write(
-        path.join(dir, "opencode.jsonc"),
+        path.join(dir, "myassistant.jsonc"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           mcp: {
@@ -1816,12 +1816,12 @@ test("MCP config deep merges preserving base config properties", async () => {
   })
 })
 
-test("local .opencode config can override MCP from project config", async () => {
+test("local .myassistant config can override MCP from project config", async () => {
   await using tmp = await tmpdir({
     init: async (dir) => {
       // Project config with disabled MCP
       await Filesystem.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           mcp: {
@@ -1833,11 +1833,11 @@ test("local .opencode config can override MCP from project config", async () => 
           },
         }),
       )
-      // Local .opencode directory config enables it
-      const opencodeDir = path.join(dir, ".opencode")
+      // Local .myassistant directory config enables it
+      const opencodeDir = path.join(dir, ".myassistant")
       await fs.mkdir(opencodeDir, { recursive: true })
       await Filesystem.write(
-        path.join(opencodeDir, "opencode.json"),
+        path.join(opencodeDir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           mcp: {
@@ -1865,7 +1865,7 @@ test("project config overrides remote well-known config", async () => {
   let fetchedUrl: string | undefined
   globalThis.fetch = mock((url: string | URL | Request) => {
     const urlStr = url instanceof Request ? url.url : url instanceof URL ? url.href : url
-    if (urlStr.includes(".well-known/opencode")) {
+    if (urlStr.includes(".well-known/myassistant")) {
       fetchedUrl = urlStr
       return Promise.resolve(
         new Response(
@@ -1904,7 +1904,7 @@ test("project config overrides remote well-known config", async () => {
         Config.Service.use((svc) =>
           Effect.gen(function* () {
             const config = yield* svc.get()
-            expect(fetchedUrl).toBe("https://example.com/.well-known/opencode")
+            expect(fetchedUrl).toBe("https://example.com/.well-known/myassistant")
             expect(config.mcp?.jira?.enabled).toBe(true)
           }),
         ),
@@ -1923,7 +1923,7 @@ test("wellknown URL with trailing slash is normalized", async () => {
   let fetchedUrl: string | undefined
   globalThis.fetch = mock((url: string | URL | Request) => {
     const urlStr = url instanceof Request ? url.url : url instanceof URL ? url.href : url
-    if (urlStr.includes(".well-known/opencode")) {
+    if (urlStr.includes(".well-known/myassistant")) {
       fetchedUrl = urlStr
       return Promise.resolve(
         new Response(
@@ -1962,7 +1962,7 @@ test("wellknown URL with trailing slash is normalized", async () => {
         Config.Service.use((svc) =>
           Effect.gen(function* () {
             yield* svc.get()
-            expect(fetchedUrl).toBe("https://example.com/.well-known/opencode")
+            expect(fetchedUrl).toBe("https://example.com/.well-known/myassistant")
           }),
         ),
       { git: true },
@@ -1975,8 +1975,8 @@ test("wellknown URL with trailing slash is normalized", async () => {
 describe("resolvePluginSpec", () => {
   test("keeps package specs unchanged", async () => {
     await using tmp = await tmpdir()
-    const file = path.join(tmp.path, "opencode.json")
-    expect(await ConfigPlugin.resolvePluginSpec("oh-my-opencode@2.4.3", file)).toBe("oh-my-opencode@2.4.3")
+    const file = path.join(tmp.path, "myassistant.json")
+    expect(await ConfigPlugin.resolvePluginSpec("oh-my-myassistant@2.4.3", file)).toBe("oh-my-myassistant@2.4.3")
     expect(await ConfigPlugin.resolvePluginSpec("@scope/pkg", file)).toBe("@scope/pkg")
   })
 
@@ -1991,7 +1991,7 @@ describe("resolvePluginSpec", () => {
       },
     })
 
-    const file = path.join(tmp.path, "opencode.json")
+    const file = path.join(tmp.path, "myassistant.json")
     const hit = await ConfigPlugin.resolvePluginSpec(".\\plugin", file)
     expect(ConfigPlugin.pluginSpecifier(hit)).toBe(pathToFileURL(path.join(tmp.path, "plugin", "index.ts")).href)
   })
@@ -2003,7 +2003,7 @@ describe("resolvePluginSpec", () => {
       },
     })
 
-    const file = path.join(tmp.path, "opencode.json")
+    const file = path.join(tmp.path, "myassistant.json")
     const hit = await ConfigPlugin.resolvePluginSpec("./plugin.ts", file)
     expect(ConfigPlugin.pluginSpecifier(hit)).toBe(pathToFileURL(path.join(tmp.path, "plugin.ts")).href)
   })
@@ -2022,7 +2022,7 @@ describe("resolvePluginSpec", () => {
       },
     })
 
-    const file = path.join(tmp.path, "opencode.json")
+    const file = path.join(tmp.path, "myassistant.json")
     const hit = await ConfigPlugin.resolvePluginSpec("./plugin", file)
     expect(ConfigPlugin.pluginSpecifier(hit)).toBe(pathToFileURL(path.join(tmp.path, "plugin")).href)
   })
@@ -2036,7 +2036,7 @@ describe("resolvePluginSpec", () => {
       },
     })
 
-    const file = path.join(tmp.path, "opencode.json")
+    const file = path.join(tmp.path, "myassistant.json")
     const hit = await ConfigPlugin.resolvePluginSpec("./plugin", file)
     expect(ConfigPlugin.pluginSpecifier(hit)).toBe(pathToFileURL(path.join(tmp.path, "plugin", "index.ts")).href)
   })
@@ -2065,7 +2065,7 @@ describe("deduplicatePluginOrigins", () => {
   })
 
   test("keeps path plugins separate from package plugins", () => {
-    const plugins = ["oh-my-opencode@2.4.3", "file:///project/.opencode/plugin/oh-my-opencode.js"]
+    const plugins = ["oh-my-myassistant@2.4.3", "file:///project/.myassistant/plugin/oh-my-myassistant.js"]
 
     const result = dedupe(plugins)
 
@@ -2073,11 +2073,11 @@ describe("deduplicatePluginOrigins", () => {
   })
 
   test("deduplicates direct path plugins by exact spec", () => {
-    const plugins = ["file:///project/.opencode/plugin/demo.ts", "file:///project/.opencode/plugin/demo.ts"]
+    const plugins = ["file:///project/.myassistant/plugin/demo.ts", "file:///project/.myassistant/plugin/demo.ts"]
 
     const result = dedupe(plugins)
 
-    expect(result).toEqual(["file:///project/.opencode/plugin/demo.ts"])
+    expect(result).toEqual(["file:///project/.myassistant/plugin/demo.ts"])
   })
 
   test("preserves order of remaining plugins", () => {
@@ -2092,12 +2092,12 @@ describe("deduplicatePluginOrigins", () => {
     await using tmp = await tmpdir({
       init: async (dir) => {
         const projectDir = path.join(dir, "project")
-        const opencodeDir = path.join(projectDir, ".opencode")
+        const opencodeDir = path.join(projectDir, ".myassistant")
         const pluginDir = path.join(opencodeDir, "plugin")
         await fs.mkdir(pluginDir, { recursive: true })
 
         await Filesystem.write(
-          path.join(dir, "opencode.json"),
+          path.join(dir, "myassistant.json"),
           JSON.stringify({
             $schema: "https://myassistant.ai/config.json",
             plugin: ["my-plugin@1.0.0"],
@@ -2131,7 +2131,7 @@ describe("MYASSISTANT_DISABLE_PROJECT_CONFIG", () => {
         init: async (dir) => {
           // Create a project config that would normally be loaded
           await Filesystem.write(
-            path.join(dir, "opencode.json"),
+            path.join(dir, "myassistant.json"),
             JSON.stringify({
               $schema: "https://myassistant.ai/config.json",
               model: "project/model",
@@ -2158,15 +2158,15 @@ describe("MYASSISTANT_DISABLE_PROJECT_CONFIG", () => {
     }
   })
 
-  test("skips project .opencode/ directories when flag is set", async () => {
+  test("skips project .myassistant/ directories when flag is set", async () => {
     const originalEnv = process.env["MYASSISTANT_DISABLE_PROJECT_CONFIG"]
     process.env["MYASSISTANT_DISABLE_PROJECT_CONFIG"] = "true"
 
     try {
       await using tmp = await tmpdir({
         init: async (dir) => {
-          // Create a .opencode directory with a command
-          const opencodeDir = path.join(dir, ".opencode", "command")
+          // Create a .myassistant directory with a command
+          const opencodeDir = path.join(dir, ".myassistant", "command")
           await fs.mkdir(opencodeDir, { recursive: true })
           await Filesystem.write(path.join(opencodeDir, "test-cmd.md"), "# Test Command\nThis is a test command.")
         },
@@ -2175,7 +2175,7 @@ describe("MYASSISTANT_DISABLE_PROJECT_CONFIG", () => {
         directory: tmp.path,
         fn: async () => {
           const directories = await listDirs()
-          // Project .opencode should NOT be in directories list
+          // Project .myassistant should NOT be in directories list
           const hasProjectOpencode = directories.some((d) => d.startsWith(tmp.path))
           expect(hasProjectOpencode).toBe(false)
         },
@@ -2226,7 +2226,7 @@ describe("MYASSISTANT_DISABLE_PROJECT_CONFIG", () => {
         init: async (dir) => {
           // Create a config with relative instruction path
           await Filesystem.write(
-            path.join(dir, "opencode.json"),
+            path.join(dir, "myassistant.json"),
             JSON.stringify({
               $schema: "https://myassistant.ai/config.json",
               instructions: ["./CUSTOM.md"],
@@ -2272,7 +2272,7 @@ describe("MYASSISTANT_DISABLE_PROJECT_CONFIG", () => {
         init: async (dir) => {
           // Create config in the custom config dir
           await Filesystem.write(
-            path.join(dir, "opencode.json"),
+            path.join(dir, "myassistant.json"),
             JSON.stringify({
               $schema: "https://myassistant.ai/config.json",
               model: "configdir/model",
@@ -2285,7 +2285,7 @@ describe("MYASSISTANT_DISABLE_PROJECT_CONFIG", () => {
         init: async (dir) => {
           // Create config in project (should be ignored)
           await Filesystem.write(
-            path.join(dir, "opencode.json"),
+            path.join(dir, "myassistant.json"),
             JSON.stringify({
               $schema: "https://myassistant.ai/config.json",
               model: "project/model",
@@ -2392,8 +2392,8 @@ test("parseManagedPlist strips MDM metadata keys", async () => {
       await ConfigManaged.parseManagedPlist(
         JSON.stringify({
           PayloadDisplayName: "MyAssistant Managed",
-          PayloadIdentifier: "ai.opencode.managed.test",
-          PayloadType: "ai.opencode.managed",
+          PayloadIdentifier: "ai.myassistant.managed.test",
+          PayloadType: "ai.myassistant.managed",
           PayloadUUID: "AAAA-BBBB-CCCC",
           PayloadVersion: 1,
           _manualProfile: true,

@@ -85,7 +85,7 @@ function getConfig() {
     case "dev": {
       return {
         ...base,
-        appId: "ai.opencode.desktop.dev",
+        appId: "ai.myassistant.desktop.dev",
         productName: "MyAssistant Dev",
         rpm: { packageName: "myassistant-dev" },
       }
@@ -93,7 +93,7 @@ function getConfig() {
     case "beta": {
       return {
         ...base,
-        appId: "ai.opencode.desktop.beta",
+        appId: "ai.myassistant.desktop.beta",
         productName: "MyAssistant Beta",
         protocols: { name: "MyAssistant Beta", schemes: ["myassistant"] },
         publish: { provider: "github", owner: "anomalyco", repo: "myassistant-beta", channel: "latest" },
@@ -103,7 +103,7 @@ function getConfig() {
     case "prod": {
       return {
         ...base,
-        appId: "ai.opencode.desktop",
+        appId: "ai.myassistant.desktop",
         productName: "MyAssistant",
         protocols: { name: "MyAssistant", schemes: ["myassistant"] },
         publish: { provider: "github", owner: "anomalyco", repo: "myassistant", channel: "latest" },

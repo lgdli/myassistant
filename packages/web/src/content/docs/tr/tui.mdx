@@ -10,13 +10,13 @@ MyAssistant, projelerinizde LLM ile çalışmak için etkileşimli bir terminal 
 MyAssistant'u çalıştırdığınızda mevcut dizin için TUI başlar.
 
 ```bash
-opencode
+myassistant
 ```
 
 İsterseniz belirli bir çalışma dizini için de başlatabilirsiniz.
 
 ```bash
-opencode /path/to/project
+myassistant /path/to/project
 ```
 
 TUI içine girdiğinizde, bir mesajla istem gönderebilirsiniz.
@@ -357,8 +357,8 @@ TUI davranışını `tui.json` (veya `tui.jsonc`) aracılığıyla özelleştire
 
 ```json title="tui.json"
 {
-  "$schema": "https://opencode.ai/tui.json",
-  "theme": "opencode",
+  "$schema": "https://myassistant.ai/tui.json",
+  "theme": "myassistant",
   "keybinds": {
     "leader": "ctrl+x"
   },
@@ -370,7 +370,7 @@ TUI davranışını `tui.json` (veya `tui.jsonc`) aracılığıyla özelleştire
 }
 ```
 
-Bu, sunucu/çalışma zamanı davranışını yapılandıran `opencode.json` dosyasından ayrıdır.
+Bu, sunucu/çalışma zamanı davranışını yapılandıran `myassistant.json` dosyasından ayrıdır.
 
 ### Seçenekler
 

@@ -51,14 +51,14 @@ curl -fsSL https://myassistant.ai/install | bash
 
 # パッケージマネージャー
 npm i -g myassistant-ai@latest        # bun/pnpm/yarn でもOK
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS と Linux（推奨。常に最新）
-brew install opencode              # macOS と Linux（公式 brew formula。更新頻度は低め）
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-bin               # Arch Linux (Latest from AUR)
-mise use -g opencode               # どのOSでも
-nix run nixpkgs#opencode           # または github:anomalyco/myassistant で最新 dev ブランチ
+scoop install myassistant             # Windows
+choco install myassistant             # Windows
+brew install anomalyco/tap/myassistant # macOS と Linux（推奨。常に最新）
+brew install myassistant              # macOS と Linux（公式 brew formula。更新頻度は低め）
+sudo pacman -S myassistant            # Arch Linux (Stable)
+paru -S myassistant-bin               # Arch Linux (Latest from AUR)
+mise use -g myassistant               # どのOSでも
+nix run nixpkgs#myassistant           # または github:anomalyco/myassistant で最新 dev ブランチ
 ```
 
 > [!TIP]
@@ -70,16 +70,16 @@ MyAssistant はデスクトップアプリとしても利用できます。[rele
 
 | プラットフォーム      | ダウンロード                          |
 | --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opencode-desktop-darwin-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe`    |
+| macOS (Apple Silicon) | `myassistant-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `myassistant-desktop-darwin-x64.dmg`     |
+| Windows               | `myassistant-desktop-windows-x64.exe`    |
 | Linux                 | `.deb`、`.rpm`、または AppImage       |
 
 ```bash
 # macOS (Homebrew)
-brew install --cask opencode-desktop
+brew install --cask myassistant-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/myassistant-desktop
 ```
 
 #### インストールディレクトリ
@@ -89,7 +89,7 @@ scoop bucket add extras; scoop install extras/opencode-desktop
 1. `$OPENCODE_INSTALL_DIR` - カスタムのインストールディレクトリ
 2. `$XDG_BIN_DIR` - XDG Base Directory Specification に準拠したパス
 3. `$HOME/bin` - 標準のユーザー用バイナリディレクトリ（存在する場合、または作成できる場合）
-4. `$HOME/.opencode/bin` - デフォルトのフォールバック
+4. `$HOME/.myassistant/bin` - デフォルトのフォールバック
 
 ```bash
 # 例
@@ -122,7 +122,7 @@ MyAssistant に貢献したい場合は、Pull Request を送る前に [contribu
 
 ### MyAssistant の上に構築する
 
-MyAssistant に関連するプロジェクトで、名前に "opencode"（例: "opencode-dashboard" や "opencode-mobile"）を含める場合は、そのプロジェクトが MyAssistant チームによって作られたものではなく、いかなる形でも関係がないことを README に明記してください。
+MyAssistant に関連するプロジェクトで、名前に "myassistant"（例: "myassistant-dashboard" や "myassistant-mobile"）を含める場合は、そのプロジェクトが MyAssistant チームによって作られたものではなく、いかなる形でも関係がないことを README に明記してください。
 
 ### FAQ
 
@@ -138,4 +138,4 @@ MyAssistant に関連するプロジェクトで、名前に "opencode"（例: "
 
 ---
 
-**コミュニティに参加** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+**コミュニティに参加** [Discord](https://discord.gg/myassistant) | [X.com](https://x.com/myassistant)

@@ -10,13 +10,13 @@ MyAssistant は、LLM を使用してプロジェクトを作業するための�
 MyAssistant を実行すると、現在のディレクトリの TUI が開始されます。
 
 ```bash
-opencode
+myassistant
 ```
 
 または、特定の作業ディレクトリに対して起動することもできます。
 
 ```bash
-opencode /path/to/project
+myassistant /path/to/project
 ```
 
 TUI に入ったら、メッセージを表示することができます。
@@ -353,8 +353,8 @@ VS Code などの一部のエディターは、`--wait` フラグを使用して
 
 ```json title="tui.json"
 {
-  "$schema": "https://opencode.ai/tui.json",
-  "theme": "opencode",
+  "$schema": "https://myassistant.ai/tui.json",
+  "theme": "myassistant",
   "keybinds": {
     "leader": "ctrl+x"
   },
@@ -366,7 +366,7 @@ VS Code などの一部のエディターは、`--wait` フラグを使用して
 }
 ```
 
-これは、サーバー/ランタイムの動作を構成する `opencode.json` とは別です。
+これは、サーバー/ランタイムの動作を構成する `myassistant.json` とは別です。
 
 ### オプション
 

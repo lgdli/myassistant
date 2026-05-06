@@ -10,13 +10,13 @@ MyAssistant는 LLM과 함께 프로젝트 작업을 하기 위한 대화형 터�
 MyAssistant를 실행하면 현재 디렉토리에서 TUI가 시작됩니다.
 
 ```bash
-opencode
+myassistant
 ```
 
 또는 특정 작업 디렉토리에 대해 시작할 수 있습니다.
 
 ```bash
-opencode /path/to/project
+myassistant /path/to/project
 ```
 
 TUI에 들어가면 메시지를 입력하여 프롬프트할 수 있습니다.
@@ -355,8 +355,8 @@ VS Code와 같은 일부 편집기는 `--wait` 플래그와 함께 시작해야 
 
 ```json title="tui.json"
 {
-  "$schema": "https://opencode.ai/tui.json",
-  "theme": "opencode",
+  "$schema": "https://myassistant.ai/tui.json",
+  "theme": "myassistant",
   "keybinds": {
     "leader": "ctrl+x"
   },
@@ -368,7 +368,7 @@ VS Code와 같은 일부 편집기는 `--wait` 플래그와 함께 시작해야 
 }
 ```
 
-이는 서버/런타임 동작을 구성하는 `opencode.json`과는 별개입니다.
+이는 서버/런타임 동작을 구성하는 `myassistant.json`과는 별개입니다.
 
 ### 옵션
 

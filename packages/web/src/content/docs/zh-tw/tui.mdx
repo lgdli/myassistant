@@ -10,13 +10,13 @@ MyAssistant 提供了一個互動式終端機介面（TUI），用於配合 LLM 
 執行 MyAssistant 即可啟動當前目錄的 TUI。
 
 ```bash
-opencode
+myassistant
 ```
 
 或者您可以為指定的工作目錄啟動它。
 
 ```bash
-opencode /path/to/project
+myassistant /path/to/project
 ```
 
 進入 TUI 後，您可以輸入訊息進行提示。
@@ -356,8 +356,8 @@ How is auth handled in @packages/functions/src/api/index.ts?
 
 ```json title="tui.json"
 {
-  "$schema": "https://opencode.ai/tui.json",
-  "theme": "opencode",
+  "$schema": "https://myassistant.ai/tui.json",
+  "theme": "myassistant",
   "keybinds": {
     "leader": "ctrl+x"
   },
@@ -369,7 +369,7 @@ How is auth handled in @packages/functions/src/api/index.ts?
 }
 ```
 
-這與設定伺服器/執行時行為的 `opencode.json` 是分開的。
+這與設定伺服器/執行時行為的 `myassistant.json` 是分開的。
 
 ### 選項
 

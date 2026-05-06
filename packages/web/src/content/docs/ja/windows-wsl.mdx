@@ -26,7 +26,7 @@ WSL を使うと、ファイルシステム性能、ターミナルサポート�
    WSL の準備ができたら WSL のターミナルを開き、[インストール方法](/docs/) のいずれかで MyAssistant をインストールします。
 
    ```bash
-   curl -fsSL https://opencode.ai/install | bash
+   curl -fsSL https://myassistant.ai/install | bash
    ```
 
 3. **WSL から MyAssistant を使う**
@@ -35,7 +35,7 @@ WSL を使うと、ファイルシステム性能、ターミナルサポート�
 
    ```bash
    cd /mnt/c/Users/YourName/project
-   opencode
+   myassistant
    ```
 
 </Steps>
@@ -51,7 +51,7 @@ MyAssistant デスクトップアプリを使いつつ、サーバーは WSL で
    外部接続を許可するため、`--hostname 0.0.0.0` を付けて起動します。
 
    ```bash
-   opencode serve --hostname 0.0.0.0 --port 4096
+   myassistant serve --hostname 0.0.0.0 --port 4096
    ```
 
 2. **デスクトップアプリを接続する**
@@ -65,7 +65,7 @@ MyAssistant デスクトップアプリを使いつつ、サーバーは WSL で
 `--hostname 0.0.0.0` を使う場合は、`OPENCODE_SERVER_PASSWORD` を設定してサーバーを保護してください。
 
 ```bash
-OPENCODE_SERVER_PASSWORD=your-password opencode serve --hostname 0.0.0.0
+OPENCODE_SERVER_PASSWORD=your-password myassistant serve --hostname 0.0.0.0
 ```
 
 :::
@@ -74,17 +74,17 @@ OPENCODE_SERVER_PASSWORD=your-password opencode serve --hostname 0.0.0.0
 
 Windows で Web 利用を快適にするには:
 
-1. **PowerShell ではなく WSL ターミナルで `opencode web` を実行する**
+1. **PowerShell ではなく WSL ターミナルで `myassistant web` を実行する**
 
    ```bash
-   opencode web --hostname 0.0.0.0
+   myassistant web --hostname 0.0.0.0
    ```
 
 2. **Windows のブラウザからアクセスする**
 
    `http://localhost:<port>` にアクセスします（URL は MyAssistant が表示します）。
 
-WSL から `opencode web` を実行すると、適切なファイルシステムアクセスとターミナル統合を維持したまま、Windows ブラウザから利用できます。
+WSL から `myassistant web` を実行すると、適切なファイルシステムアクセスとターミナル統合を維持したまま、Windows ブラウザから利用できます。
 
 ---
 
@@ -100,7 +100,7 @@ WSL からは `/mnt/` ディレクトリ経由で Windows ファイルにアク�
 
 ```bash
 cd /mnt/c/Users/YourName/Documents/project
-opencode
+myassistant
 ```
 
 :::tip
@@ -113,4 +113,4 @@ opencode
 
 - Windows ドライブ上のプロジェクトでも、MyAssistant は WSL で実行するとファイルアクセスがスムーズです
 - MyAssistant と一緒に VS Code の [WSL 拡張機能](https://code.visualstudio.com/docs/remote/wsl) を使うと統合的な開発フローを構築できます
-- MyAssistant の設定とセッションは WSL 環境内の `~/.local/share/opencode/` に保存されます
+- MyAssistant の設定とセッションは WSL 環境内の `~/.local/share/myassistant/` に保存されます

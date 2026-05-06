@@ -307,7 +307,7 @@ pub fn run() {
 
     #[cfg(all(target_os = "macos", not(debug_assertions)))]
     let _ = std::process::Command::new("killall")
-        .arg("opencode-cli")
+        .arg("myassistant-cli")
         .output();
 
     let mut builder = tauri::Builder::default()
@@ -437,7 +437,7 @@ async fn initialize(app: AppHandle) {
     let (ready_tx, ready_rx) = oneshot::channel();
     let _ = ready_tx.send(ServerReadyData {
         url: url.clone(),
-        username: Some("opencode".to_string()),
+        username: Some("myassistant".to_string()),
         password: Some(password),
     });
     app.manage(SidecarReady(ready_rx.shared()));
@@ -581,7 +581,7 @@ fn opencode_db_path() -> Result<PathBuf, &'static str> {
         }
     };
 
-    Ok(data_home.join("opencode").join("opencode.db"))
+    Ok(data_home.join("myassistant").join("myassistant.db"))
 }
 
 // Creates a `once` listener for the specified event and returns a future that resolves

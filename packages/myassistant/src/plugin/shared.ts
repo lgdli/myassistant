@@ -197,7 +197,7 @@ export async function checkPluginCompatibility(target: string, myassistantVersio
   if (!hit) return
   const engines = hit.json.engines
   if (!isRecord(engines)) return
-  const range = engines.opencode
+  const range = engines.myassistant
   if (typeof range !== "string") return
   if (!semver.satisfies(myassistantVersion, range)) {
     throw new Error(`Plugin requires myassistant ${range} but running ${myassistantVersion}`)

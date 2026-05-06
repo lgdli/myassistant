@@ -1,7 +1,7 @@
 import { type ChildProcess, spawnSync } from "node:child_process"
 
 // Duplicated from `packages/myassistant/src/util/process.ts` because the SDK cannot
-// import `myassistant` without creating a cycle (`opencode` depends on `@myassistant-ai/sdk`).
+// import `myassistant` without creating a cycle (`myassistant` depends on `@myassistant-ai/sdk`).
 export function stop(proc: ChildProcess) {
   if (proc.exitCode !== null || proc.signalCode !== null) return
   if (process.platform === "win32" && proc.pid) {

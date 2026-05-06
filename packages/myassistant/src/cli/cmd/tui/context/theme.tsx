@@ -428,7 +428,7 @@ export const { use: useTheme, provider: ThemeProvider } = createSimpleContext({
         }
       }
 
-      return resolveTheme(store.themes.opencode, store.mode)
+      return resolveTheme(store.themes.myassistant, store.mode)
     })
 
     createEffect(() => {
@@ -489,7 +489,7 @@ async function getCustomThemes() {
     Global.Path.config,
     ...(await Array.fromAsync(
       Filesystem.up({
-        targets: [".opencode"],
+        targets: [".myassistant"],
         start: process.cwd(),
       }),
     )),

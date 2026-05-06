@@ -13,7 +13,7 @@ En ambos casos, MyAssistant se ejecutará en tus corredores GitLab.
 
 MyAssistant funciona en una tubería GitLab normal. Puede integrarlo en una canalización como un [componente de CI](https://docs.gitlab.com/ee/ci/components/)
 
-Aquí estamos utilizando un componente CI/CD creado por la comunidad para MyAssistant — [nagyv/gitlab-opencode](https://gitlab.com/nagyv/gitlab-opencode).
+Aquí estamos utilizando un componente CI/CD creado por la comunidad para MyAssistant — [nagyv/gitlab-myassistant](https://gitlab.com/nagyv/gitlab-myassistant).
 
 ---
 
@@ -32,22 +32,22 @@ Aquí estamos utilizando un componente CI/CD creado por la comunidad para MyAssi
 
    ```yaml title=".gitlab-ci.yml"
    include:
-     - component: $CI_SERVER_FQDN/nagyv/gitlab-opencode/opencode@2
+     - component: $CI_SERVER_FQDN/nagyv/gitlab-myassistant/myassistant@2
        inputs:
-         config_dir: ${CI_PROJECT_DIR}/opencode-config
+         config_dir: ${CI_PROJECT_DIR}/myassistant-config
          auth_json: $OPENCODE_AUTH_JSON # The variable name for your MyAssistant authentication JSON
          command: optional-custom-command
          message: "Your prompt here"
    ```
 
-Para obtener más entradas y casos de uso, [consulte los documentos](https://gitlab.com/explore/catalog/nagyv/gitlab-opencode) de este componente.
+Para obtener más entradas y casos de uso, [consulte los documentos](https://gitlab.com/explore/catalog/nagyv/gitlab-myassistant) de este componente.
 
 ---
 
 ## GitLab Duo
 
 MyAssistant se integra con su flujo de trabajo GitLab.
-Mencione `@opencode` en un comentario y MyAssistant ejecutará tareas dentro de su canal de CI GitLab.
+Mencione `@myassistant` en un comentario y MyAssistant ejecutará tareas dentro de su canal de CI GitLab.
 
 ---
 
@@ -82,7 +82,7 @@ Consulte los [**GitLab documentos**](https://docs.gitlab.com/user/duo_agent_plat
     ```yaml
     image: node:22-slim
     commands:
-      - echo "Installing opencode"
+      - echo "Installing myassistant"
       - npm install --global myassistant-ai
       - echo "Installing glab"
       - export GITLAB_TOKEN=$GITLAB_TOKEN_OPENCODE
@@ -92,9 +92,9 @@ Consulte los [**GitLab documentos**](https://docs.gitlab.com/user/duo_agent_plat
       - echo "Configuring glab"
       - echo $GITLAB_HOST
       - echo "Creating MyAssistant auth configuration"
-      - mkdir --parents ~/.local/share/opencode
+      - mkdir --parents ~/.local/share/myassistant
       - |
-        cat > ~/.local/share/opencode/auth.json << EOF
+        cat > ~/.local/share/myassistant/auth.json << EOF
         {
           "anthropic": {
             "type": "api",
@@ -103,13 +103,13 @@ Consulte los [**GitLab documentos**](https://docs.gitlab.com/user/duo_agent_plat
         }
         EOF
       - echo "Configuring git"
-      - git config --global user.email "opencode@gitlab.com"
+      - git config --global user.email "myassistant@gitlab.com"
       - git config --global user.name "MyAssistant"
       - echo "Testing glab"
       - glab issue list
       - echo "Running MyAssistant"
       - |
-        opencode run "
+        myassistant run "
         You are an AI assistant helping with GitLab operations.
 
         Context: $AI_FLOW_CONTEXT
@@ -161,7 +161,7 @@ Puede consultar los [GitLab CLI documentos de los agentes](https://docs.gitlab.c
 A continuación se muestran algunos ejemplos de cómo puede utilizar MyAssistant en GitLab.
 
 :::tip
-Puede configurarlo para utilizar una frase de activación diferente a `@opencode`.
+Puede configurarlo para utilizar una frase de activación diferente a `@myassistant`.
 :::
 
 - **Explica un problema**
@@ -169,7 +169,7 @@ Puede configurarlo para utilizar una frase de activación diferente a `@opencode
   Agregue este comentario en una edición GitLab.
 
   ```
-  @opencode explain this issue
+  @myassistant explain this issue
   ```
 
   MyAssistant leerá el problema y responderá con una explicación clara.
@@ -179,7 +179,7 @@ Puede configurarlo para utilizar una frase de activación diferente a `@opencode
   En un problema GitLab, diga:
 
   ```
-  @opencode fix this
+  @myassistant fix this
   ```
 
   MyAssistant creará una nueva rama, implementará los cambios y abrirá una solicitud de fusión con los cambios.
@@ -189,7 +189,7 @@ Puede configurarlo para utilizar una frase de activación diferente a `@opencode
   Deje el siguiente comentario sobre una solicitud de fusión GitLab.
 
   ```
-  @opencode review this merge request
+  @myassistant review this merge request
   ```
 
   MyAssistant revisará la solicitud de fusión y brindará comentarios.

@@ -3,7 +3,7 @@ title: GitHub
 description: Brug MyAssistant i GitHub-problemer og Pull Requests.
 ---
 
-MyAssistant integreres med din GitHub arbejdsgang. Nævn `/opencode` eller `/oc` i din kommentar, og MyAssistant vil udføre opgaver i din GitHub Actions-løber.
+MyAssistant integreres med din GitHub arbejdsgang. Nævn `/myassistant` eller `/oc` i din kommentar, og MyAssistant vil udføre opgaver i din GitHub Actions-løber.
 
 ---
 
@@ -20,7 +20,7 @@ MyAssistant integreres med din GitHub arbejdsgang. Nævn `/opencode` eller `/oc`
 Kør følgende kommando i et projekt, der er i en GitHub repo:
 
 ```bash
-opencode github install
+myassistant github install
 ```
 
 Dette vil lede dig gennem installation af GitHub-appen, oprettelse af arbejdsgangen og opsætning af hemmeligheder.
@@ -33,14 +33,14 @@ Eller du kan indstille det manuelt.
 
 1. **Installationsprogrammet GitHub-appen**
 
-   Gå over til [**github.com/apps/opencode-agent**](https://github.com/apps/opencode-agent). Sørg for, at det er installeret på mållageret.
+   Gå over til [**github.com/apps/myassistant-agent**](https://github.com/apps/myassistant-agent). Sørg for, at det er installeret på mållageret.
 
 2. **Tilføj arbejdsgangen**
 
-   Tilføj følgende workflow-fil til `.github/workflows/opencode.yml` i din repo. Sørg for at indstille de relevante `model` og nødvendige API-nøgler i `env`.
+   Tilføj følgende workflow-fil til `.github/workflows/myassistant.yml` i din repo. Sørg for at indstille de relevante `model` og nødvendige API-nøgler i `env`.
 
-   ```yml title=".github/workflows/opencode.yml" {24,26}
-   name: opencode
+   ```yml title=".github/workflows/myassistant.yml" {24,26}
+   name: myassistant
 
    on:
      issue_comment:
@@ -49,10 +49,10 @@ Eller du kan indstille det manuelt.
        types: [created]
 
    jobs:
-     opencode:
+     myassistant:
        if: |
          contains(github.event.comment.body, '/oc') ||
-         contains(github.event.comment.body, '/opencode')
+         contains(github.event.comment.body, '/myassistant')
        runs-on: ubuntu-latest
        permissions:
          id-token: write
@@ -64,7 +64,7 @@ Eller du kan indstille det manuelt.
               persist-credentials: false
 
           - name: Run MyAssistant
-           uses: anomalyco/opencode/github@latest
+           uses: anomalyco/myassistant/github@latest
            env:
              ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
            with:
@@ -107,8 +107,8 @@ MyAssistant kan udløses af følgende GitHub hændelser:
 
 | Begivenhedstype               | Udløst af                               | Detaljer                                                                                                                |
 | ----------------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `issue_comment`               | Kommentarer og problemer eller PR       | Nævn `/opencode` eller `/oc` i din kommentar. MyAssistant læser kontekst og kan oprette brancher, åbne PR'er eller svare.  |
-| `pull_request_review_comment` | Kommenter specifikke kodelinjer i en PR | Nævn `/opencode` eller `/oc`, mens du gennemgår koden. MyAssistant modtager filsti, linjenumre og diff-kontekst.           |
+| `issue_comment`               | Kommentarer og problemer eller PR       | Nævn `/myassistant` eller `/oc` i din kommentar. MyAssistant læser kontekst og kan oprette brancher, åbne PR'er eller svare.  |
+| `pull_request_review_comment` | Kommenter specifikke kodelinjer i en PR | Nævn `/myassistant` eller `/oc`, mens du gennemgår koden. MyAssistant modtager filsti, linjenumre og diff-kontekst.           |
 | `issues`                      | Udgave åbnet eller redigeret            | Udløs automatisk MyAssistant, når problemer oprettes eller ændres. Kræver `prompt` input.                                  |
 | `pull_request`                | PR åbnet eller opdateret                | Udløs automatisk MyAssistant, når PR'er åbnes, synkroniseres eller genåbnes. Nyttigt til automatiserede kodegennemgange.   |
 | `schedule`                    | Cron-baseret tidsplan                   | Kør MyAssistant efter en tidsplan. Kræver `prompt` input. Output går til logfiler og PR'er (intet problem ved kommentere). |
@@ -118,7 +118,7 @@ MyAssistant kan udløses af følgende GitHub hændelser:
 
 Kør MyAssistant efter en tidsplan for at udføre automatiske opgaver:
 
-```yaml title=".github/workflows/opencode-scheduled.yml"
+```yaml title=".github/workflows/myassistant-scheduled.yml"
 name: Scheduled MyAssistant Task
 
 on:
@@ -126,7 +126,7 @@ on:
     - cron: "0 9 * * 1" # Every Monday at 9am UTC
 
 jobs:
-  opencode:
+  myassistant:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -140,7 +140,7 @@ jobs:
           persist-credentials: false
 
       - name: Run MyAssistant
-        uses: anomalyco/opencode/github@latest
+        uses: anomalyco/myassistant/github@latest
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         with:
@@ -158,8 +158,8 @@ For planlagte begivenheder er `prompt` input **påkrævet**, da der ikke er noge
 
 Gennemgå automatisk PR'er, når de åbnes eller opdateres:
 
-```yaml title=".github/workflows/opencode-review.yml"
-name: opencode-review
+```yaml title=".github/workflows/myassistant-review.yml"
+name: myassistant-review
 
 on:
   pull_request:
@@ -177,7 +177,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
-      - uses: anomalyco/opencode/github@latest
+      - uses: anomalyco/myassistant/github@latest
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -199,7 +199,7 @@ For `pull_request` hændelser, hvis der ikke er angivet nogen `prompt`, vil MyAs
 
 Triage automatisk nye problemer. Dette eksempel filtrerer til konti ældre end 30 dage for at reducere spam:
 
-```yaml title=".github/workflows/opencode-triage.yml"
+```yaml title=".github/workflows/myassistant-triage.yml"
 name: Issue Triage
 
 on:
@@ -233,7 +233,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: anomalyco/opencode/github@latest
+      - uses: anomalyco/myassistant/github@latest
         if: steps.check.outputs.result == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -254,8 +254,8 @@ For `issues` begivenheder er `prompt` input **påkrævet**, da der ikke er nogen
 
 Tilsidesæt standardprompten for at tilpasse MyAssistants adfærd til din arbejdsgang.
 
-```yaml title=".github/workflows/opencode.yml"
-- uses: anomalyco/opencode/github@latest
+```yaml title=".github/workflows/myassistant.yml"
+- uses: anomalyco/myassistant/github@latest
   with:
     model: anthropic/claude-sonnet-4-5
     prompt: |
@@ -278,7 +278,7 @@ Her er nogle eksempler på, hvordan du kan bruge MyAssistant i GitHub.
   Tilføj denne kommentar i et GitHub-nummer.
 
   ```
-  /opencode explain this issue
+  /myassistant explain this issue
   ```
 
   MyAssistant vil læse hele tråden, inklusive alle kommentarer, og svare med en klar forklaring.
@@ -288,7 +288,7 @@ Her er nogle eksempler på, hvordan du kan bruge MyAssistant i GitHub.
   I et GitHub-problem skal du sige:
 
   ```
-  /opencode fix this
+  /myassistant fix this
   ```
 
   Og MyAssistant vil oprette en ny branch, implementere ændringer og åbne en PR med ændringer.

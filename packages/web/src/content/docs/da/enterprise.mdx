@@ -38,15 +38,15 @@ Den eneste advarsel her er den valgfrie `/share`-funktion.
 
 #### Deling af samtaler
 
-Hvis en bruger aktiverer funktionen `/share`, sender samtalen og de data, der er knyttet til den, til den tjeneste, vi bruger til at hoste disse delesider på opencode.ai.
+Hvis en bruger aktiverer funktionen `/share`, sender samtalen og de data, der er knyttet til den, til den tjeneste, vi bruger til at hoste disse delesider på myassistant.ai.
 
 Dataene serveres i øjeblikket gennem vores CDN's edge-netværk og cachelagres på kanten nær dine brugere.
 
 Vi anbefaler, at du deaktiverer dette for din prøveperiode.
 
-```json title="opencode.json"
+```json title="myassistant.json"
 {
-  "$schema": "https://opencode.ai/config.json",
+  "$schema": "https://myassistant.ai/config.json",
   "share": "disabled"
 }
 ```

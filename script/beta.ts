@@ -3,7 +3,7 @@
 import { $ } from "bun"
 import fs from "fs/promises"
 
-const model = "opencode/gpt-5.3-codex"
+const model = "myassistant/gpt-5.3-codex"
 
 interface PR {
   number: number
@@ -168,7 +168,7 @@ async function fix(pr: PR, files: string[], prs: PR[], applied: number[], idx: n
   ].join("\n")
 
   try {
-    // Use the MyAssistant command instead of deprecated opencode command
+    // Use the MyAssistant command instead of deprecated myassistant command
     await $`myassistant run -m ${model} ${prompt}`
   } catch (err) {
     console.log(`  MyAssistant run failed: ${err}`)

@@ -425,7 +425,7 @@ describe("workspace-old CRUD", () => {
       process.env.MYASSISTANT_AUTH_CONTENT = JSON.stringify({ test: { type: "api", key: "secret" } })
       process.env.OTEL_EXPORTER_OTLP_HEADERS = "authorization=otel"
       process.env.OTEL_EXPORTER_OTLP_ENDPOINT = "https://otel.test"
-      process.env.OTEL_RESOURCE_ATTRIBUTES = "service.name=opencode-test"
+      process.env.OTEL_RESOURCE_ATTRIBUTES = "service.name=myassistant-test"
 
       const workspaceID = WorkspaceID.ascending("wrk_create_local")
       const type = unique("create-local")
@@ -479,7 +479,7 @@ describe("workspace-old CRUD", () => {
       expect(recorded.calls.create[0].env.MYASSISTANT_EXPERIMENTAL_WORKSPACES).toBe("true")
       expect(recorded.calls.create[0].env.OTEL_EXPORTER_OTLP_HEADERS).toBe("authorization=otel")
       expect(recorded.calls.create[0].env.OTEL_EXPORTER_OTLP_ENDPOINT).toBe("https://otel.test")
-      expect(recorded.calls.create[0].env.OTEL_RESOURCE_ATTRIBUTES).toBe("service.name=opencode-test")
+      expect(recorded.calls.create[0].env.OTEL_RESOURCE_ATTRIBUTES).toBe("service.name=myassistant-test")
       expect((await workspaceStatus()).find((item) => item.workspaceID === workspaceID)?.status).toBe("connected")
 
       await removeWorkspace(workspaceID)

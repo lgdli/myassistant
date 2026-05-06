@@ -51,14 +51,14 @@ curl -fsSL https://myassistant.ai/install | bash
 
 # 패키지 매니저
 npm i -g myassistant-ai@latest        # bun/pnpm/yarn 도 가능
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS 및 Linux (권장, 항상 최신)
-brew install opencode              # macOS 및 Linux (공식 brew formula, 업데이트 빈도 낮음)
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-bin               # Arch Linux (Latest from AUR)
-mise use -g opencode               # 어떤 OS든
-nix run nixpkgs#opencode           # 또는 github:anomalyco/myassistant 로 최신 dev 브랜치
+scoop install myassistant             # Windows
+choco install myassistant             # Windows
+brew install anomalyco/tap/myassistant # macOS 및 Linux (권장, 항상 최신)
+brew install myassistant              # macOS 및 Linux (공식 brew formula, 업데이트 빈도 낮음)
+sudo pacman -S myassistant            # Arch Linux (Stable)
+paru -S myassistant-bin               # Arch Linux (Latest from AUR)
+mise use -g myassistant               # 어떤 OS든
+nix run nixpkgs#myassistant           # 또는 github:anomalyco/myassistant 로 최신 dev 브랜치
 ```
 
 > [!TIP]
@@ -70,16 +70,16 @@ MyAssistant 는 데스크톱 앱으로도 제공됩니다. [releases page](https
 
 | 플랫폼                | 다운로드                              |
 | --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opencode-desktop-darwin-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe`    |
+| macOS (Apple Silicon) | `myassistant-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `myassistant-desktop-darwin-x64.dmg`     |
+| Windows               | `myassistant-desktop-windows-x64.exe`    |
 | Linux                 | `.deb`, `.rpm`, 또는 AppImage         |
 
 ```bash
 # macOS (Homebrew)
-brew install --cask opencode-desktop
+brew install --cask myassistant-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/myassistant-desktop
 ```
 
 #### 설치 디렉터리
@@ -89,7 +89,7 @@ scoop bucket add extras; scoop install extras/opencode-desktop
 1. `$OPENCODE_INSTALL_DIR` - 사용자 지정 설치 디렉터리
 2. `$XDG_BIN_DIR` - XDG Base Directory Specification 준수 경로
 3. `$HOME/bin` - 표준 사용자 바이너리 디렉터리 (존재하거나 생성 가능할 경우)
-4. `$HOME/.opencode/bin` - 기본 폴백
+4. `$HOME/.myassistant/bin` - 기본 폴백
 
 ```bash
 # 예시
@@ -122,7 +122,7 @@ MyAssistant 에 기여하고 싶다면, Pull Request 를 제출하기 전에 [co
 
 ### MyAssistant 기반으로 만들기
 
-MyAssistant 와 관련된 프로젝트를 진행하면서 이름에 "opencode"(예: "opencode-dashboard" 또는 "opencode-mobile") 를 포함한다면, README 에 해당 프로젝트가 MyAssistant 팀이 만든 것이 아니며 어떤 방식으로도 우리와 제휴되어 있지 않다는 점을 명시해 주세요.
+MyAssistant 와 관련된 프로젝트를 진행하면서 이름에 "myassistant"(예: "myassistant-dashboard" 또는 "myassistant-mobile") 를 포함한다면, README 에 해당 프로젝트가 MyAssistant 팀이 만든 것이 아니며 어떤 방식으로도 우리와 제휴되어 있지 않다는 점을 명시해 주세요.
 
 ### FAQ
 
@@ -138,4 +138,4 @@ MyAssistant 와 관련된 프로젝트를 진행하면서 이름에 "opencode"(�
 
 ---
 
-**커뮤니티에 참여하기** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+**커뮤니티에 참여하기** [Discord](https://discord.gg/myassistant) | [X.com](https://x.com/myassistant)

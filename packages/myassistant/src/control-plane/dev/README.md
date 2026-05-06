@@ -1,13 +1,13 @@
-This is a plugin to simulate a remote environment locally. Add this to `.opencode/opencode.jsonc`:
+This is a plugin to simulate a remote environment locally. Add this to `.myassistant/myassistant.jsonc`:
 
 ```json
-  "plugin": ["../packages/opencode/src/control-plane/dev/debug-workspace-plugin.ts"],
+  "plugin": ["../packages/myassistant/src/control-plane/dev/debug-workspace-plugin.ts"],
 ```
 
 In a separate terminal, run a separate MyAssistant server. This will act like a remote server and the local instance will proxy all requests to it:
 
 ```
-./packages/opencode/script/run-workspace-server
+./packages/myassistant/script/run-workspace-server
 ```
 
 With the plugin install, you can now run MyAssistant and create a `debug` workspace type. This will create a "remote" workspace which talks to the second workspace server started above.

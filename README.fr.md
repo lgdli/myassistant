@@ -51,14 +51,14 @@ curl -fsSL https://myassistant.ai/install | bash
 
 # Gestionnaires de paquets
 npm i -g myassistant-ai@latest        # ou bun/pnpm/yarn
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS et Linux (recommandé, toujours à jour)
-brew install opencode              # macOS et Linux (formule officielle brew, mise à jour moins fréquente)
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-bin               # Arch Linux (Latest from AUR)
-mise use -g opencode               # n'importe quel OS
-nix run nixpkgs#opencode           # ou github:anomalyco/myassistant pour la branche dev la plus récente
+scoop install myassistant             # Windows
+choco install myassistant             # Windows
+brew install anomalyco/tap/myassistant # macOS et Linux (recommandé, toujours à jour)
+brew install myassistant              # macOS et Linux (formule officielle brew, mise à jour moins fréquente)
+sudo pacman -S myassistant            # Arch Linux (Stable)
+paru -S myassistant-bin               # Arch Linux (Latest from AUR)
+mise use -g myassistant               # n'importe quel OS
+nix run nixpkgs#myassistant           # ou github:anomalyco/myassistant pour la branche dev la plus récente
 ```
 
 > [!TIP]
@@ -70,16 +70,16 @@ MyAssistant est aussi disponible en application de bureau. Téléchargez-la dire
 
 | Plateforme            | Téléchargement                        |
 | --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opencode-desktop-darwin-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe`    |
+| macOS (Apple Silicon) | `myassistant-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `myassistant-desktop-darwin-x64.dmg`     |
+| Windows               | `myassistant-desktop-windows-x64.exe`    |
 | Linux                 | `.deb`, `.rpm`, ou AppImage           |
 
 ```bash
 # macOS (Homebrew)
-brew install --cask opencode-desktop
+brew install --cask myassistant-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/myassistant-desktop
 ```
 
 #### Répertoire d'installation
@@ -89,7 +89,7 @@ Le script d'installation respecte l'ordre de priorité suivant pour le chemin d'
 1. `$OPENCODE_INSTALL_DIR` - Répertoire d'installation personnalisé
 2. `$XDG_BIN_DIR` - Chemin conforme à la spécification XDG Base Directory
 3. `$HOME/bin` - Répertoire binaire utilisateur standard (s'il existe ou peut être créé)
-4. `$HOME/.opencode/bin` - Repli par défaut
+4. `$HOME/.myassistant/bin` - Repli par défaut
 
 ```bash
 # Exemples
@@ -122,7 +122,7 @@ Si vous souhaitez contribuer à MyAssistant, lisez nos [docs de contribution](./
 
 ### Construire avec MyAssistant
 
-Si vous travaillez sur un projet lié à MyAssistant et que vous utilisez "opencode" dans le nom du projet (par exemple, "opencode-dashboard" ou "opencode-mobile"), ajoutez une note dans votre README pour préciser qu'il n'est pas construit par l'équipe MyAssistant et qu'il n'est pas affilié à nous.
+Si vous travaillez sur un projet lié à MyAssistant et que vous utilisez "myassistant" dans le nom du projet (par exemple, "myassistant-dashboard" ou "myassistant-mobile"), ajoutez une note dans votre README pour préciser qu'il n'est pas construit par l'équipe MyAssistant et qu'il n'est pas affilié à nous.
 
 ### FAQ
 
@@ -138,4 +138,4 @@ C'est très similaire à Claude Code en termes de capacités. Voici les principa
 
 ---
 
-**Rejoignez notre communauté** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+**Rejoignez notre communauté** [Discord](https://discord.gg/myassistant) | [X.com](https://x.com/myassistant)

@@ -8,13 +8,13 @@ import { Tabs, TabItem } from "@astrojs/starlight/components"
 The MyAssistant CLI by default starts the [TUI](/docs/tui) when run without any arguments.
 
 ```bash
-opencode
+myassistant
 ```
 
 But it also accepts commands as documented on this page. This allows you to interact with MyAssistant programmatically.
 
 ```bash
-opencode run "Explain how closures work in JavaScript"
+myassistant run "Explain how closures work in JavaScript"
 ```
 
 ---
@@ -24,7 +24,7 @@ opencode run "Explain how closures work in JavaScript"
 Start the MyAssistant terminal user interface.
 
 ```bash
-opencode [project]
+myassistant [project]
 ```
 
 #### Flags
@@ -56,7 +56,7 @@ The MyAssistant CLI also has the following commands.
 Manage agents for MyAssistant.
 
 ```bash
-opencode agent [command]
+myassistant agent [command]
 ```
 
 ---
@@ -66,17 +66,17 @@ opencode agent [command]
 Attach a terminal to an already running MyAssistant backend server started via `serve` or `web` commands.
 
 ```bash
-opencode attach [url]
+myassistant attach [url]
 ```
 
 This allows using the TUI with a remote MyAssistant backend. For example:
 
 ```bash
 # Start the backend server for web/mobile access
-opencode web --port 4096 --hostname 0.0.0.0
+myassistant web --port 4096 --hostname 0.0.0.0
 
 # In another terminal, attach the TUI to the running backend
-opencode attach http://10.20.30.40:4096
+myassistant attach http://10.20.30.40:4096
 ```
 
 #### Flags
@@ -88,7 +88,7 @@ opencode attach http://10.20.30.40:4096
 | <nobr><code>{"--session"}</code></nobr>  | `-s`  | Session ID to continue                                                     |
 | <nobr><code>{"--fork"}</code></nobr>     |       | Fork the session when continuing (use with `--continue` or `--session`)    |
 | <nobr><code>{"--password"}</code></nobr> | `-p`  | Basic auth password (defaults to `OPENCODE_SERVER_PASSWORD`)               |
-| <nobr><code>{"--username"}</code></nobr> | `-u`  | Basic auth username (defaults to `OPENCODE_SERVER_USERNAME` or `opencode`) |
+| <nobr><code>{"--username"}</code></nobr> | `-u`  | Basic auth username (defaults to `OPENCODE_SERVER_USERNAME` or `myassistant`) |
 
 ---
 
@@ -97,7 +97,7 @@ opencode attach http://10.20.30.40:4096
 Create a new agent with custom configuration.
 
 ```bash
-opencode agent create
+myassistant agent create
 ```
 
 This command will guide you through creating a new agent with a custom system prompt and permission configuration. Anything you don't allow is denied in the generated agent's frontmatter.
@@ -106,7 +106,7 @@ This command will guide you through creating a new agent with a custom system pr
 
 | Flag                                        | Short | Description                                                                                                                                                                                                                |
 | ------------------------------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <nobr><code>{"--path"}</code></nobr>        |       | Directory to write the agent file to (defaults to global or `.opencode/agent` based on the prompt)                                                                                                                         |
+| <nobr><code>{"--path"}</code></nobr>        |       | Directory to write the agent file to (defaults to global or `.myassistant/agent` based on the prompt)                                                                                                                         |
 | <nobr><code>{"--description"}</code></nobr> |       | What the agent should do                                                                                                                                                                                                   |
 | <nobr><code>{"--mode"}</code></nobr>        |       | Agent mode: `all`, `primary`, or `subagent`                                                                                                                                                                                |
 | <nobr><code>{"--permissions"}</code></nobr> |       | Comma-separated list of permissions to allow (default: all). Available: `bash`, `read`, `edit`, `glob`, `grep`, `webfetch`, `task`, `todowrite`, `websearch`, `lsp`, `skill`. Anything omitted is denied. Alias: `--tools` |
@@ -121,7 +121,7 @@ Passing all of `--path`, `--description`, `--mode`, and `--permissions` runs the
 List all available agents.
 
 ```bash
-opencode agent list
+myassistant agent list
 ```
 
 ---
@@ -131,17 +131,17 @@ opencode agent list
 Command to manage credentials and login for providers.
 
 ```bash
-opencode auth [command]
+myassistant auth [command]
 ```
 
 ---
 
 #### login
 
-MyAssistant is powered by the provider list at [Models.dev](https://models.dev), so you can use `opencode auth login` to configure API keys for any provider you'd like to use. This is stored in `~/.local/share/opencode/auth.json`.
+MyAssistant is powered by the provider list at [Models.dev](https://models.dev), so you can use `myassistant auth login` to configure API keys for any provider you'd like to use. This is stored in `~/.local/share/myassistant/auth.json`.
 
 ```bash
-opencode auth login
+myassistant auth login
 ```
 
 When MyAssistant starts up it loads the providers from the credentials file. And if there are any keys defined in your environments or a `.env` file in your project.
@@ -160,13 +160,13 @@ When MyAssistant starts up it loads the providers from the credentials file. And
 Lists all the authenticated providers as stored in the credentials file.
 
 ```bash
-opencode auth list
+myassistant auth list
 ```
 
 Or the short version.
 
 ```bash
-opencode auth ls
+myassistant auth ls
 ```
 
 ---
@@ -176,7 +176,7 @@ opencode auth ls
 Logs you out of a provider by clearing it from the credentials file.
 
 ```bash
-opencode auth logout
+myassistant auth logout
 ```
 
 ---
@@ -186,7 +186,7 @@ opencode auth logout
 Manage the GitHub agent for repository automation.
 
 ```bash
-opencode github [command]
+myassistant github [command]
 ```
 
 ---
@@ -196,7 +196,7 @@ opencode github [command]
 Install the GitHub agent in your repository.
 
 ```bash
-opencode github install
+myassistant github install
 ```
 
 This sets up the necessary GitHub Actions workflow and guides you through the configuration process. [Learn more](/docs/github).
@@ -208,7 +208,7 @@ This sets up the necessary GitHub Actions workflow and guides you through the co
 Run the GitHub agent. This is typically used in GitHub Actions.
 
 ```bash
-opencode github run
+myassistant github run
 ```
 
 ##### Flags
@@ -225,7 +225,7 @@ opencode github run
 Manage Model Context Protocol servers.
 
 ```bash
-opencode mcp [command]
+myassistant mcp [command]
 ```
 
 ---
@@ -235,7 +235,7 @@ opencode mcp [command]
 Add an MCP server to your configuration.
 
 ```bash
-opencode mcp add
+myassistant mcp add
 ```
 
 This command will guide you through adding either a local or remote MCP server.
@@ -247,13 +247,13 @@ This command will guide you through adding either a local or remote MCP server.
 List all configured MCP servers and their connection status.
 
 ```bash
-opencode mcp list
+myassistant mcp list
 ```
 
 Or use the short version.
 
 ```bash
-opencode mcp ls
+myassistant mcp ls
 ```
 
 ---
@@ -263,7 +263,7 @@ opencode mcp ls
 Authenticate with an OAuth-enabled MCP server.
 
 ```bash
-opencode mcp auth [name]
+myassistant mcp auth [name]
 ```
 
 If you don't provide a server name, you'll be prompted to select from available OAuth-capable servers.
@@ -271,13 +271,13 @@ If you don't provide a server name, you'll be prompted to select from available 
 You can also list OAuth-capable servers and their authentication status.
 
 ```bash
-opencode mcp auth list
+myassistant mcp auth list
 ```
 
 Or use the short version.
 
 ```bash
-opencode mcp auth ls
+myassistant mcp auth ls
 ```
 
 ---
@@ -287,7 +287,7 @@ opencode mcp auth ls
 Remove OAuth credentials for an MCP server.
 
 ```bash
-opencode mcp logout [name]
+myassistant mcp logout [name]
 ```
 
 ---
@@ -297,7 +297,7 @@ opencode mcp logout [name]
 Debug OAuth connection issues for an MCP server.
 
 ```bash
-opencode mcp debug <name>
+myassistant mcp debug <name>
 ```
 
 ---
@@ -307,7 +307,7 @@ opencode mcp debug <name>
 List all available models from configured providers.
 
 ```bash
-opencode models [provider]
+myassistant models [provider]
 ```
 
 This command displays all models available across your configured providers in the format `provider/model`.
@@ -317,7 +317,7 @@ This is useful for figuring out the exact model name to use in [your config](/do
 You can optionally pass a provider ID to filter models by that provider.
 
 ```bash
-opencode models anthropic
+myassistant models anthropic
 ```
 
 #### Flags
@@ -330,33 +330,33 @@ opencode models anthropic
 Use the `--refresh` flag to update the cached model list. This is useful when new models have been added to a provider and you want to see them in MyAssistant.
 
 ```bash
-opencode models --refresh
+myassistant models --refresh
 ```
 
 ---
 
 ### run
 
-Run opencode in non-interactive mode by passing a prompt directly.
+Run myassistant in non-interactive mode by passing a prompt directly.
 
 ```bash
-opencode run [message..]
+myassistant run [message..]
 ```
 
 This is useful for scripting, automation, or when you want a quick answer without launching the full TUI. For example.
 
-```bash "opencode run"
-opencode run Explain the use of context in Go
+```bash "myassistant run"
+myassistant run Explain the use of context in Go
 ```
 
-You can also attach to a running `opencode serve` instance to avoid MCP server cold boot times on every run:
+You can also attach to a running `myassistant serve` instance to avoid MCP server cold boot times on every run:
 
 ```bash
 # Start a headless server in one terminal
-opencode serve
+myassistant serve
 
 # In another terminal, run commands that attach to it
-opencode run --attach http://localhost:4096 "Explain async/await in JavaScript"
+myassistant run --attach http://localhost:4096 "Explain async/await in JavaScript"
 ```
 
 #### Flags
@@ -373,9 +373,9 @@ opencode run --attach http://localhost:4096 "Explain async/await in JavaScript"
 | <nobr><code>{"--file"}</code></nobr>                         | `-f`  | File(s) to attach to message                                               |
 | <nobr><code>{"--format"}</code></nobr>                       |       | Format: default (formatted) or json (raw JSON events)                      |
 | <nobr><code>{"--title"}</code></nobr>                        |       | Title for the session (uses truncated prompt if no value provided)         |
-| <nobr><code>{"--attach"}</code></nobr>                       |       | Attach to a running opencode server (e.g., http://localhost:4096)          |
+| <nobr><code>{"--attach"}</code></nobr>                       |       | Attach to a running myassistant server (e.g., http://localhost:4096)          |
 | <nobr><code>{"--password"}</code></nobr>                     | `-p`  | Basic auth password (defaults to `OPENCODE_SERVER_PASSWORD`)               |
-| <nobr><code>{"--username"}</code></nobr>                     | `-u`  | Basic auth username (defaults to `OPENCODE_SERVER_USERNAME` or `opencode`) |
+| <nobr><code>{"--username"}</code></nobr>                     | `-u`  | Basic auth username (defaults to `OPENCODE_SERVER_USERNAME` or `myassistant`) |
 | <nobr><code>{"--dir"}</code></nobr>                          |       | Directory to run in, or path on the remote server when attaching           |
 | <nobr><code>{"--port"}</code></nobr>                         |       | Port for the local server (defaults to random port)                        |
 | <nobr><code>{"--variant"}</code></nobr>                      |       | Model variant (provider-specific reasoning effort)                         |
@@ -389,10 +389,10 @@ opencode run --attach http://localhost:4096 "Explain async/await in JavaScript"
 Start a headless MyAssistant server for API access. Check out the [server docs](/docs/server) for the full HTTP interface.
 
 ```bash
-opencode serve
+myassistant serve
 ```
 
-This starts an HTTP server that provides API access to opencode functionality without the TUI interface. Set `OPENCODE_SERVER_PASSWORD` to enable HTTP basic auth (username defaults to `opencode`).
+This starts an HTTP server that provides API access to myassistant functionality without the TUI interface. Set `OPENCODE_SERVER_PASSWORD` to enable HTTP basic auth (username defaults to `myassistant`).
 
 #### Flags
 
@@ -411,7 +411,7 @@ This starts an HTTP server that provides API access to opencode functionality wi
 Manage MyAssistant sessions.
 
 ```bash
-opencode session [command]
+myassistant session [command]
 ```
 
 ---
@@ -421,7 +421,7 @@ opencode session [command]
 List all MyAssistant sessions.
 
 ```bash
-opencode session list
+myassistant session list
 ```
 
 ##### Flags
@@ -438,7 +438,7 @@ opencode session list
 Delete an MyAssistant session.
 
 ```bash
-opencode session delete <sessionID>
+myassistant session delete <sessionID>
 ```
 
 ---
@@ -448,7 +448,7 @@ opencode session delete <sessionID>
 Show token usage and cost statistics for your MyAssistant sessions.
 
 ```bash
-opencode stats
+myassistant stats
 ```
 
 #### Flags
@@ -467,7 +467,7 @@ opencode stats
 Export session data as JSON.
 
 ```bash
-opencode export [sessionID]
+myassistant export [sessionID]
 ```
 
 If you don't provide a session ID, you'll be prompted to select from available sessions.
@@ -485,14 +485,14 @@ If you don't provide a session ID, you'll be prompted to select from available s
 Import session data from a JSON file or MyAssistant share URL.
 
 ```bash
-opencode import <file>
+myassistant import <file>
 ```
 
 You can import from a local file or an MyAssistant share URL.
 
 ```bash
-opencode import session.json
-opencode import https://opncd.ai/s/abc123
+myassistant import session.json
+myassistant import https://opncd.ai/s/abc123
 ```
 
 ---
@@ -502,10 +502,10 @@ opencode import https://opncd.ai/s/abc123
 Start a headless MyAssistant server with a web interface.
 
 ```bash
-opencode web
+myassistant web
 ```
 
-This starts an HTTP server and opens a web browser to access MyAssistant through a web interface. Set `OPENCODE_SERVER_PASSWORD` to enable HTTP basic auth (username defaults to `opencode`).
+This starts an HTTP server and opens a web browser to access MyAssistant through a web interface. Set `OPENCODE_SERVER_PASSWORD` to enable HTTP basic auth (username defaults to `myassistant`).
 
 #### Flags
 
@@ -524,7 +524,7 @@ This starts an HTTP server and opens a web browser to access MyAssistant through
 Start an ACP (Agent Client Protocol) server.
 
 ```bash
-opencode acp
+myassistant acp
 ```
 
 This command starts an ACP server that communicates via stdin/stdout using nd-JSON.
@@ -547,13 +547,13 @@ This command starts an ACP server that communicates via stdin/stdout using nd-JS
 Install a plugin and update your config.
 
 ```bash
-opencode plugin <module>
+myassistant plugin <module>
 ```
 
 Or use the alias.
 
 ```bash
-opencode plug <module>
+myassistant plug <module>
 ```
 
 #### Flags
@@ -570,7 +570,7 @@ opencode plug <module>
 Fetch and checkout a GitHub PR branch, then run MyAssistant.
 
 ```bash
-opencode pr <number>
+myassistant pr <number>
 ```
 
 ---
@@ -580,7 +580,7 @@ opencode pr <number>
 Database tools.
 
 ```bash
-opencode db [query]
+myassistant db [query]
 ```
 
 #### Flags
@@ -596,7 +596,7 @@ opencode db [query]
 Print the database path.
 
 ```bash
-opencode db path
+myassistant db path
 ```
 
 ---
@@ -606,7 +606,7 @@ opencode db path
 Debugging and troubleshooting tools.
 
 ```bash
-opencode debug [command]
+myassistant debug [command]
 ```
 
 ---
@@ -616,7 +616,7 @@ opencode debug [command]
 Uninstall MyAssistant and remove all related files.
 
 ```bash
-opencode uninstall
+myassistant uninstall
 ```
 
 #### Flags
@@ -632,22 +632,22 @@ opencode uninstall
 
 ### upgrade
 
-Updates opencode to the latest version or a specific version.
+Updates myassistant to the latest version or a specific version.
 
 ```bash
-opencode upgrade [target]
+myassistant upgrade [target]
 ```
 
 To upgrade to the latest version.
 
 ```bash
-opencode upgrade
+myassistant upgrade
 ```
 
 To upgrade to a specific version.
 
 ```bash
-opencode upgrade v0.1.48
+myassistant upgrade v0.1.48
 ```
 
 #### Flags
@@ -660,7 +660,7 @@ opencode upgrade v0.1.48
 
 ## Global Flags
 
-The opencode CLI takes the following global flags.
+The myassistant CLI takes the following global flags.
 
 | Flag                                       | Short | Description                          |
 | ------------------------------------------ | ----- | ------------------------------------ |
@@ -701,7 +701,7 @@ MyAssistant can be configured using environment variables.
 | `OPENCODE_CLIENT`                     | string  | Client identifier (defaults to `cli`)             |
 | `OPENCODE_ENABLE_EXA`                 | boolean | Enable Exa web search tools                       |
 | `OPENCODE_SERVER_PASSWORD`            | string  | Enable basic auth for `serve`/`web`               |
-| `OPENCODE_SERVER_USERNAME`            | string  | Override basic auth username (default `opencode`) |
+| `OPENCODE_SERVER_USERNAME`            | string  | Override basic auth username (default `myassistant`) |
 | `OPENCODE_MODELS_URL`                 | string  | Custom URL for fetching models configuration      |
 
 ---

@@ -26,7 +26,7 @@ import { InstanceState } from "@/effect/instance-state"
 
 const node = CrossSpawnSpawner.defaultLayer
 const configLayer = TestConfig.layer({
-  directories: () => InstanceState.directory.pipe(Effect.map((dir) => [path.join(dir, ".opencode")])),
+  directories: () => InstanceState.directory.pipe(Effect.map((dir) => [path.join(dir, ".myassistant")])),
 })
 
 const registryLayer = ToolRegistry.layer.pipe(
@@ -56,11 +56,11 @@ afterEach(async () => {
 })
 
 describe("tool.registry", () => {
-  it.instance("loads tools from .opencode/tool (singular)", () =>
+  it.instance("loads tools from .myassistant/tool (singular)", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const opencode = path.join(test.directory, ".opencode")
-      const tool = path.join(opencode, "tool")
+      const myassistant = path.join(test.directory, ".myassistant")
+      const tool = path.join(myassistant, "tool")
       yield* Effect.promise(() => fs.mkdir(tool, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(
@@ -83,11 +83,11 @@ describe("tool.registry", () => {
     }),
   )
 
-  it.instance("loads tools from .opencode/tools (plural)", () =>
+  it.instance("loads tools from .myassistant/tools (plural)", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const opencode = path.join(test.directory, ".opencode")
-      const tools = path.join(opencode, "tools")
+      const myassistant = path.join(test.directory, ".myassistant")
+      const tools = path.join(myassistant, "tools")
       yield* Effect.promise(() => fs.mkdir(tools, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(
@@ -113,12 +113,12 @@ describe("tool.registry", () => {
   it.instance("loads tools with external dependencies without crashing", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const opencode = path.join(test.directory, ".opencode")
-      const tools = path.join(opencode, "tools")
+      const myassistant = path.join(test.directory, ".myassistant")
+      const tools = path.join(myassistant, "tools")
       yield* Effect.promise(() => fs.mkdir(tools, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(
-          path.join(opencode, "package.json"),
+          path.join(myassistant, "package.json"),
           JSON.stringify({
             name: "custom-tools",
             dependencies: {
@@ -130,7 +130,7 @@ describe("tool.registry", () => {
       )
       yield* Effect.promise(() =>
         Bun.write(
-          path.join(opencode, "package-lock.json"),
+          path.join(myassistant, "package-lock.json"),
           JSON.stringify({
             name: "custom-tools",
             lockfileVersion: 3,
@@ -146,7 +146,7 @@ describe("tool.registry", () => {
         ),
       )
 
-      const cowsay = path.join(opencode, "node_modules", "cowsay")
+      const cowsay = path.join(myassistant, "node_modules", "cowsay")
       yield* Effect.promise(() => fs.mkdir(cowsay, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(

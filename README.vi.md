@@ -51,14 +51,14 @@ curl -fsSL https://myassistant.ai/install | bash
 
 # Các trình quản lý gói (Package managers)
 npm i -g myassistant-ai@latest        # hoặc bun/pnpm/yarn
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS và Linux (khuyên dùng, luôn cập nhật)
-brew install opencode              # macOS và Linux (công thức brew chính thức, ít cập nhật hơn)
-sudo pacman -S opencode            # Arch Linux (Bản ổn định)
-paru -S opencode-bin               # Arch Linux (Bản mới nhất từ AUR)
-mise use -g opencode               # Mọi hệ điều hành
-nix run nixpkgs#opencode           # hoặc github:anomalyco/myassistant cho nhánh dev mới nhất
+scoop install myassistant             # Windows
+choco install myassistant             # Windows
+brew install anomalyco/tap/myassistant # macOS và Linux (khuyên dùng, luôn cập nhật)
+brew install myassistant              # macOS và Linux (công thức brew chính thức, ít cập nhật hơn)
+sudo pacman -S myassistant            # Arch Linux (Bản ổn định)
+paru -S myassistant-bin               # Arch Linux (Bản mới nhất từ AUR)
+mise use -g myassistant               # Mọi hệ điều hành
+nix run nixpkgs#myassistant           # hoặc github:anomalyco/myassistant cho nhánh dev mới nhất
 ```
 
 > [!TIP]
@@ -70,16 +70,16 @@ MyAssistant cũng có sẵn dưới dạng ứng dụng desktop. Tải trực ti
 
 | Nền tảng              | Tải xuống                             |
 | --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opencode-desktop-darwin-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe`    |
+| macOS (Apple Silicon) | `myassistant-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `myassistant-desktop-darwin-x64.dmg`     |
+| Windows               | `myassistant-desktop-windows-x64.exe`    |
 | Linux                 | `.deb`, `.rpm`, hoặc AppImage         |
 
 ```bash
 # macOS (Homebrew)
-brew install --cask opencode-desktop
+brew install --cask myassistant-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/myassistant-desktop
 ```
 
 #### Thư mục cài đặt
@@ -89,7 +89,7 @@ Tập lệnh cài đặt tuân theo thứ tự ưu tiên sau cho đường dẫn
 1. `$OPENCODE_INSTALL_DIR` - Thư mục cài đặt tùy chỉnh
 2. `$XDG_BIN_DIR` - Đường dẫn tuân thủ XDG Base Directory Specification
 3. `$HOME/bin` - Thư mục nhị phân tiêu chuẩn của người dùng (nếu tồn tại hoặc có thể tạo)
-4. `$HOME/.opencode/bin` - Mặc định dự phòng
+4. `$HOME/.myassistant/bin` - Mặc định dự phòng
 
 ```bash
 # Ví dụ
@@ -122,7 +122,7 @@ Nếu bạn muốn đóng góp cho MyAssistant, vui lòng đọc [tài liệu h�
 
 ### Xây dựng trên nền tảng MyAssistant
 
-Nếu bạn đang làm việc trên một dự án liên quan đến MyAssistant và sử dụng "opencode" như một phần của tên dự án, ví dụ "opencode-dashboard" hoặc "opencode-mobile", vui lòng thêm một ghi chú vào README của bạn để làm rõ rằng dự án đó không được xây dựng bởi đội ngũ MyAssistant và không liên kết với chúng tôi dưới bất kỳ hình thức nào.
+Nếu bạn đang làm việc trên một dự án liên quan đến MyAssistant và sử dụng "myassistant" như một phần của tên dự án, ví dụ "myassistant-dashboard" hoặc "myassistant-mobile", vui lòng thêm một ghi chú vào README của bạn để làm rõ rằng dự án đó không được xây dựng bởi đội ngũ MyAssistant và không liên kết với chúng tôi dưới bất kỳ hình thức nào.
 
 ### Các câu hỏi thường gặp (FAQ)
 
@@ -138,4 +138,4 @@ Về mặt tính năng, nó rất giống Claude Code. Dưới đây là những
 
 ---
 
-**Tham gia cộng đồng của chúng tôi** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+**Tham gia cộng đồng của chúng tôi** [Discord](https://discord.gg/myassistant) | [X.com](https://x.com/myassistant)

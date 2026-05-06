@@ -11,12 +11,12 @@ Da biste otklonili probleme s MyAssistant, počnite provjeravanjem dnevnika i lo
 
 Log fajlovi se pišu na:
 
-- **macOS/Linux**: `~/.local/share/opencode/log/`
-- **Windows**: Pritisnite `WIN+R` i zalijepite `%USERPROFILE%\.local\share\opencode\log`
+- **macOS/Linux**: `~/.local/share/myassistant/log/`
+- **Windows**: Pritisnite `WIN+R` i zalijepite `%USERPROFILE%\.local\share\myassistant\log`
 
 Datoteke evidencije se imenuju vremenskim oznakama (npr. `2025-01-09T123456.log`) i čuvaju se najnovijih 10 datoteka dnevnika.
 
-Možete postaviti nivo dnevnika pomoću opcije komandne linije `--log-level` da biste dobili detaljnije informacije o otklanjanju grešaka. Na primjer, `opencode --log-level DEBUG`.
+Možete postaviti nivo dnevnika pomoću opcije komandne linije `--log-level` da biste dobili detaljnije informacije o otklanjanju grešaka. Na primjer, `myassistant --log-level DEBUG`.
 
 ---
 
@@ -24,8 +24,8 @@ Možete postaviti nivo dnevnika pomoću opcije komandne linije `--log-level` da 
 
 MyAssistant pohranjuje podatke o sesiji i druge podatke aplikacije na disku na:
 
-- **macOS/Linux**: `~/.local/share/opencode/`
-- **Windows**: Pritisnite `WIN+R` i zalijepite `%USERPROFILE%\.local\share\opencode`
+- **macOS/Linux**: `~/.local/share/myassistant/`
+- **Windows**: Pritisnite `WIN+R` i zalijepite `%USERPROFILE%\.local\share\myassistant`
 
 Ovaj direktorij sadrži:
 
@@ -39,7 +39,7 @@ Ovaj direktorij sadrži:
 
 ## Desktop aplikacija
 
-MyAssistant Desktop pokreće lokalni MyAssistant server (`opencode-cli` sidecar) u pozadini. Većina problema je uzrokovana nedostatkom dodatka, oštećenom keš memorijom ili lošim postavkama servera.
+MyAssistant Desktop pokreće lokalni MyAssistant server (`myassistant-cli` sidecar) u pozadini. Većina problema je uzrokovana nedostatkom dodatka, oštećenom keš memorijom ili lošim postavkama servera.
 
 ### Brze provjere
 
@@ -57,15 +57,15 @@ Ako se desktop aplikacija ruši pri pokretanju, visi ili se čudno ponaša, poč
 
 Otvorite svoju globalnu konfiguracijsku datoteku i potražite ključ `plugin`.
 
-- **macOS/Linux**: `~/.config/opencode/opencode.jsonc` (ili `~/.config/opencode/opencode.json`)
-- **macOS/Linux** (starije instalacije): `~/.local/share/opencode/opencode.jsonc`
-- **Windows**: Pritisnite `WIN+R` i zalijepite `%USERPROFILE%\.config\opencode\opencode.jsonc`
+- **macOS/Linux**: `~/.config/myassistant/myassistant.jsonc` (ili `~/.config/myassistant/myassistant.json`)
+- **macOS/Linux** (starije instalacije): `~/.local/share/myassistant/myassistant.jsonc`
+- **Windows**: Pritisnite `WIN+R` i zalijepite `%USERPROFILE%\.config\myassistant\myassistant.jsonc`
 
 Ako imate konfigurirane dodatke, privremeno ih onemogućite uklanjanjem ključa ili postavljanjem na prazan niz:
 
 ```jsonc
 {
-  "$schema": "https://opencode.ai/config.json",
+  "$schema": "https://myassistant.ai/config.json",
   "plugin": [],
 }
 ```
@@ -75,10 +75,10 @@ Ako imate konfigurirane dodatke, privremeno ih onemogućite uklanjanjem ključa 
 MyAssistant također može učitati lokalne dodatke s diska. Privremeno ih maknite s puta (ili preimenujte folder) i ponovo pokrenite desktop aplikaciju:
 
 - **Globalni dodaci**
-  - **macOS/Linux**: `~/.config/opencode/plugins/`
-  - **Windows**: Pritisnite `WIN+R` i zalijepite `%USERPROFILE%\.config\opencode\plugins`
+  - **macOS/Linux**: `~/.config/myassistant/plugins/`
+  - **Windows**: Pritisnite `WIN+R` i zalijepite `%USERPROFILE%\.config\myassistant\plugins`
 - **Projektni dodaci** (samo ako koristite konfiguraciju po projektu)
-  - `<your-project>/.opencode/plugins/`
+  - `<your-project>/.myassistant/plugins/`
 
 Ako aplikacija ponovo počne raditi, ponovo omogućite dodatke jedan po jedan kako biste otkrili koji od njih uzrokuje problem.
 
@@ -91,9 +91,9 @@ Ako onemogućavanje dodataka ne pomogne (ili se instalacija dodatka zaglavila), 
 1. Potpuno zatvorite MyAssistant Desktop.
 2. Izbrišite keš direktorij:
 
-- **macOS**: Finder -> `Cmd+Shift+G` -> zalijepi `~/.cache/opencode`
-- **Linux**: obrišite `~/.cache/opencode` (ili pokrenite `rm -rf ~/.cache/opencode`)
-- **Windows**: Pritisnite `WIN+R` i zalijepite `%USERPROFILE%\.cache\opencode`
+- **macOS**: Finder -> `Cmd+Shift+G` -> zalijepi `~/.cache/myassistant`
+- **Linux**: obrišite `~/.cache/myassistant` (ili pokrenite `rm -rf ~/.cache/myassistant`)
+- **Windows**: Pritisnite `WIN+R` i zalijepite `%USERPROFILE%\.cache\myassistant`
 
 3. Ponovo pokrenite MyAssistant Desktop.
 
@@ -111,7 +111,7 @@ Na početnom ekranu kliknite na ime servera (sa tačkom statusa) da otvorite bir
 
 #### Uklonite `server.port` / `server.hostname` iz vaše konfiguracije
 
-Ako vaš `opencode.json(c)` sadrži odjeljak `server`, privremeno ga uklonite i ponovo pokrenite desktop aplikaciju.
+Ako vaš `myassistant.json(c)` sadrži odjeljak `server`, privremeno ga uklonite i ponovo pokrenite desktop aplikaciju.
 
 #### Provjerite varijable okruženja
 
@@ -158,8 +158,8 @@ Ako se aplikacija ne pokrene i ne možete izbrisati postavke unutar korisničkog
 1. Zatvorite MyAssistant Desktop.
 2. Pronađite i izbrišite ove datoteke (oni žive u direktoriju podataka MyAssistant Desktop aplikacije):
 
-- `opencode.settings.dat` (URL zadanog servera za desktop)
-- `opencode.global.dat` i `opencode.workspace.*.dat` (stanje korisničkog interfejsa poput nedavnih servera/projekata)
+- `myassistant.settings.dat` (URL zadanog servera za desktop)
+- `myassistant.global.dat` i `myassistant.workspace.*.dat` (stanje korisničkog interfejsa poput nedavnih servera/projekata)
 
 Da brzo pronađete direktorij:
 
@@ -177,7 +177,7 @@ Ako imate problema s MyAssistant:
 
    Najbolji način da prijavite greške ili zatražite funkcije je putem našeg GitHub spremišta:
 
-   [**github.com/anomalyco/opencode/issues**](https://github.com/anomalyco/opencode/issues)
+   [**github.com/anomalyco/myassistant/issues**](https://github.com/anomalyco/myassistant/issues)
 
    Prije kreiranja novog problema, pretražite postojeće probleme da vidite je li vaš problem već prijavljen.
 
@@ -185,7 +185,7 @@ Ako imate problema s MyAssistant:
 
    Za pomoć u stvarnom vremenu i diskusiju u zajednici, pridružite se našem Discord serveru:
 
-   [**opencode.ai/discord**](https://opencode.ai/discord)
+   [**myassistant.ai/discord**](https://myassistant.ai/discord)
 
 ---
 
@@ -199,7 +199,7 @@ Evo nekih uobičajenih problema i kako ih riješiti.
 
 1. Provjerite dnevnike za poruke o greškama
 2. Pokušajte pokrenuti sa `--print-logs` da vidite izlaz u terminalu
-3. Uvjerite se da imate najnoviju verziju sa `opencode upgrade`
+3. Uvjerite se da imate najnoviju verziju sa `myassistant upgrade`
 
 ---
 
@@ -225,9 +225,9 @@ primjeri:
 
 - `openai/gpt-4.1`
 - `openrouter/google/gemini-2.5-flash`
-- `opencode/kimi-k2`
+- `myassistant/kimi-k2`
 
-Da saznate kojim modelima imate pristup, pokrenite `opencode models`
+Da saznate kojim modelima imate pristup, pokrenite `myassistant models`
 
 ---
 
@@ -241,10 +241,10 @@ Da biste ovo riješili:
 2. Ako se problem nastavi, pokušajte obrisati pohranjenu konfiguraciju:
 
 ```bash
-   rm -rf ~/.local/share/opencode
+   rm -rf ~/.local/share/myassistant
 ```
 
-Na Windows-u pritisnite `WIN+R` i izbrišite: `%USERPROFILE%\.local\share\opencode`
+Na Windows-u pritisnite `WIN+R` i izbrišite: `%USERPROFILE%\.local\share\myassistant`
 
 3. Ponovo izvršite autentifikaciju kod svog provajdera koristeći naredbu `/connect` u TUI.
 
@@ -259,10 +259,10 @@ Da biste riješili probleme s paketom dobavljača:
 1. Obrišite keš paketa provajdera:
 
 ```bash
-   rm -rf ~/.cache/opencode
+   rm -rf ~/.cache/myassistant
 ```
 
-Na Windows-u pritisnite `WIN+R` i izbrišite: `%USERPROFILE%\.cache\opencode`
+Na Windows-u pritisnite `WIN+R` i izbrišite: `%USERPROFILE%\.cache\myassistant`
 
 2. Ponovo pokrenite MyAssistant da ponovo instalirate najnovije pakete dobavljača
 

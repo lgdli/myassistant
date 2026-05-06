@@ -14,7 +14,7 @@ ACP は、コードエディターと AI コーディングエージェント間
 
 ## 設定
 
-ACP 経由で MyAssistant を使用するには、`opencode acp` コマンドを実行するようにエディタを設定します。
+ACP 経由で MyAssistant を使用するには、`myassistant acp` コマンドを実行するようにエディタを設定します。
 
 このコマンドは、stdio 経由で JSON-RPC 経由でエディターと通信する ACP 互換のサブプロセスとして MyAssistant を開始します。
 
@@ -30,7 +30,7 @@ ACP 経由で MyAssistant を使用するには、`opencode acp` コマンドを
 {
   "agent_servers": {
     "MyAssistant": {
-      "command": "opencode",
+      "command": "myassistant",
       "args": ["acp"]
     }
   }
@@ -52,7 +52,7 @@ ACP 経由で MyAssistant を使用するには、`opencode acp` コマンドを
             "custom": {
               "name": "MyAssistant",
               "command": {
-                "command": "opencode",
+                "command": "myassistant",
                 "args": ["acp"]
               }
             }
@@ -74,7 +74,7 @@ ACP 経由で MyAssistant を使用するには、`opencode acp` コマンドを
 {
   "agent_servers": {
     "MyAssistant": {
-      "command": "/absolute/path/bin/opencode",
+      "command": "/absolute/path/bin/myassistant",
       "args": ["acp"]
     }
   }
@@ -92,8 +92,8 @@ ACP 経由で MyAssistant を使用するには、`opencode acp` コマンドを
 ```lua
 {
   acp_providers = {
-    ["opencode"] = {
-      command = "opencode",
+    ["myassistant"] = {
+      command = "myassistant",
       args = { "acp" }
     }
   }
@@ -105,8 +105,8 @@ ACP 経由で MyAssistant を使用するには、`opencode acp` コマンドを
 ```lua {6-8}
 {
   acp_providers = {
-    ["opencode"] = {
-      command = "opencode",
+    ["myassistant"] = {
+      command = "myassistant",
       args = { "acp" },
       env = {
         OPENCODE_API_KEY = os.getenv("OPENCODE_API_KEY")
@@ -127,7 +127,7 @@ require("codecompanion").setup({
   interactions = {
     chat = {
       adapter = {
-        name = "opencode",
+        name = "myassistant",
         model = "claude-sonnet-4",
       },
     },

@@ -51,14 +51,14 @@ curl -fsSL https://myassistant.ai/install | bash
 
 # Package manageri
 npm i -g myassistant-ai@latest        # ili bun/pnpm/yarn
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS i Linux (preporučeno, uvijek ažurno)
-brew install opencode              # macOS i Linux (zvanična brew formula, rjeđe se ažurira)
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-bin               # Arch Linux (Latest from AUR)
-mise use -g opencode               # Bilo koji OS
-nix run nixpkgs#opencode           # ili github:anomalyco/myassistant za najnoviji dev branch
+scoop install myassistant             # Windows
+choco install myassistant             # Windows
+brew install anomalyco/tap/myassistant # macOS i Linux (preporučeno, uvijek ažurno)
+brew install myassistant              # macOS i Linux (zvanična brew formula, rjeđe se ažurira)
+sudo pacman -S myassistant            # Arch Linux (Stable)
+paru -S myassistant-bin               # Arch Linux (Latest from AUR)
+mise use -g myassistant               # Bilo koji OS
+nix run nixpkgs#myassistant           # ili github:anomalyco/myassistant za najnoviji dev branch
 ```
 
 > [!TIP]
@@ -70,16 +70,16 @@ MyAssistant je dostupan i kao desktop aplikacija. Preuzmi je direktno sa [strani
 
 | Platforma             | Preuzimanje                           |
 | --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opencode-desktop-darwin-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe`    |
+| macOS (Apple Silicon) | `myassistant-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `myassistant-desktop-darwin-x64.dmg`     |
+| Windows               | `myassistant-desktop-windows-x64.exe`    |
 | Linux                 | `.deb`, `.rpm`, ili AppImage          |
 
 ```bash
 # macOS (Homebrew)
-brew install --cask opencode-desktop
+brew install --cask myassistant-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/myassistant-desktop
 ```
 
 #### Instalacijski direktorij
@@ -89,7 +89,7 @@ Instalacijska skripta koristi sljedeći redoslijed prioriteta za putanju instala
 1. `$OPENCODE_INSTALL_DIR` - Prilagođeni instalacijski direktorij
 2. `$XDG_BIN_DIR` - Putanja usklađena sa XDG Base Directory specifikacijom
 3. `$HOME/bin` - Standardni korisnički bin direktorij (ako postoji ili se može kreirati)
-4. `$HOME/.opencode/bin` - Podrazumijevana rezervna lokacija
+4. `$HOME/.myassistant/bin` - Podrazumijevana rezervna lokacija
 
 ```bash
 # Primjeri
@@ -122,7 +122,7 @@ Ako želiš doprinositi MyAssistant-u, pročitaj [upute za doprinošenje](./CONT
 
 ### Gradnja na MyAssistant-u
 
-Ako radiš na projektu koji je povezan s MyAssistant-om i koristi "opencode" kao dio naziva, npr. "opencode-dashboard" ili "opencode-mobile", dodaj napomenu u svoj README da projekat nije napravio MyAssistant tim i da nije povezan s nama.
+Ako radiš na projektu koji je povezan s MyAssistant-om i koristi "myassistant" kao dio naziva, npr. "myassistant-dashboard" ili "myassistant-mobile", dodaj napomenu u svoj README da projekat nije napravio MyAssistant tim i da nije povezan s nama.
 
 ### FAQ
 
@@ -138,4 +138,4 @@ Po mogućnostima je vrlo sličan Claude Code-u. Ključne razlike su:
 
 ---
 
-**Pridruži se našoj zajednici** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+**Pridruži se našoj zajednici** [Discord](https://discord.gg/myassistant) | [X.com](https://x.com/myassistant)

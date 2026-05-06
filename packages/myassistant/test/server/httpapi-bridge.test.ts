@@ -310,7 +310,7 @@ describe("HttpApi server", () => {
 
     const response = await app().request(fileUrl(), {
       headers: {
-        "x-opencode-directory": tmp.path,
+        "x-myassistant-directory": tmp.path,
       },
     })
 
@@ -323,7 +323,7 @@ describe("HttpApi server", () => {
 
     const response = await app().request("/project/current", {
       headers: {
-        "x-opencode-directory": tmp.path,
+        "x-myassistant-directory": tmp.path,
       },
     })
 
@@ -337,18 +337,18 @@ describe("HttpApi server", () => {
 
     const [missing, bad, good] = await Promise.all([
       app({ password: "secret" }).request(fileUrl(), {
-        headers: { "x-opencode-directory": tmp.path },
+        headers: { "x-myassistant-directory": tmp.path },
       }),
       app({ password: "secret" }).request(fileUrl(), {
         headers: {
           authorization: authorization("myassistant", "wrong"),
-          "x-opencode-directory": tmp.path,
+          "x-myassistant-directory": tmp.path,
         },
       }),
       app({ password: "secret" }).request(fileUrl(), {
         headers: {
           authorization: authorization("myassistant", "secret"),
-          "x-opencode-directory": tmp.path,
+          "x-myassistant-directory": tmp.path,
         },
       }),
     ])
@@ -363,10 +363,10 @@ describe("HttpApi server", () => {
     await Bun.write(`${tmp.path}/hello.txt`, "hello")
 
     const response = await app({ password: "secret" }).request(
-      fileUrl({ token: Buffer.from("opencode:secret").toString("base64") }),
+      fileUrl({ token: Buffer.from("myassistant:secret").toString("base64") }),
       {
         headers: {
-          "x-opencode-directory": tmp.path,
+          "x-myassistant-directory": tmp.path,
         },
       },
     )
@@ -382,7 +382,7 @@ describe("HttpApi server", () => {
 
     const response = await app().request(fileUrl({ directory: query.path }), {
       headers: {
-        "x-opencode-directory": header.path,
+        "x-myassistant-directory": header.path,
       },
     })
 
@@ -391,7 +391,7 @@ describe("HttpApi server", () => {
   })
 
   test("serves global health from Effect HttpApi", async () => {
-    const response = await app().request(`${GlobalPaths.health}?directory=/does/not/exist/opencode-test`)
+    const response = await app().request(`${GlobalPaths.health}?directory=/does/not/exist/myassistant-test`)
 
     expect(response.status).toBe(200)
     expect(await response.json()).toMatchObject({ healthy: true })

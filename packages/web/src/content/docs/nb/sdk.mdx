@@ -49,12 +49,12 @@ Dette starter både en server og en klient
 
 ## Konfigurasjon
 
-Du kan sende et konfigurasjonsobjekt for å tilpasse virkemåten. Forekomsten henter fortsatt din `opencode.json`, men du kan overstyre eller legge til konfigurasjon inline:
+Du kan sende et konfigurasjonsobjekt for å tilpasse virkemåten. Forekomsten henter fortsatt din `myassistant.json`, men du kan overstyre eller legge til konfigurasjon inline:
 
 ```javascript
 import { createOpencode } from "@myassistant-ai/sdk"
 
-const opencode = await createOpencode({
+const myassistant = await createOpencode({
   hostname: "127.0.0.1",
   port: 4096,
   config: {
@@ -62,9 +62,9 @@ const opencode = await createOpencode({
   },
 })
 
-console.log(`Server running at ${opencode.server.url}`)
+console.log(`Server running at ${myassistant.server.url}`)
 
-opencode.server.close()
+myassistant.server.close()
 ```
 
 ## Kun klient
@@ -376,7 +376,7 @@ await client.session.prompt({
 ```javascript
 // Search and read files
 const textResults = await client.find.text({
-  query: { pattern: "function.*opencode" },
+  query: { pattern: "function.*myassistant" },
 })
 
 const files = await client.find.files({

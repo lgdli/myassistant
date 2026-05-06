@@ -159,7 +159,7 @@ describe("HttpApi instance context middleware", () => {
       yield* serveProbe("/session")
 
       const response = yield* HttpClientRequest.get(`/session?workspace=${workspace.id}`).pipe(
-        HttpClientRequest.setHeader("x-opencode-directory", dir),
+        HttpClientRequest.setHeader("x-myassistant-directory", dir),
         HttpClient.execute,
       )
 
@@ -184,7 +184,7 @@ describe("HttpApi instance context middleware", () => {
       yield* serveProbe()
 
       const response = yield* HttpClientRequest.get(`/probe?workspace=${workspace.id}`).pipe(
-        HttpClientRequest.setHeader("x-opencode-directory", dir),
+        HttpClientRequest.setHeader("x-myassistant-directory", dir),
         HttpClient.execute,
       )
 

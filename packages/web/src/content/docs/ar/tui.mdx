@@ -10,13 +10,13 @@ import { Tabs, TabItem } from "@astrojs/starlight/components"
 يؤدي تشغيل MyAssistant إلى بدء واجهة TUI للدليل الحالي.
 
 ```bash
-opencode
+myassistant
 ```
 
 أو يمكنك تشغيلها لدليل عمل محدد.
 
 ```bash
-opencode /path/to/project
+myassistant /path/to/project
 ```
 
 بعد الدخول إلى واجهة TUI، يمكنك إرسال رسالة كطلب.
@@ -354,9 +354,9 @@ How is auth handled in @packages/functions/src/api/index.ts?
 
 يمكنك تخصيص سلوك واجهة TUI عبر ملف إعدادات MyAssistant.
 
-```json title="opencode.json"
+```json title="myassistant.json"
 {
-  "$schema": "https://opencode.ai/config.json",
+  "$schema": "https://myassistant.ai/config.json",
   "tui": {
     "scroll_speed": 3,
     "scroll_acceleration": {

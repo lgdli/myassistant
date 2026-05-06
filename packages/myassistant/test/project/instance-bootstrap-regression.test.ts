@@ -37,7 +37,7 @@ async function bootstrapFixture() {
         ].join("\n"),
       )
       await Bun.write(
-        path.join(dir, "opencode.json"),
+        path.join(dir, "myassistant.json"),
         JSON.stringify({
           $schema: "https://myassistant.ai/config.json",
           plugin: [pathToFileURL(pluginFile).href],
@@ -71,7 +71,7 @@ test("legacy Hono instance middleware runs InstanceBootstrap before next handler
   await using tmp = await bootstrapFixture()
   const app = new Hono().use(InstanceMiddleware()).get("/probe", (c) => c.text("ok"))
 
-  const response = await app.request("/probe", { headers: { "x-opencode-directory": tmp.path } })
+  const response = await app.request("/probe", { headers: { "x-myassistant-directory": tmp.path } })
 
   expect(response.status).toBe(200)
   expect(existsSync(tmp.extra)).toBe(true)

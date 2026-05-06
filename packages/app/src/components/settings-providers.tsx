@@ -17,8 +17,8 @@ type ProviderSource = "env" | "api" | "config" | "custom"
 type ProviderItem = ReturnType<ReturnType<typeof useProviders>["connected"]>[number]
 
 const PROVIDER_NOTES = [
-  { match: (id: string) => id === "myassistant", key: "dialog.provider.opencode.note" },
-  { match: (id: string) => id === "myassistant-go", key: "dialog.provider.opencodeGo.tagline" },
+  { match: (id: string) => id === "myassistant", key: "dialog.provider.myassistant.note" },
+  { match: (id: string) => id === "myassistant-go", key: "dialog.provider.myassistantGo.tagline" },
   { match: (id: string) => id === "anthropic", key: "dialog.provider.anthropic.note" },
   { match: (id: string) => id.startsWith("github-copilot"), key: "dialog.provider.copilot.note" },
   { match: (id: string) => id === "openai", key: "dialog.provider.openai.note" },

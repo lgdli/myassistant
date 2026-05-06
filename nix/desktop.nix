@@ -21,11 +21,11 @@
   openssl,
   webkitgtk_4_1,
   gst_all_1,
-  opencode,
+  myassistant,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
-  pname = "opencode-desktop";
-  inherit (opencode)
+  pname = "myassistant-desktop";
+  inherit (myassistant)
     version
     src
     node_modules
@@ -72,7 +72,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     patchShebangs packages/desktop/node_modules
 
     mkdir -p packages/desktop/src-tauri/sidecars
-    cp ${opencode}/bin/opencode packages/desktop/src-tauri/sidecars/opencode-cli-${stdenv.hostPlatform.rust.rustcTarget}
+    cp ${myassistant}/bin/myassistant packages/desktop/src-tauri/sidecars/myassistant-cli-${stdenv.hostPlatform.rust.rustcTarget}
   '';
 
   # see publish-tauri job in .github/workflows/publish.yml
@@ -86,15 +86,15 @@ rustPlatform.buildRustPackage (finalAttrs: {
   # should be removed once binary is renamed or decided otherwise
   # darwin output is a .app bundle so no conflict
   postFixup = lib.optionalString stdenv.hostPlatform.isLinux ''
-    mv $out/bin/OpenCode $out/bin/opencode-desktop
-    sed -i 's|^Exec=OpenCode$|Exec=opencode-desktop|' $out/share/applications/OpenCode.desktop
+    mv $out/bin/OpenCode $out/bin/myassistant-desktop
+    sed -i 's|^Exec=OpenCode$|Exec=myassistant-desktop|' $out/share/applications/OpenCode.desktop
   '';
 
   meta = {
     description = "OpenCode Desktop App";
-    homepage = "https://opencode.ai";
+    homepage = "https://myassistant.ai";
     license = lib.licenses.mit;
-    mainProgram = "opencode-desktop";
-    inherit (opencode.meta) platforms;
+    mainProgram = "myassistant-desktop";
+    inherit (myassistant.meta) platforms;
   };
 })

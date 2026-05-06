@@ -51,14 +51,14 @@ curl -fsSL https://myassistant.ai/install | bash
 
 # ตัวจัดการแพ็กเกจ
 npm i -g myassistant-ai@latest        # หรือ bun/pnpm/yarn
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS และ Linux (แนะนำ อัปเดตเสมอ)
-brew install opencode              # macOS และ Linux (brew formula อย่างเป็นทางการ อัปเดตน้อยกว่า)
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-bin               # Arch Linux (Latest from AUR)
-mise use -g opencode               # ระบบปฏิบัติการใดก็ได้
-nix run nixpkgs#opencode           # หรือ github:anomalyco/myassistant สำหรับสาขาพัฒนาล่าสุด
+scoop install myassistant             # Windows
+choco install myassistant             # Windows
+brew install anomalyco/tap/myassistant # macOS และ Linux (แนะนำ อัปเดตเสมอ)
+brew install myassistant              # macOS และ Linux (brew formula อย่างเป็นทางการ อัปเดตน้อยกว่า)
+sudo pacman -S myassistant            # Arch Linux (Stable)
+paru -S myassistant-bin               # Arch Linux (Latest from AUR)
+mise use -g myassistant               # ระบบปฏิบัติการใดก็ได้
+nix run nixpkgs#myassistant           # หรือ github:anomalyco/myassistant สำหรับสาขาพัฒนาล่าสุด
 ```
 
 > [!TIP]
@@ -70,16 +70,16 @@ MyAssistant มีให้ใช้งานเป็นแอปพลิเ�
 
 | แพลตฟอร์ม             | ดาวน์โหลด                             |
 | --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opencode-desktop-darwin-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe`    |
+| macOS (Apple Silicon) | `myassistant-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `myassistant-desktop-darwin-x64.dmg`     |
+| Windows               | `myassistant-desktop-windows-x64.exe`    |
 | Linux                 | `.deb`, `.rpm`, หรือ AppImage         |
 
 ```bash
 # macOS (Homebrew)
-brew install --cask opencode-desktop
+brew install --cask myassistant-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/myassistant-desktop
 ```
 
 #### ไดเรกทอรีการติดตั้ง
@@ -89,7 +89,7 @@ scoop bucket add extras; scoop install extras/opencode-desktop
 1. `$OPENCODE_INSTALL_DIR` - ไดเรกทอรีการติดตั้งที่กำหนดเอง
 2. `$XDG_BIN_DIR` - เส้นทางที่สอดคล้องกับ XDG Base Directory Specification
 3. `$HOME/bin` - ไดเรกทอรีไบนารีผู้ใช้มาตรฐาน (หากมีอยู่หรือสามารถสร้างได้)
-4. `$HOME/.opencode/bin` - ค่าสำรองเริ่มต้น
+4. `$HOME/.myassistant/bin` - ค่าสำรองเริ่มต้น
 
 ```bash
 # ตัวอย่าง
@@ -122,7 +122,7 @@ MyAssistant รวมเอเจนต์ในตัวสองตัวท�
 
 ### การสร้างบน MyAssistant
 
-หากคุณทำงานในโปรเจกต์ที่เกี่ยวข้องกับ MyAssistant และใช้ "opencode" เป็นส่วนหนึ่งของชื่อ เช่น "opencode-dashboard" หรือ "opencode-mobile" โปรดเพิ่มหมายเหตุใน README ของคุณเพื่อชี้แจงว่าไม่ได้สร้างโดยทีม MyAssistant และไม่ได้เกี่ยวข้องกับเราในทางใด
+หากคุณทำงานในโปรเจกต์ที่เกี่ยวข้องกับ MyAssistant และใช้ "myassistant" เป็นส่วนหนึ่งของชื่อ เช่น "myassistant-dashboard" หรือ "myassistant-mobile" โปรดเพิ่มหมายเหตุใน README ของคุณเพื่อชี้แจงว่าไม่ได้สร้างโดยทีม MyAssistant และไม่ได้เกี่ยวข้องกับเราในทางใด
 
 ### คำถามที่พบบ่อย
 
@@ -138,4 +138,4 @@ MyAssistant รวมเอเจนต์ในตัวสองตัวท�
 
 ---
 
-**ร่วมชุมชนของเรา** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+**ร่วมชุมชนของเรา** [Discord](https://discord.gg/myassistant) | [X.com](https://x.com/myassistant)

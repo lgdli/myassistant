@@ -37,15 +37,15 @@
             node_modules = final.callPackage ./nix/node_modules.nix {
               inherit rev;
             };
-            opencode = final.callPackage ./nix/myassistant.nix {
+            myassistant = final.callPackage ./nix/myassistant.nix {
               inherit node_modules;
             };
             desktop = final.callPackage ./nix/desktop.nix {
-              inherit opencode;
+              inherit myassistant;
             };
           in
           {
-            inherit opencode;
+            inherit myassistant;
             myassistant-desktop = desktop;
           };
       };
@@ -56,16 +56,16 @@
           node_modules = pkgs.callPackage ./nix/node_modules.nix {
             inherit rev;
           };
-          opencode = pkgs.callPackage ./nix/myassistant.nix {
+          myassistant = pkgs.callPackage ./nix/myassistant.nix {
             inherit node_modules;
           };
           desktop = pkgs.callPackage ./nix/desktop.nix {
-            inherit opencode;
+            inherit myassistant;
           };
         in
         {
-          default = opencode;
-          inherit opencode desktop;
+          default = myassistant;
+          inherit myassistant desktop;
           # Updater derivation with fakeHash - build fails and reveals correct hash
           node_modules_updater = node_modules.override {
             hash = pkgs.lib.fakeHash;

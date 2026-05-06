@@ -1,36 +1,36 @@
-id = "opencode"
+id = "myassistant"
 name = "OpenCode"
 description = "The open source coding agent."
 version = "1.14.33"
 schema_version = 1
 authors = ["Anomaly"]
-repository = "https://github.com/anomalyco/opencode"
+repository = "https://github.com/anomalyco/myassistant"
 
-[agent_servers.opencode]
+[agent_servers.myassistant]
 name = "OpenCode"
-icon = "./icons/opencode.svg"
+icon = "./icons/myassistant.svg"
 
-[agent_servers.opencode.targets.darwin-aarch64]
-archive = "https://github.com/anomalyco/opencode/releases/download/v1.14.33/opencode-darwin-arm64.zip"
-cmd = "./opencode"
+[agent_servers.myassistant.targets.darwin-aarch64]
+archive = "https://github.com/anomalyco/myassistant/releases/download/v1.14.33/myassistant-darwin-arm64.zip"
+cmd = "./myassistant"
 args = ["acp"]
 
-[agent_servers.opencode.targets.darwin-x86_64]
-archive = "https://github.com/anomalyco/opencode/releases/download/v1.14.33/opencode-darwin-x64.zip"
-cmd = "./opencode"
+[agent_servers.myassistant.targets.darwin-x86_64]
+archive = "https://github.com/anomalyco/myassistant/releases/download/v1.14.33/myassistant-darwin-x64.zip"
+cmd = "./myassistant"
 args = ["acp"]
 
-[agent_servers.opencode.targets.linux-aarch64]
-archive = "https://github.com/anomalyco/opencode/releases/download/v1.14.33/opencode-linux-arm64.tar.gz"
-cmd = "./opencode"
+[agent_servers.myassistant.targets.linux-aarch64]
+archive = "https://github.com/anomalyco/myassistant/releases/download/v1.14.33/myassistant-linux-arm64.tar.gz"
+cmd = "./myassistant"
 args = ["acp"]
 
-[agent_servers.opencode.targets.linux-x86_64]
-archive = "https://github.com/anomalyco/opencode/releases/download/v1.14.33/opencode-linux-x64.tar.gz"
-cmd = "./opencode"
+[agent_servers.myassistant.targets.linux-x86_64]
+archive = "https://github.com/anomalyco/myassistant/releases/download/v1.14.33/myassistant-linux-x64.tar.gz"
+cmd = "./myassistant"
 args = ["acp"]
 
-[agent_servers.opencode.targets.windows-x86_64]
-archive = "https://github.com/anomalyco/opencode/releases/download/v1.14.33/opencode-windows-x64.zip"
-cmd = "./opencode.exe"
+[agent_servers.myassistant.targets.windows-x86_64]
+archive = "https://github.com/anomalyco/myassistant/releases/download/v1.14.33/myassistant-windows-x64.zip"
+cmd = "./myassistant.exe"
 args = ["acp"]

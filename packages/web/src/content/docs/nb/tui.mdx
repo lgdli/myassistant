@@ -1,6 +1,6 @@
 ---
 title: TUI
-description: Bruke opencode-terminalbrukergrensesnittet.
+description: Bruke myassistant-terminalbrukergrensesnittet.
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components"
@@ -10,13 +10,13 @@ MyAssistant gir et interaktivt terminalgrensesnitt (TUI) for å jobbe med prosje
 Å kjøre MyAssistant starter TUI for gjeldende katalog.
 
 ```bash
-opencode
+myassistant
 ```
 
 Eller du kan starte den for en spesifikk arbeidskatalog.
 
 ```bash
-opencode /path/to/project
+myassistant /path/to/project
 ```
 
 Når du er i TUI, kan du stille den spørsmål med en prompt.
@@ -359,8 +359,8 @@ Du kan tilpasse TUI-oppførselen gjennom `tui.json` (eller `tui.jsonc`).
 
 ```json title="tui.json"
 {
-  "$schema": "https://opencode.ai/tui.json",
-  "theme": "opencode",
+  "$schema": "https://myassistant.ai/tui.json",
+  "theme": "myassistant",
   "keybinds": {
     "leader": "ctrl+x"
   },
@@ -372,7 +372,7 @@ Du kan tilpasse TUI-oppførselen gjennom `tui.json` (eller `tui.jsonc`).
 }
 ```
 
-Dette er atskilt fra `opencode.json`, som konfigurerer server-/kjøretidsoppførsel.
+Dette er atskilt fra `myassistant.json`, som konfigurerer server-/kjøretidsoppførsel.
 
 ### Alternativer
 

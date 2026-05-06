@@ -13,7 +13,7 @@ MyAssistant は、GitLab CI/CD パイプラインまたは GitLab Duo を通じ�
 
 MyAssistant は通常の GitLab パイプラインで動作します。 [CI コンポーネント](https://docs.gitlab.com/ee/ci/components/) としてパイプラインに組み込むことができます。
 
-ここでは、コミュニティが作成した MyAssistant 用の CI/CD コンポーネント — [nagyv/gitlab-opencode](https://gitlab.com/nagyv/gitlab-opencode).
+ここでは、コミュニティが作成した MyAssistant 用の CI/CD コンポーネント — [nagyv/gitlab-myassistant](https://gitlab.com/nagyv/gitlab-myassistant).
 
 ---
 
@@ -32,22 +32,22 @@ MyAssistant は通常の GitLab パイプラインで動作します。 [CI コ�
 
    ```yaml title=".gitlab-ci.yml"
    include:
-     - component: $CI_SERVER_FQDN/nagyv/gitlab-opencode/opencode@2
+     - component: $CI_SERVER_FQDN/nagyv/gitlab-myassistant/myassistant@2
        inputs:
-         config_dir: ${CI_PROJECT_DIR}/opencode-config
+         config_dir: ${CI_PROJECT_DIR}/myassistant-config
          auth_json: $OPENCODE_AUTH_JSON # The variable name for your MyAssistant authentication JSON
          command: optional-custom-command
          message: "Your prompt here"
    ```
 
-さらに多くの入力と使用例については、このコンポーネントの [ドキュメント](https://gitlab.com/explore/catalog/nagyv/gitlab-opencode) をチェックしてください。
+さらに多くの入力と使用例については、このコンポーネントの [ドキュメント](https://gitlab.com/explore/catalog/nagyv/gitlab-myassistant) をチェックしてください。
 
 ---
 
 ## GitLab Duo
 
 MyAssistant は GitLab ワークフローと統合します。
-コメントで `@opencode` に言及すると、MyAssistant が GitLab CI パイプライン内でタスクを実行します。
+コメントで `@myassistant` に言及すると、MyAssistant が GitLab CI パイプライン内でタスクを実行します。
 
 ---
 
@@ -82,7 +82,7 @@ MyAssistant は GitLab CI/CD パイプラインで実行されます。セット
     ```yaml
     image: node:22-slim
     commands:
-      - echo "Installing opencode"
+      - echo "Installing myassistant"
       - npm install --global myassistant-ai
       - echo "Installing glab"
       - export GITLAB_TOKEN=$GITLAB_TOKEN_OPENCODE
@@ -92,9 +92,9 @@ MyAssistant は GitLab CI/CD パイプラインで実行されます。セット
       - echo "Configuring glab"
       - echo $GITLAB_HOST
       - echo "Creating MyAssistant auth configuration"
-      - mkdir --parents ~/.local/share/opencode
+      - mkdir --parents ~/.local/share/myassistant
       - |
-        cat > ~/.local/share/opencode/auth.json << EOF
+        cat > ~/.local/share/myassistant/auth.json << EOF
         {
           "anthropic": {
             "type": "api",
@@ -103,13 +103,13 @@ MyAssistant は GitLab CI/CD パイプラインで実行されます。セット
         }
         EOF
       - echo "Configuring git"
-      - git config --global user.email "opencode@gitlab.com"
+      - git config --global user.email "myassistant@gitlab.com"
       - git config --global user.name "MyAssistant"
       - echo "Testing glab"
       - glab issue list
       - echo "Running MyAssistant"
       - |
-        opencode run "
+        myassistant run "
         You are an AI assistant helping with GitLab operations.
 
         Context: $AI_FLOW_CONTEXT
@@ -161,7 +161,7 @@ MyAssistant は GitLab CI/CD パイプラインで実行されます。セット
 GitLab で MyAssistant を使用する方法の例をいくつか示します。
 
 :::tip
-`@opencode` とは異なるトリガーフレーズを使用するように設定できます。
+`@myassistant` とは異なるトリガーフレーズを使用するように設定できます。
 :::
 
 - **問題の説明**
@@ -169,7 +169,7 @@ GitLab で MyAssistant を使用する方法の例をいくつか示します。
 このコメントを GitLab の問題に追加します。
 
 ```
-  @opencode explain this issue
+  @myassistant explain this issue
 ```
 
 MyAssistant は問題を読み、明確な説明を返信します。
@@ -179,7 +179,7 @@ MyAssistant は問題を読み、明確な説明を返信します。
 GitLab の問題では、次のように言います。
 
 ```
-  @opencode fix this
+  @myassistant fix this
 ```
 
 MyAssistant は新しいブランチを作成し、変更を実装し、変更を含むマージリクエストを開きます。
@@ -189,7 +189,7 @@ MyAssistant は新しいブランチを作成し、変更を実装し、変更�
 GitLab マージリクエストに次のコメントを残してください。
 
 ```
-  @opencode review this merge request
+  @myassistant review this merge request
 ```
 
 MyAssistant はマージリクエストをレビューし、フィードバックを提供します。

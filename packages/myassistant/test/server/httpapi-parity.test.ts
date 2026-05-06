@@ -67,8 +67,8 @@ describe("Link header host", () => {
 
     const response = await app(true).request(`/session/${sessionID}/message?limit=2`, {
       headers: {
-        host: "opencode.test:4096",
-        "x-opencode-directory": tmp.path,
+        host: "myassistant.test:4096",
+        "x-myassistant-directory": tmp.path,
       },
     })
 
@@ -76,7 +76,7 @@ describe("Link header host", () => {
     const link = response.headers.get("link")
     expect(link).not.toBeNull()
     // Link should contain the request's Host, not "localhost".
-    expect(link).toContain("opencode.test")
+    expect(link).toContain("myassistant.test")
     expect(link).not.toContain("localhost")
   })
 })
@@ -97,7 +97,7 @@ describe("404 mapping for missing session", () => {
     await using tmp = await tmpdir({ config: { formatter: false, lsp: false } })
 
     const response = await app(true).request("/session/ses_does_not_exist/todo", {
-      headers: { "x-opencode-directory": tmp.path },
+      headers: { "x-myassistant-directory": tmp.path },
     })
 
     expect(response.status).toBe(404)
@@ -117,7 +117,7 @@ describe("Error JSON shape parity", () => {
     await using tmp = await tmpdir({ config: { formatter: false, lsp: false } })
 
     const response = await app(true).request("/session/ses_does_not_exist", {
-      headers: { "x-opencode-directory": tmp.path },
+      headers: { "x-myassistant-directory": tmp.path },
     })
 
     expect(response.status).toBe(404)

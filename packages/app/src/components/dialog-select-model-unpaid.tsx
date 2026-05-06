@@ -109,7 +109,7 @@ export const DialogSelectModelUnpaid: Component<{ model?: ModelState }> = (props
                     <ProviderIcon data-slot="list-item-extra-icon" id={i.id} />
                     <span>{i.name}</span>
                     <Show when={i.id === "myassistant"}>
-                      <div class="text-14-regular text-text-weak">{language.t("dialog.provider.opencode.tagline")}</div>
+                      <div class="text-14-regular text-text-weak">{language.t("dialog.provider.myassistant.tagline")}</div>
                     </Show>
                     <Show when={i.id === "myassistant"}>
                       <Tag>{language.t("dialog.provider.tag.recommended")}</Tag>
@@ -117,7 +117,7 @@ export const DialogSelectModelUnpaid: Component<{ model?: ModelState }> = (props
                     <Show when={i.id === "myassistant-go"}>
                       <>
                         <div class="text-14-regular text-text-weak">
-                          {language.t("dialog.provider.opencodeGo.tagline")}
+                          {language.t("dialog.provider.myassistantGo.tagline")}
                         </div>
                         <Tag>{language.t("dialog.provider.tag.recommended")}</Tag>
                       </>

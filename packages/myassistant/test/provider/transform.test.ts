@@ -1724,7 +1724,7 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
       ...openaiModel,
       providerID: "myassistant",
       api: {
-        id: "opencode-test",
+        id: "myassistant-test",
         url: "https://api.myassistant.ai",
         npm: "@ai-sdk/openai-compatible",
       },
@@ -1737,7 +1737,7 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
             type: "text",
             text: "Hello",
             providerOptions: {
-              opencode: {
+              myassistant: {
                 itemId: "msg_123",
                 otherOption: "value",
               },
@@ -1749,8 +1749,8 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
 
     const result = ProviderTransform.message(msgs, opencodeModel, { store: false }) as any[]
 
-    expect(result[0].content[0].providerOptions?.opencode?.itemId).toBe("msg_123")
-    expect(result[0].content[0].providerOptions?.opencode?.otherOption).toBe("value")
+    expect(result[0].content[0].providerOptions?.myassistant?.itemId).toBe("msg_123")
+    expect(result[0].content[0].providerOptions?.myassistant?.otherOption).toBe("value")
   })
 
   test("preserves itemId across all providerOptions keys", () => {
@@ -1758,7 +1758,7 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
       ...openaiModel,
       providerID: "myassistant",
       api: {
-        id: "opencode-test",
+        id: "myassistant-test",
         url: "https://api.myassistant.ai",
         npm: "@ai-sdk/openai-compatible",
       },
@@ -1768,7 +1768,7 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
         role: "assistant",
         providerOptions: {
           openai: { itemId: "msg_root" },
-          opencode: { itemId: "msg_opencode" },
+          myassistant: { itemId: "msg_opencode" },
           extra: { itemId: "msg_extra" },
         },
         content: [
@@ -1777,7 +1777,7 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
             text: "Hello",
             providerOptions: {
               openai: { itemId: "msg_openai_part" },
-              opencode: { itemId: "msg_opencode_part" },
+              myassistant: { itemId: "msg_opencode_part" },
               extra: { itemId: "msg_extra_part" },
             },
           },
@@ -1788,10 +1788,10 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
     const result = ProviderTransform.message(msgs, opencodeModel, { store: false }) as any[]
 
     expect(result[0].providerOptions?.openai?.itemId).toBe("msg_root")
-    expect(result[0].providerOptions?.opencode?.itemId).toBe("msg_opencode")
+    expect(result[0].providerOptions?.myassistant?.itemId).toBe("msg_opencode")
     expect(result[0].providerOptions?.extra?.itemId).toBe("msg_extra")
     expect(result[0].content[0].providerOptions?.openai?.itemId).toBe("msg_openai_part")
-    expect(result[0].content[0].providerOptions?.opencode?.itemId).toBe("msg_opencode_part")
+    expect(result[0].content[0].providerOptions?.myassistant?.itemId).toBe("msg_opencode_part")
     expect(result[0].content[0].providerOptions?.extra?.itemId).toBe("msg_extra_part")
   })
 

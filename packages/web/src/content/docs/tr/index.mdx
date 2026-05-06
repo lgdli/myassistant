@@ -9,7 +9,7 @@ export const console = config.console
 
 [**MyAssistant**](/) açık kaynaklı bir AI kodlama ajanıdır. Terminal tabanlı bir arayüz, masaüstü uygulaması veya IDE uzantısı olarak mevcuttur.
 
-![opencode TUI with the opencode theme](../../../assets/lander/screenshot.png)
+![myassistant TUI with the myassistant theme](../../../assets/lander/screenshot.png)
 
 Başlayalım.
 
@@ -34,7 +34,7 @@ MyAssistant'u terminalinizde kullanmak için ihtiyacınız olacak:
 MyAssistant'u kurmanın en kolay yolu kurulum betiğidir.
 
 ```bash
-curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://myassistant.ai/install | bash
 ```
 
 Ayrıca aşağıdaki komutlarla da yükleyebilirsiniz:
@@ -76,16 +76,16 @@ Ayrıca aşağıdaki komutlarla da yükleyebilirsiniz:
 - **Homebrew'u macOS ve Linux'ta kullanma**
 
   ```bash
-  brew install anomalyco/tap/opencode
+  brew install anomalyco/tap/myassistant
   ```
 
-  > En güncel sürümler için MyAssistant tap'ini kullanmanızı öneririz. Resmi `brew install opencode` formülü Homebrew ekibi tarafından korunur ve daha sık güncellenir.
+  > En güncel sürümler için MyAssistant tap'ini kullanmanızı öneririz. Resmi `brew install myassistant` formülü Homebrew ekibi tarafından korunur ve daha sık güncellenir.
 
 - **Paru'yu Arch Linux'ta kullanma**
 
   ```bash
-  sudo pacman -S opencode           # Arch Linux (Stable)
-  paru -S opencode-bin              # Arch Linux (Latest from AUR)
+  sudo pacman -S myassistant           # Arch Linux (Stable)
+  paru -S myassistant-bin              # Arch Linux (Latest from AUR)
   ```
 
 #### Windows
@@ -97,13 +97,13 @@ Windows'ta en iyi deneyim için [Windows Subsystem for Linux (WSL)](/docs/window
 - **Chocolatey Kullanımı**
 
   ```bash
-  choco install opencode
+  choco install myassistant
   ```
 
 - **Scoop Kullanımı**
 
   ```bash
-  scoop install opencode
+  scoop install myassistant
   ```
 
 - **NPM kullanarak**
@@ -115,18 +115,18 @@ Windows'ta en iyi deneyim için [Windows Subsystem for Linux (WSL)](/docs/window
 - **Mise Kullanımı**
 
   ```bash
-  mise use -g github:anomalyco/opencode
+  mise use -g github:anomalyco/myassistant
   ```
 
 - **Docker'ı kullanma**
 
   ```bash
-  docker run -it --rm ghcr.io/anomalyco/opencode
+  docker run -it --rm ghcr.io/anomalyco/myassistant
   ```
 
 MyAssistant'un Bun kullanılarak Windows'a yüklenmesine yönelik destek şu anda devam etmektedir.
 
-İkili dosyayı [Releases](https://github.com/anomalyco/opencode/releases)'dan da alabilirsiniz.
+İkili dosyayı [Releases](https://github.com/anomalyco/myassistant/releases)'dan da alabilirsiniz.
 
 ---
 
@@ -137,7 +137,7 @@ MyAssistant ile herhangi bir LLM sağlayıcısının API anahtarlarını yapıla
 LLM sağlayıcılarını kullanmaya yeni başlıyorsanız, [MyAssistant Zen](/docs/zen) kullanmanızı öneririz.
 MyAssistant ekibi tarafından test edilmiş ve doğrulanmış modellerin seçilmiş bir listesidir.
 
-1. TUI'de `/connect` komutunu çalıştırın, MyAssistant'u seçin ve [opencode.ai/auth](https://opencode.ai/auth)'ye gidin.
+1. TUI'de `/connect` komutunu çalıştırın, MyAssistant'u seçin ve [myassistant.ai/auth](https://myassistant.ai/auth)'ye gidin.
 
    ```txt
    /connect
@@ -169,7 +169,7 @@ cd /path/to/project
 Ve MyAssistant'u çalıştırın.
 
 ```bash
-opencode
+myassistant
 ```
 
 Daha sonra aşağıdaki komutu çalıştırarak proje için MyAssistant'u başlatın.
@@ -336,7 +336,7 @@ Bu, mevcut konuşmaya bir bağlantı oluşturacak ve bunu panonuza kopyalayacakt
 Konuşmalar varsayılan olarak paylaşılmaz.
 :::
 
-İşte MyAssistant ile bir [örnek konuşma](https://opencode.ai/s/4XP1fce5).
+İşte MyAssistant ile bir [örnek konuşma](https://myassistant.ai/s/4XP1fce5).
 
 ---
 

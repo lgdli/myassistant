@@ -49,12 +49,12 @@ Spowoduje to uruchomienie zarówno serwera, jak i klienta.
 
 ## Konfiguracja
 
-Można przekazać obiekt konfiguracyjny, aby dostosować zachowanie. Instancja nadal pobiera `opencode.json`, ale możesz zastąpić lub dodać konfigurację bezpośrednio:
+Można przekazać obiekt konfiguracyjny, aby dostosować zachowanie. Instancja nadal pobiera `myassistant.json`, ale możesz zastąpić lub dodać konfigurację bezpośrednio:
 
 ```javascript
 import { createOpencode } from "@myassistant-ai/sdk"
 
-const opencode = await createOpencode({
+const myassistant = await createOpencode({
   hostname: "127.0.0.1",
   port: 4096,
   config: {
@@ -62,9 +62,9 @@ const opencode = await createOpencode({
   },
 })
 
-console.log(`Server running at ${opencode.server.url}`)
+console.log(`Server running at ${myassistant.server.url}`)
 
-opencode.server.close()
+myassistant.server.close()
 ```
 
 ## Tylko klient
@@ -376,7 +376,7 @@ await client.session.prompt({
 ```javascript
 // Search and read files
 const textResults = await client.find.text({
-  query: { pattern: "function.*opencode" },
+  query: { pattern: "function.*myassistant" },
 })
 
 const files = await client.find.files({

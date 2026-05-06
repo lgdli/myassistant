@@ -1,5 +1,5 @@
 {
-  "$schema": "https://opencode.ai/theme.json",
+  "$schema": "https://myassistant.ai/theme.json",
   "defs": {
     "frappeRosewater": "#f2d5cf",
     "frappeFlamingo": "#eebebe",
@@ -125,14 +125,17 @@
       "dark": "frappeMantle",
       "light": "frappeMantle"
     },
-    "diffLineNumber": "textMuted",
+    "diffLineNumber": {
+      "dark": "frappeText",
+      "light": "#595959"
+    },
     "diffAddedLineNumberBg": {
-      "dark": "#223025",
-      "light": "#223025"
+      "dark": "#1f2d3a",
+      "light": "#e5f2f3"
     },
     "diffRemovedLineNumberBg": {
-      "dark": "#2f242b",
-      "light": "#2f242b"
+      "dark": "#3a1f2d",
+      "light": "#fce5e8"
     },
     "markdownText": {
       "dark": "frappeText",

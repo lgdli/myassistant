@@ -34,7 +34,7 @@ export const console = config.console
 MyAssistant をインストールする最も簡単な方法は、インストールスクリプトを使用することです。
 
 ```bash
-curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://myassistant.ai/install | bash
 ```
 
 次のコマンドを使用してインストールすることもできます。
@@ -76,16 +76,16 @@ curl -fsSL https://opencode.ai/install | bash
 - **macOS および Linux での Homebrew の使用**
 
   ```bash
-  brew install anomalyco/tap/opencode
+  brew install anomalyco/tap/myassistant
   ```
 
-  > 最新のリリースには MyAssistant タップを使用することをお勧めします。公式の `brew install opencode` 式は Homebrew チームによって維持されており、更新頻度は低くなります。
+  > 最新のリリースには MyAssistant タップを使用することをお勧めします。公式の `brew install myassistant` 式は Homebrew チームによって維持されており、更新頻度は低くなります。
 
 - **Arch Linux での Paru の使用**
 
   ```bash
-  sudo pacman -S opencode           # Arch Linux (Stable)
-  paru -S opencode-bin              # Arch Linux (Latest from AUR)
+  sudo pacman -S myassistant           # Arch Linux (Stable)
+  paru -S myassistant-bin              # Arch Linux (Latest from AUR)
   ```
 
 #### Windows
@@ -97,13 +97,13 @@ Windows で最高のエクスペリエンスを得るには、[Windows Subsystem
 - **Chocolatey の使用**
 
   ```bash
-  choco install opencode
+  choco install myassistant
   ```
 
 - **Scoop の使用**
 
   ```bash
-  scoop install opencode
+  scoop install myassistant
   ```
 
 - **npm の使用**
@@ -115,18 +115,18 @@ Windows で最高のエクスペリエンスを得るには、[Windows Subsystem
 - **Mise の使用**
 
   ```bash
-  mise use -g github:anomalyco/opencode
+  mise use -g github:anomalyco/myassistant
   ```
 
 - **Docker の使用**
 
   ```bash
-  docker run -it --rm ghcr.io/anomalyco/opencode
+  docker run -it --rm ghcr.io/anomalyco/myassistant
   ```
 
 Bun を使用して Windows に MyAssistant をインストールするためのサポートは現在進行中です。
 
-[Releases](https://github.com/anomalyco/opencode/releases).
+[Releases](https://github.com/anomalyco/myassistant/releases).
 
 ---
 
@@ -137,7 +137,7 @@ MyAssistant を使用すると、API キーを構成することで任意の LLM
 LLM プロバイダーを初めて使用する場合は、[MyAssistant Zen](/docs/zen) をお勧めします。
 これは、MyAssistant チームによってテストおよび検証されたモデルの厳選されたリストです。
 
-1. TUI で `/connect` コマンドを実行し、opencode を選択して、[opencode.ai/auth](https://opencode.ai/auth) で認証します。
+1. TUI で `/connect` コマンドを実行し、myassistant を選択して、[myassistant.ai/auth](https://myassistant.ai/auth) で認証します。
 
    ```txt
    /connect
@@ -169,7 +169,7 @@ cd /path/to/project
 そしてMyAssistantを実行します。
 
 ```bash
-opencode
+myassistant
 ```
 
 次に、次のコマンドを実行して、プロジェクトの MyAssistant を初期化します。
@@ -339,7 +339,7 @@ MyAssistant との会話は [他のチームメンバーと共有できます](/
 会話はデフォルトでは共有されません。
 :::
 
-これは [MyAssistant を使用した会話 ](https://opencode.ai/s/4XP1fce5) の例です。
+これは [MyAssistant を使用した会話 ](https://myassistant.ai/s/4XP1fce5) の例です。
 
 ---
 
