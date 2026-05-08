@@ -31,6 +31,12 @@ function withDb<T>(fn: (db: Database) => T): T {
   return result
 }
 
+function columnExists(db: Database, table: string, column: string): boolean {
+  const res = db.exec(`PRAGMA table_info(${table})`)
+  if (res.length === 0) return false
+  return res[0].values.some((row) => String(row[1]) === column)
+}
+
 function initSchema(db: Database): void {
   db.run(`
     CREATE TABLE IF NOT EXISTS research_projects (
@@ -42,6 +48,23 @@ function initSchema(db: Database): void {
       status TEXT NOT NULL DEFAULT 'active',
       created_at TEXT NOT NULL,
       updated_at TEXT NOT NULL
+    )
+  `)
+
+  if (!columnExists(db, "research_projects", "myassistant_project_id")) {
+    db.run(`ALTER TABLE research_projects ADD COLUMN myassistant_project_id TEXT`)
+  }
+  db.run(`CREATE UNIQUE INDEX IF NOT EXISTS idx_research_projects_ma_project_id ON research_projects(myassistant_project_id) WHERE myassistant_project_id IS NOT NULL`)
+
+  db.run(`
+    CREATE TABLE IF NOT EXISTS research_sessions (
+      project_id INTEGER NOT NULL,
+      session_id TEXT NOT NULL,
+      phase TEXT,
+      notes TEXT,
+      linked_at TEXT NOT NULL DEFAULT (datetime('now')),
+      FOREIGN KEY (project_id) REFERENCES research_projects(id) ON DELETE CASCADE,
+      PRIMARY KEY (project_id, session_id)
     )
   `)
 }
@@ -69,15 +92,26 @@ export async function createProject(
   description: string,
   keywords: string[] | string,
   data_dir: string,
+  myassistant_project_id?: string,
 ): Promise<Record<string, unknown>> {
   return withDb((db) => {
     const keywordsStr = Array.isArray(keywords) ? JSON.stringify(keywords) : keywords
     const now = new Date().toISOString()
 
+    if (myassistant_project_id !== undefined) {
+      const existing = db.exec(
+        `SELECT id FROM research_projects WHERE myassistant_project_id = ?`,
+        [myassistant_project_id],
+      )
+      if (existing.length > 0 && existing[0].values.length > 0) {
+        return { error: `myassistant_project_id "${myassistant_project_id}" 已被占用` }
+      }
+    }
+
     db.run(
-      `INSERT INTO research_projects (name, description, keywords, data_dir, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?)`,
-      [name, description, keywordsStr, data_dir, now, now],
+      `INSERT INTO research_projects (name, description, keywords, data_dir, myassistant_project_id, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [name, description, keywordsStr, data_dir, myassistant_project_id ?? null, now, now],
     )
 
     const lastId = db.exec("SELECT last_insert_rowid() as id")[0].values[0][0]
@@ -162,5 +196,63 @@ export async function deleteProject(id: number): Promise<Record<string, unknown>
 
     db.run(`DELETE FROM research_projects WHERE id = ?`, [id])
     return { id, message: "项目删除成功" }
+  })
+}
+
+export async function linkSession(
+  projectId: number,
+  sessionId: string,
+  phase?: string,
+  notes?: string,
+): Promise<Record<string, unknown>> {
+  return withDb((db) => {
+    const existing = db.exec(
+      `SELECT * FROM research_sessions WHERE project_id = ? AND session_id = ?`,
+      [projectId, sessionId],
+    )
+    if (existing.length > 0 && existing[0].values.length > 0) {
+      return { error: `会话 "${sessionId}" 已关联到项目 ${projectId}` }
+    }
+
+    const project = db.exec(`SELECT id FROM research_projects WHERE id = ?`, [projectId])
+    if (project.length === 0 || project[0].values.length === 0) {
+      return { error: `项目 ${projectId} 不存在` }
+    }
+
+    db.run(
+      `INSERT INTO research_sessions (project_id, session_id, phase, notes, linked_at)
+       VALUES (?, ?, ?, ?, datetime('now'))`,
+      [projectId, sessionId, phase ?? null, notes ?? null],
+    )
+    return { project_id: projectId, session_id: sessionId, message: "会话关联成功" }
+  })
+}
+
+export async function unlinkSession(
+  projectId: number,
+  sessionId: string,
+): Promise<Record<string, unknown>> {
+  return withDb((db) => {
+    const existing = db.exec(
+      `SELECT * FROM research_sessions WHERE project_id = ? AND session_id = ?`,
+      [projectId, sessionId],
+    )
+    if (existing.length === 0 || existing[0].values.length === 0) {
+      return { error: `会话 "${sessionId}" 未关联到项目 ${projectId}` }
+    }
+
+    db.run(`DELETE FROM research_sessions WHERE project_id = ? AND session_id = ?`, [projectId, sessionId])
+    return { project_id: projectId, session_id: sessionId, message: "会话解关联成功" }
+  })
+}
+
+export async function listProjectSessions(projectId: number): Promise<Record<string, unknown>[]> {
+  return withDb((db) => {
+    const res = db.exec(
+      `SELECT project_id, session_id, phase, notes, linked_at FROM research_sessions WHERE project_id = ? ORDER BY linked_at DESC`,
+      [projectId],
+    )
+    if (res.length === 0 || res[0].values.length === 0) return []
+    return formatExecResult(res[0])
   })
 }

@@ -7,6 +7,9 @@ import {
   getProject,
   updateProject,
   deleteProject,
+  linkSession,
+  unlinkSession,
+  listProjectSessions,
 } from "./sqlite.js"
 
 const server = new McpServer({
@@ -27,6 +30,7 @@ server.registerTool(
         .array(z.string())
         .describe("Research keywords as an array of strings (required)"),
       data_dir: z.string().describe("Absolute path for research data directory (required)"),
+      myassistant_project_id: z.string().optional().describe("Optional myassistant project ID for linking (unique)"),
     }),
   },
   async (args) => {
@@ -36,6 +40,7 @@ server.registerTool(
         args.description,
         args.keywords,
         args.data_dir,
+        args.myassistant_project_id,
       )
       return {
         content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
@@ -176,6 +181,97 @@ server.registerTool(
       const result = await deleteProject(args.id)
       return {
         content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+      }
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify({ error: error instanceof Error ? error.message : String(error) }, null, 2),
+          },
+        ],
+        isError: true,
+      }
+    }
+  },
+)
+
+server.registerTool(
+  "link_session",
+  {
+    title: "Link Session to Research Project",
+    description: "Link a myassistant session to a research project with optional phase and notes.",
+    inputSchema: z.object({
+      project_id: z.number().describe("Research project ID (required)"),
+      session_id: z.string().describe("Myassistant session ID (required)"),
+      phase: z.string().optional().describe("Phase of research (e.g., 文献综述, 实验设计)"),
+      notes: z.string().optional().describe("Additional notes about this session"),
+    }),
+  },
+  async (args) => {
+    try {
+      const result = await linkSession(args.project_id, args.session_id, args.phase, args.notes)
+      return {
+        content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+      }
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify({ error: error instanceof Error ? error.message : String(error) }, null, 2),
+          },
+        ],
+        isError: true,
+      }
+    }
+  },
+)
+
+server.registerTool(
+  "unlink_session",
+  {
+    title: "Unlink Session from Research Project",
+    description: "Remove a session association from a research project.",
+    inputSchema: z.object({
+      project_id: z.number().describe("Research project ID (required)"),
+      session_id: z.string().describe("Myassistant session ID (required)"),
+    }),
+  },
+  async (args) => {
+    try {
+      const result = await unlinkSession(args.project_id, args.session_id)
+      return {
+        content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+      }
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify({ error: error instanceof Error ? error.message : String(error) }, null, 2),
+          },
+        ],
+        isError: true,
+      }
+    }
+  },
+)
+
+server.registerTool(
+  "list_project_sessions",
+  {
+    title: "List Project Sessions",
+    description: "List all sessions linked to a research project.",
+    inputSchema: z.object({
+      project_id: z.number().describe("Research project ID (required)"),
+    }),
+  },
+  async (args) => {
+    try {
+      const results = await listProjectSessions(args.project_id)
+      return {
+        content: [{ type: "text", text: JSON.stringify(results, null, 2) }],
       }
     } catch (error) {
       return {
