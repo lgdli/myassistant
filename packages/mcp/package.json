@@ -1,0 +1,15 @@
+{
+  "name": "@myassistant/research-db-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "bun run src/index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "sql.js": "^1.10.0",
+    "zod": "^3.25.0"
+  }
+}
