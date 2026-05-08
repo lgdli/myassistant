@@ -1,12 +1,13 @@
 import initSqlJs, { Database } from "sql.js"
 import fs from "fs"
 import path from "path"
+import { fileURLToPath } from "url"
 
+const PKG_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const DB_PATH = process.env.RESEARCH_DB_PATH ?? path.join(process.env.HOME ?? ".", ".myassistant", "research.db")
 
-// Initialize sql.js WASM once at module load time
 const SQL = await initSqlJs({
-  locateFile: (file) => `file://${path.resolve("node_modules", "sql.js", "dist", file)}`,
+  locateFile: (file) => `file://${path.join(PKG_ROOT, "node_modules", "sql.js", "dist", file)}`,
 })
 
 // MCP tool calls run in the same subprocess but may re-import the module.
