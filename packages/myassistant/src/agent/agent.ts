@@ -12,6 +12,7 @@ import PROMPT_COMPACTION from "./prompt/compaction.txt"
 import PROMPT_EXPLORE from "./prompt/explore.txt"
 import PROMPT_SUMMARY from "./prompt/summary.txt"
 import PROMPT_TITLE from "./prompt/title.txt"
+import PROMPT_RESEARCH from "./prompt/research.txt"
 import { Permission } from "@/permission"
 import { mergeDeep, pipe, sortBy, values } from "remeda"
 import { Global } from "@myassistant-ai/core/global"
@@ -123,6 +124,22 @@ export const layer = Layer.effect(
             ),
             mode: "primary",
             native: true,
+          },
+          research: {
+            name: "research",
+            description: "学术研究全流程管理助手，帮助创建和管理研究项目、检索文献、整理研究资料等。",
+            permission: Permission.merge(
+              defaults,
+              Permission.fromConfig({
+                question: "allow",
+                plan_enter: "allow",
+              }),
+              user,
+            ),
+            options: {},
+            mode: "primary",
+            native: true,
+            prompt: PROMPT_RESEARCH,
           },
           plan: {
             name: "plan",
