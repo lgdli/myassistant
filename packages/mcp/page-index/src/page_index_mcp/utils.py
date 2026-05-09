@@ -30,9 +30,15 @@ def count_tokens(text, model=None):
 
 
 def llm_completion(model, prompt, chat_history=None, return_finish_reason=False):
+    # Normalize model name - ensure it has correct prefix for OpenAI-compatible APIs
     if model:
-        model = model.removeprefix("litellm/")
-    max_retries = 10
+        model = model.removeprefix("litellm/").removeprefix("openai/")
+        # Add openai/ prefix for compatible APIs
+        base_url = os.getenv("OPENAI_BASE_URL", "")
+        if base_url and "/" not in model:
+            model = f"openai/{model}"
+    
+    max_retries = 3
     messages = list(chat_history) + [{"role": "user", "content": prompt}] if chat_history else [{"role": "user", "content": prompt}]
     for i in range(max_retries):
         try:
@@ -40,6 +46,7 @@ def llm_completion(model, prompt, chat_history=None, return_finish_reason=False)
                 model=model,
                 messages=messages,
                 temperature=0,
+                timeout=60,
             )
             content = response.choices[0].message.content
             if return_finish_reason:
@@ -47,12 +54,10 @@ def llm_completion(model, prompt, chat_history=None, return_finish_reason=False)
                 return content, finish_reason
             return content
         except Exception as e:
-            print('************* Retrying *************')
-            logging.error(f"Error: {e}")
+            print(f'************* Retry {i+1}/{max_retries}: {type(e).__name__} *************')
             if i < max_retries - 1:
                 time.sleep(1)
             else:
-                logging.error('Max retries reached for prompt: ' + prompt)
                 if return_finish_reason:
                     return "", "error"
                 return ""
@@ -60,9 +65,14 @@ def llm_completion(model, prompt, chat_history=None, return_finish_reason=False)
 
 
 async def llm_acompletion(model, prompt):
+    # Normalize model name - ensure it has correct prefix for OpenAI-compatible APIs
     if model:
-        model = model.removeprefix("litellm/")
-    max_retries = 10
+        model = model.removeprefix("litellm/").removeprefix("openai/")
+        base_url = os.getenv("OPENAI_BASE_URL", "")
+        if base_url and "/" not in model:
+            model = f"openai/{model}"
+    
+    max_retries = 3
     messages = [{"role": "user", "content": prompt}]
     for i in range(max_retries):
         try:
@@ -70,15 +80,14 @@ async def llm_acompletion(model, prompt):
                 model=model,
                 messages=messages,
                 temperature=0,
+                timeout=60,
             )
             return response.choices[0].message.content
         except Exception as e:
-            print('************* Retrying *************')
-            logging.error(f"Error: {e}")
+            print(f'************* Retry {i+1}/{max_retries}: {type(e).__name__} *************')
             if i < max_retries - 1:
                 await asyncio.sleep(1)
             else:
-                logging.error('Max retries reached for prompt: ' + prompt)
                 return ""
             
             
