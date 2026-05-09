@@ -108,7 +108,6 @@ async def list_tools() -> list[types.Tool]:
 
 
 @server.call_tool()
-@server.call_tool()
 async def call_tool(name: str, arguments: dict[str, object]) -> list[types.TextContent]:
     try:
         if name == "pageindex_create":

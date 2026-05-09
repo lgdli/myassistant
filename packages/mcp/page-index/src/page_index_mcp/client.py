@@ -14,6 +14,8 @@ from .utils import ConfigLoader, remove_fields
 
 META_INDEX = "_meta.json"
 
+_pdf_executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+
 
 def _normalize_retrieve_model(model: str) -> str:
     """Preserve supported Agents SDK prefixes and route other provider paths via LiteLLM."""
@@ -68,14 +70,16 @@ class PageIndexClient:
 
         if mode == "pdf" or (mode == "auto" and is_pdf):
             print(f"Indexing PDF: {file_path}")
-            result = page_index(
+            # Run in thread to avoid event loop conflict
+            result = _pdf_executor.submit(
+                page_index,
                 doc=file_path,
                 model=self.model,
                 if_add_node_summary='yes',
                 if_add_node_text='yes',
                 if_add_node_id='yes',
                 if_add_doc_description='yes'
-            )
+            ).result()
             # Extract per-page text so queries don't need the original PDF
             pages = []
             with open(file_path, 'rb') as f:
