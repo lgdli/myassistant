@@ -1,5 +1,6 @@
 import os
 import json
+import concurrent.futures
 from pathlib import Path
 
 from mcp.server import Server
@@ -107,10 +108,11 @@ async def list_tools() -> list[types.Tool]:
 
 
 @server.call_tool()
+@server.call_tool()
 async def call_tool(name: str, arguments: dict[str, object]) -> list[types.TextContent]:
     try:
         if name == "pageindex_create":
-            result = await _pageindex_create(arguments)
+            result = _pageindex_create_sync(arguments)
         elif name == "pageindex_get_structure":
             result = _pageindex_get_structure(arguments)
         elif name == "pageindex_get_pages":
@@ -123,7 +125,7 @@ async def call_tool(name: str, arguments: dict[str, object]) -> list[types.TextC
         return [types.TextContent(type="text", text=json.dumps({"error": str(e), "status": "error"}))]
 
 
-async def _pageindex_create(args: dict[str, object]) -> dict[str, object]:
+def _pageindex_create_sync(args: dict[str, object]) -> dict[str, object]:
     pdf_path = os.path.abspath(os.path.expanduser(str(args["pdf_path"])))
     output_dir = os.path.abspath(os.path.expanduser(str(args["output_dir"])))
     model = str(args["model"]) if args.get("model") else None
