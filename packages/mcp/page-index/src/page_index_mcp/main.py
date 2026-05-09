@@ -15,6 +15,18 @@ DEFAULT_MODEL = os.getenv("PAGEINDEX_MODEL", "gpt-4o")
 server = Server("page-index-mcp")
 
 
+def _normalize_model(model: str) -> str:
+    """Add 'openai/' prefix for OpenAI-compatible APIs when needed."""
+    if not model:
+        return model
+    if "/" in model:
+        return model
+    base_url = os.getenv("OPENAI_BASE_URL", "")
+    if base_url and not base_url.endswith("/openai"):
+        return f"openai/{model}"
+    return model
+
+
 def get_client(model: str | None = None):
     from .client import PageIndexClient
     
@@ -24,9 +36,12 @@ def get_client(model: str | None = None):
         raise ValueError("OPENAI_API_KEY not configured")
     if base_url:
         os.environ["OPENAI_BASE_URL"] = base_url
+    
+    final_model = _normalize_model(model or DEFAULT_MODEL)
+    
     return PageIndexClient(
         api_key=api_key,
-        model=model or DEFAULT_MODEL,
+        model=final_model,
     )
 
 
