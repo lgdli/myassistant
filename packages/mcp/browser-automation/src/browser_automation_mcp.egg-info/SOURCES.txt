@@ -1,0 +1,13 @@
+pyproject.toml
+src/browser_automation/__init__.py
+src/browser_automation/browser_manager.py
+src/browser_automation/config.py
+src/browser_automation/models.py
+src/browser_automation/server.py
+src/browser_automation/tools.py
+src/browser_automation_mcp.egg-info/PKG-INFO
+src/browser_automation_mcp.egg-info/SOURCES.txt
+src/browser_automation_mcp.egg-info/dependency_links.txt
+src/browser_automation_mcp.egg-info/requires.txt
+src/browser_automation_mcp.egg-info/top_level.txt
+tests/test_browser.py
