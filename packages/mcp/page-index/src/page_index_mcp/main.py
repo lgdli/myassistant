@@ -3,6 +3,8 @@ import json
 import concurrent.futures
 from pathlib import Path
 
+os.environ['LITELLM_MODEL_COST_MAP'] = 'False'
+
 from mcp.server import Server
 from mcp.server import NotificationOptions
 from mcp.server.models import InitializationOptions
