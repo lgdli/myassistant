@@ -1,9 +1,10 @@
 import os
+import sys
 import json
 import concurrent.futures
 from pathlib import Path
 
-os.environ['LITELLM_MODEL_COST_MAP'] = 'False'
+os.environ.setdefault('LITELLM_LOCAL_MODEL_COST_MAP', 'True')
 
 from mcp.server import Server
 from mcp.server import NotificationOptions
@@ -11,6 +12,11 @@ from mcp.server.models import InitializationOptions
 import mcp.server.stdio
 import mcp.types as types
 import anyio
+
+# Debug: print environment on startup
+print(f"[page-index] OPENAI_BASE_URL: {os.getenv('OPENAI_BASE_URL', 'NOT SET')}", file=sys.stderr)
+print(f"[page-index] PAGEINDEX_MODEL: {os.getenv('PAGEINDEX_MODEL', 'NOT SET')}", file=sys.stderr)
+print(f"[page-index] LITELLM_MODEL_COST_MAP: {os.getenv('LITELLM_MODEL_COST_MAP', 'NOT SET')}", file=sys.stderr)
 
 
 DEFAULT_MODEL = os.getenv("PAGEINDEX_MODEL", "gpt-4o")
