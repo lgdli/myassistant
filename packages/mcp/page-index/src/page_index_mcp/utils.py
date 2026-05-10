@@ -26,7 +26,8 @@ litellm.drop_params = True
 def count_tokens(text, model=None):
     if not text:
         return 0
-    return litellm.token_counter(model=model, text=text)
+    # Use simple word count instead of LLM API
+    return len(text.split())
 
 
 def llm_completion(model, prompt, chat_history=None, return_finish_reason=False):
@@ -394,13 +395,17 @@ def add_preface_if_needed(data):
 
 
 def get_page_tokens(pdf_path, model=None, pdf_parser="PyPDF2"):
+    # Use a simple tokenizer for token counting - don't use LLM API
+    def simple_token_count(text):
+        return len(text.split())
+    
     if pdf_parser == "PyPDF2":
         pdf_reader = PyPDF2.PdfReader(pdf_path)
         page_list = []
         for page_num in range(len(pdf_reader.pages)):
             page = pdf_reader.pages[page_num]
             page_text = page.extract_text()
-            token_length = litellm.token_counter(model=model, text=page_text)
+            token_length = simple_token_count(page_text)
             page_list.append((page_text, token_length))
         return page_list
     elif pdf_parser == "PyMuPDF":
@@ -412,7 +417,7 @@ def get_page_tokens(pdf_path, model=None, pdf_parser="PyPDF2"):
         page_list = []
         for page in doc:
             page_text = page.get_text()
-            token_length = litellm.token_counter(model=model, text=page_text)
+            token_length = simple_token_count(page_text)
             page_list.append((page_text, token_length))
         return page_list
     else:
