@@ -16,7 +16,7 @@ import anyio
 # Debug: print environment on startup
 print(f"[page-index] OPENAI_BASE_URL: {os.getenv('OPENAI_BASE_URL', 'NOT SET')}", file=sys.stderr)
 print(f"[page-index] PAGEINDEX_MODEL: {os.getenv('PAGEINDEX_MODEL', 'NOT SET')}", file=sys.stderr)
-print(f"[page-index] LITELLM_MODEL_COST_MAP: {os.getenv('LITELLM_MODEL_COST_MAP', 'NOT SET')}", file=sys.stderr)
+print(f"[page-index] LITELLM_LOCAL_MODEL_COST_MAP: {os.getenv('LITELLM_LOCAL_MODEL_COST_MAP', 'NOT SET')}", file=sys.stderr)
 
 
 DEFAULT_MODEL = os.getenv("PAGEINDEX_MODEL", "gpt-4o")
